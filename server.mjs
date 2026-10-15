@@ -1,4 +1,5 @@
 import http from "node:http";
+import { createAdminApi } from "./admin-api.mjs";
 import { readFile, stat } from "node:fs/promises";
 import { readdirSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -6,11 +7,19 @@ import { brotliCompressSync, gzipSync, constants } from "node:zlib";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 const root = path.dirname(fileURLToPath(import.meta.url));
+const adminApi = await createAdminApi({
+  dataDir: process.env.DATA_DIR || path.join(root, "data"),
+  password: process.env.ADMIN_PASSWORD || "",
+  publicOrigin: process.env.PUBLIC_ORIGIN || "",
+});
 const allowed = new Map([
   ["/", "index.html"],
   ["/index.html", "index.html"],
   ["/style.css", "style.css"],
   ["/app.js", "app.js"],
+  ["/commerce.js", "commerce.js"],
+  ["/pricing.js", "pricing.js"],
+  ["/admin.js", "admin.js"],
   ["/catalogue.js", "catalogue.js"],
   ["/photos.js", "photos.js"],
   ["/pages.js", "pages.js"],
@@ -66,6 +75,14 @@ function accepts(value, encoding) {
 }
 const server = http.createServer(async (req, res) => {
   try {
+    if (
+      await adminApi.handle(
+        req,
+        res,
+        new URL(req.url, "http://localhost").pathname,
+      )
+    )
+      return;
     if (!["GET", "HEAD"].includes(req.method)) {
       res.writeHead(405, { Allow: "GET, HEAD" });
       res.end();

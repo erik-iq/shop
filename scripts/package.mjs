@@ -4,13 +4,27 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const read = (name) => readFile(path.join(root, name), "utf8");
-const [html, css, catalogue, photos, app, pages, favicon] = await Promise.all(
+const [
+  html,
+  css,
+  catalogue,
+  photos,
+  commerce,
+  pricing,
+  app,
+  admin,
+  pages,
+  favicon,
+] = await Promise.all(
   [
     "index.html",
     "style.css",
     "catalogue.js",
     "photos.js",
+    "commerce.js",
+    "pricing.js",
     "app.js",
+    "admin.js",
     "pages.js",
     "assets/favicon.svg",
   ].map(read),
@@ -43,7 +57,7 @@ const standalone = embedAssets(html)
     () => `<style>${css}</style>`,
   )
   .replace(
-    /^[ \t]*<script\b[^>]*src=["'](?:catalogue|photos|app|pages)\.js["'][^>]*>\s*<\/script>[ \t]*\r?\n?/gim,
+    /^[ \t]*<script\b[^>]*src=["'](?:catalogue|photos|commerce|pricing|app|admin|pages)\.js["'][^>]*>\s*<\/script>[ \t]*\r?\n?/gim,
     "",
   )
   .replace(
@@ -54,9 +68,9 @@ const standalone = embedAssets(html)
   .replace(
     "</body>",
     () =>
-      `<script>${safeScript(catalogue)}</script><script>${safeScript(embedAssets(photos))}</script><script>${safeScript(app)}</script><script>${safeScript(embedAssets(pages))}</script></body>`,
+      `<script>${safeScript(catalogue)}</script><script>${safeScript(embedAssets(photos))}</script><script>${safeScript(commerce)}</script><script>${safeScript(pricing)}</script><script>${safeScript(app)}</script><script>${safeScript(admin)}</script><script>${safeScript(embedAssets(pages))}</script></body>`,
   );
-const instructions = `INFORMAQUIK SHOP — BOUTIQUE VISUELLE\r\n\r\n1. Extraire le ZIP avec « Extraire tout ».\r\n2. Double-cliquer sur Informaquik-Shop.html : l’accueil Informaquik s’ouvre dans votre navigateur.\r\n3. Les photos présentent chaque modèle. Survoler le portable ou utiliser « Explorer les composants » pour le schéma pédagogique.\r\n4. Filtrer les marques, rechercher un modèle, consulter sa fiche et préparer une sélection.\r\n5. Le menu principal donne accès à Accueil, Shop, Solutions PME, Dépannage et atelier et Contact. Les conseils d’achat et garanties sont dans le shop et le pied de page.\r\n6. Le panier reste dans ce navigateur. L’export et l’impression permettent de conserver la sélection.\r\n\r\nLa boutique se consulte sans application à installer, sans serveur ni connexion Internet. Les liens de dépannage AnyDesk et TeamViewer nécessitent Internet ; aucun outil ne se lance automatiquement.\r\nDix configurations issues des fiches fournies ; garantie ordinateur 24 mois, batterie 6 mois.\r\nPrix TTC en CHF. Disponibilité, état de batterie et provenance des lots à compléter.\r\nCette version ne reçoit ni commande ni paiement.\r\n`;
+const instructions = `INFORMAQUIK SHOP — BOUTIQUE VISUELLE\r\n\r\n1. Extraire le ZIP avec « Extraire tout ».\r\n2. Double-cliquer sur Informaquik-Shop.html : l’accueil Informaquik s’ouvre dans votre navigateur.\r\n3. Les photos présentent chaque modèle. Survoler le portable ou utiliser « Explorer les composants » pour le schéma pédagogique.\r\n4. Filtrer les marques, rechercher un modèle, consulter sa fiche et ajouter des ordinateurs ou services au panier.\r\n5. Le menu principal donne accès à Accueil, Shop, Solutions PME, Dépannage et atelier et Contact. Les conseils d’achat et garanties sont dans le shop et le pied de page.\r\n6. Le panier reste dans ce navigateur. L’export et l’impression permettent de conserver la sélection.\r\n\r\nLa boutique se consulte sans application à installer, sans serveur ni connexion Internet. Les liens de dépannage AnyDesk et TeamViewer nécessitent Internet ; aucun outil ne se lance automatiquement.\r\nDix configurations issues des fiches fournies ; garantie ordinateur 24 mois, batterie 6 mois.\r\nPrix TTC en CHF. Disponibilité, état de batterie et provenance des lots à compléter.\r\nCette version ne reçoit ni commande ni paiement. Les services sont sur devis. L’administration partagée est disponible dans la version hébergée avec le serveur, pas dans ce fichier autonome.\r\n`;
 const digest = createHash("sha256").update(standalone).digest("hex");
 const sums = `${digest}  Informaquik-Shop.html\n`;
 // Archive ZIP standard sans dépendance : stockage direct, CRC-32, en-têtes et index central.

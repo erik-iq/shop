@@ -5143,3 +5143,255 @@ dialog::backdrop {
     font-size: clamp(43px, 13.6vw, 56px);
   }
 }
+
+/* Prestations au panier et administration. */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+.shop-services {
+  background: #f0f0f0;
+}
+.service-product {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 29px;
+  background: #fff;
+  border: 1px solid #dedede;
+  border-radius: 12px;
+}
+.service-product-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  background: #f1f1f1;
+  border-radius: 10px;
+  margin-bottom: 23px;
+}
+.service-product-icon svg {
+  width: 24px;
+  height: 24px;
+}
+.service-product .eyebrow {
+  font-size: 8px;
+  color: #777;
+  letter-spacing: 1px;
+}
+.service-product h3 {
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: -0.7px;
+  line-height: 1.35;
+  margin: 14px 0;
+}
+.service-product > p {
+  font-size: 13px;
+  line-height: 1.85;
+  color: #6b6b6b;
+  margin-bottom: 25px;
+}
+.service-product-footer {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: auto;
+}
+.service-product-footer .button {
+  padding: 13px 15px;
+  font-size: 10px;
+  gap: 9px;
+}
+.service-product-footer .button svg {
+  width: 15px;
+  height: 15px;
+}
+.quote-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+}
+.price.quote-label {
+  font-size: 22px;
+}
+.service-visit-note {
+  padding: 28px 0 0;
+  margin-top: 30px;
+  border-top: 1px solid #d8d8d8;
+  max-width: 780px;
+}
+.service-visit-note > strong {
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
+.service-visit-note > p {
+  color: #717171;
+  font-size: 13px;
+  line-height: 1.85;
+  margin: 15px 0;
+}
+.service-visit-note .text-link {
+  font-size: 12px;
+}
+.cart-service-icon {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  min-height: 90px;
+  background: #ededed;
+  border-radius: 9px;
+}
+.cart-service-icon svg {
+  width: 30px;
+  height: 30px;
+}
+.cart-total > div > span {
+  max-width: 60%;
+  line-height: 1.7;
+}
+.admin-card {
+  max-width: 740px;
+  padding: 36px;
+  border: 1px solid #ddd;
+  border-radius: 13px;
+  background: #fff;
+}
+.admin-card h2 {
+  font-size: 34px;
+  line-height: 1.25;
+  margin: 16px 0 25px;
+  letter-spacing: -1px;
+}
+.admin-card > p {
+  font-size: 13px;
+  line-height: 1.85;
+  color: #6b6b6b;
+  margin: 20px 0;
+}
+.admin-card > label:not(.admin-switch) {
+  display: grid;
+  gap: 12px;
+  font-size: 13px;
+}
+.admin-card input[type="password"] {
+  font: inherit;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  max-width: 400px;
+  width: 100%;
+}
+.admin-card > button {
+  margin-top: 24px;
+}
+.admin-switch {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 22px;
+  background: #f5f5f5;
+  border-radius: 9px;
+}
+.admin-switch > input {
+  accent-color: #222;
+  width: 20px;
+  height: 20px;
+  flex: none;
+  margin-top: 2px;
+}
+.admin-switch > span {
+  display: grid;
+  gap: 12px;
+}
+.admin-switch strong {
+  font-size: 16px;
+  font-weight: 500;
+}
+.admin-switch small {
+  font-size: 12px;
+  color: #6b6b6b;
+  line-height: 1.8;
+}
+.admin-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+.admin-actions .button {
+  font-size: 11px;
+}
+#admin-status {
+  font-size: 13px;
+  line-height: 1.85;
+}
+@media (max-width: 1000px) {
+  .service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .service-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .service-product {
+    padding: 25px;
+  }
+  .service-product h3 {
+    font-size: 23px;
+  }
+  .admin-card {
+    padding: 24px;
+  }
+  .admin-card h2 {
+    font-size: 28px;
+  }
+  .admin-switch {
+    padding: 18px;
+    gap: 12px;
+  }
+  .admin-actions {
+    flex-direction: column;
+  }
+  .admin-actions .button {
+    justify-content: center;
+  }
+  .service-visit-note > strong {
+    font-size: 21px;
+  }
+}
+
+.admin-heading {
+  padding-top: 35px;
+  padding-bottom: 15px;
+}
+.admin-heading h1 {
+  font-size: 44px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -1.3px;
+  margin: 15px 0;
+}
+.admin-heading > p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #717171;
+}
+.admin-content {
+  padding-top: 15px;
+  padding-bottom: 45px;
+}
+@media (max-width: 600px) {
+  .admin-heading h1 {
+    font-size: 34px;
+  }
+  .admin-heading > p {
+    font-size: 13px;
+  }
+}

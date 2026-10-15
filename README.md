@@ -4,13 +4,13 @@ Site Informaquik en français : accueil, dépannage et atelier à Martigny, solu
 
 ![Accueil Informaquik](docs/accueil.png)
 
-[Aperçu du shop](docs/shop.png) · [Aperçu des solutions PME](docs/pme.png) · [Dépannage à distance et atelier](docs/depannage.png)
+[Aperçu du shop](docs/shop.png) · [Services](docs/services.png) · [Administration](docs/administration.png) · [Aperçu des solutions PME](docs/pme.png) · [Dépannage à distance et atelier](docs/depannage.png)
 
 ## Tester sans installation
 
 Ouvrez **`downloads/Informaquik-Shop.html`** dans Edge, Chrome ou Firefox. Ce fichier contient tout le site et fonctionne sans serveur ni connexion Internet. L’archive **`downloads/Informaquik-Shop.zip`** contient la même version et ses instructions. Les téléchargements des outils de dépannage nécessitent une connexion Internet.
 
-Depuis les sources, ouvrir `index.html` fonctionne également. Conservez `app.js`, `pages.js`, `photos.js`, `style.css`, `catalogue.js` et `assets/` à côté du fichier.
+Depuis les sources, ouvrir `index.html` fonctionne également. Conservez `app.js`, `commerce.js`, `pricing.js`, `admin.js`, `pages.js`, `photos.js`, `style.css`, `catalogue.js` et `assets/` à côté du fichier.
 
 ## Fonctions
 
@@ -26,6 +26,10 @@ Depuis les sources, ouvrir `index.html` fonctionne également. Conservez `app.js
 - Guide interactif : recommandations selon l’usage, le budget et le besoin d’un écran tactile.
 - Contact : coordonnées publiques vérifiées, formulaire qui prépare un e-mail dans la messagerie du visiteur, motif SAV ou entreprise prérempli depuis les pages correspondantes.
 - Catalogue organisé par marque et modèle, recherche, filtres d’usage et tactile, tri par prix ou mémoire.
+- Cinq prestations à ajouter au panier : transfert de données, installation Windows, nettoyage physique, nettoyage logiciel et détection de malwares. Tarifs sur devis tant qu’ils ne sont pas renseignés.
+- Panier mixte ou composé uniquement de services : quantités, persistance, export, impression/PDF et demande d’offre. Les devis distinguent le sous-total connu des prestations à chiffrer.
+- Déplacements chez les particuliers et dans les entreprises, en plus de l’atelier et de l’assistance à distance. Les modalités et frais de déplacement sont confirmés avec l’offre.
+- Administration protégée pour masquer les prix à tous les visiteurs de la version serveur. [Activation et utilisation](docs/ADMINISTRATION.md).
 - Fiches détaillées : configuration, connectique, système, état et provenance à préciser.
 - Prix de vente TTC en CHF ; TVA de 8,1 % selon les fiches fournies.
 - Garantie ordinateur **24 mois**, garantie batterie **6 mois**, confirmées pour ce projet.
@@ -42,7 +46,7 @@ Les photos présentent les modèles, pas l’état d’un exemplaire précis. Le
 - Le serveur Node utilise Brotli/gzip pour HTML, CSS, JavaScript et SVG, ainsi que des ETag pour éviter de retransmettre les ressources inchangées. Les fichiers modifiés restent détectés pendant le développement.
 - La version HTML autonome contient les logos et photos pour fonctionner hors ligne. La compression HTTP concerne la version servie par Node.
 
-Vérification locale du 15 octobre 2026 : aucun fichier photo produit demandé à l’ouverture de l’accueil ; 186 993 octets de ressources textuelles (HTML, CSS, JavaScript et deux logos SVG) transmis en 47 282 octets avec Brotli, soit environ 75 % de moins. Il s’agit des corps HTTP de ces fichiers, pas d’une mesure de temps de chargement sur un hébergement public.
+La compression et le cache sont vérifiés automatiquement. L’accueil ne charge aucune photo produit avant l’ouverture du shop. Les temps réels dépendent de l’hébergement et de la connexion.
 
 ## Le catalogue fourni
 
@@ -65,13 +69,17 @@ Les points à vérifier sont regroupés dans [CATALOGUE-A-VERIFIER.md](CATALOGUE
 
 ## Adapter les informations
 
-Modifier **`catalogue.js`** : identité, devise, garanties et coordonnées dans `SHOP_CONFIG` ; modèles, caractéristiques, prix et disponibilités dans `SHOP_PRODUCTS`.
+Modifier **`catalogue.js`** : identité, devise, garanties et coordonnées dans `SHOP_CONFIG` ; modèles, caractéristiques, prix et disponibilités dans `SHOP_PRODUCTS` ; prestations et tarifs éventuels dans `SHOP_SERVICES`. `price: null` signifie « Sur devis » et ne vaut pas zéro.
 
 `stock: null` signifie que la disponibilité doit être confirmée. Le panier permet de préparer une demande, sans réserver un stock. Renseigner une quantité réelle permet de limiter la sélection à cette quantité. Les filtres de marque se construisent automatiquement à partir du catalogue.
 
 `contactEmail` contient l’adresse publique `info@i-q.ch`, relevée sur le site de référence. Le panier et le formulaire ouvrent un message à vérifier et à envoyer depuis la messagerie du visiteur. Aucun e-mail n’est envoyé automatiquement. Effacer cette valeur désactive le bouton e-mail du panier et propose le téléchargement du message de contact en texte. La version actuelle ne collecte pas de paiement, ne transmet pas de commandes et ne propose pas de gestion de stock partagée. Publier le dépôt ne met pas automatiquement la boutique en ligne.
 
 Les photographies et leurs crédits sont configurés dans **`photos.js`**. Les deux configurations du 850 G7 partagent les visuels du même châssis. Le contenu des pages et leur navigation se trouvent dans **`pages.js`**. Les liens Windows d’assistance se configurent dans `SHOP_CONFIG.support` (`anydesk` et `teamviewer`).
+
+## Administration partagée
+
+Définir `ADMIN_PASSWORD` sur l’hébergement, conserver `DATA_DIR` sur un disque persistant et utiliser le serveur Node. L’accès se fait par **Administration** dans le pied de page. Le fichier HTML autonome reste utilisable pour le shop et les services, mais ne peut pas modifier le réglage d’un site partagé. Voir [docs/ADMINISTRATION.md](docs/ADMINISTRATION.md).
 
 ## Développement et vérification
 
@@ -85,7 +93,7 @@ npm run package
 
 Le serveur de développement utilise le port 4173 (`PORT` et `HOST` configurables). Il sert uniquement les ressources de la boutique. `npm run package` fabrique le fichier HTML autonome et le ZIP dans `downloads/` avec les sommes SHA-256.
 
-La version autonome est vérifiée dans un navigateur, notamment l’ouverture sans serveur, le chargement des photos, les galeries, les pages de services et les accès secondaires, le guide, le formulaire, l’exploration des composants, les filtres, les fiches, le panier persistant, l’export et la mise en page mobile. Les tests Node vérifient la fidélité des données, l’exclusion des coûts internes, les ressources embarquées et la compression/cache du serveur.
+La version autonome est vérifiée dans un navigateur, notamment l’ouverture sans serveur, le chargement des photos, les galeries, les pages de services et les accès secondaires, le guide, le formulaire, l’exploration des composants, les filtres, les fiches, le panier persistant, l’export et la mise en page mobile. Les tests Node vérifient les données, les sous-totaux mixtes et les services sur devis, les ressources embarquées, la compression/cache et l’administration (authentification, CSRF, origine, persistance, déconnexion, limitation des tentatives). Les essais navigateur couvrent aussi deux sessions indépendantes et les exports sans montants.
 
 ## Configuration cloud
 

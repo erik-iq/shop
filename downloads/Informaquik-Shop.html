@@ -5157,6 +5157,258 @@ dialog::backdrop {
     font-size: clamp(43px, 13.6vw, 56px);
   }
 }
+
+/* Prestations au panier et administration. */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+.shop-services {
+  background: #f0f0f0;
+}
+.service-product {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 29px;
+  background: #fff;
+  border: 1px solid #dedede;
+  border-radius: 12px;
+}
+.service-product-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  background: #f1f1f1;
+  border-radius: 10px;
+  margin-bottom: 23px;
+}
+.service-product-icon svg {
+  width: 24px;
+  height: 24px;
+}
+.service-product .eyebrow {
+  font-size: 8px;
+  color: #777;
+  letter-spacing: 1px;
+}
+.service-product h3 {
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: -0.7px;
+  line-height: 1.35;
+  margin: 14px 0;
+}
+.service-product > p {
+  font-size: 13px;
+  line-height: 1.85;
+  color: #6b6b6b;
+  margin-bottom: 25px;
+}
+.service-product-footer {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: auto;
+}
+.service-product-footer .button {
+  padding: 13px 15px;
+  font-size: 10px;
+  gap: 9px;
+}
+.service-product-footer .button svg {
+  width: 15px;
+  height: 15px;
+}
+.quote-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+}
+.price.quote-label {
+  font-size: 22px;
+}
+.service-visit-note {
+  padding: 28px 0 0;
+  margin-top: 30px;
+  border-top: 1px solid #d8d8d8;
+  max-width: 780px;
+}
+.service-visit-note > strong {
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
+.service-visit-note > p {
+  color: #717171;
+  font-size: 13px;
+  line-height: 1.85;
+  margin: 15px 0;
+}
+.service-visit-note .text-link {
+  font-size: 12px;
+}
+.cart-service-icon {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  min-height: 90px;
+  background: #ededed;
+  border-radius: 9px;
+}
+.cart-service-icon svg {
+  width: 30px;
+  height: 30px;
+}
+.cart-total > div > span {
+  max-width: 60%;
+  line-height: 1.7;
+}
+.admin-card {
+  max-width: 740px;
+  padding: 36px;
+  border: 1px solid #ddd;
+  border-radius: 13px;
+  background: #fff;
+}
+.admin-card h2 {
+  font-size: 34px;
+  line-height: 1.25;
+  margin: 16px 0 25px;
+  letter-spacing: -1px;
+}
+.admin-card > p {
+  font-size: 13px;
+  line-height: 1.85;
+  color: #6b6b6b;
+  margin: 20px 0;
+}
+.admin-card > label:not(.admin-switch) {
+  display: grid;
+  gap: 12px;
+  font-size: 13px;
+}
+.admin-card input[type="password"] {
+  font: inherit;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  max-width: 400px;
+  width: 100%;
+}
+.admin-card > button {
+  margin-top: 24px;
+}
+.admin-switch {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 22px;
+  background: #f5f5f5;
+  border-radius: 9px;
+}
+.admin-switch > input {
+  accent-color: #222;
+  width: 20px;
+  height: 20px;
+  flex: none;
+  margin-top: 2px;
+}
+.admin-switch > span {
+  display: grid;
+  gap: 12px;
+}
+.admin-switch strong {
+  font-size: 16px;
+  font-weight: 500;
+}
+.admin-switch small {
+  font-size: 12px;
+  color: #6b6b6b;
+  line-height: 1.8;
+}
+.admin-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+.admin-actions .button {
+  font-size: 11px;
+}
+#admin-status {
+  font-size: 13px;
+  line-height: 1.85;
+}
+@media (max-width: 1000px) {
+  .service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .service-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .service-product {
+    padding: 25px;
+  }
+  .service-product h3 {
+    font-size: 23px;
+  }
+  .admin-card {
+    padding: 24px;
+  }
+  .admin-card h2 {
+    font-size: 28px;
+  }
+  .admin-switch {
+    padding: 18px;
+    gap: 12px;
+  }
+  .admin-actions {
+    flex-direction: column;
+  }
+  .admin-actions .button {
+    justify-content: center;
+  }
+  .service-visit-note > strong {
+    font-size: 21px;
+  }
+}
+
+.admin-heading {
+  padding-top: 35px;
+  padding-bottom: 15px;
+}
+.admin-heading h1 {
+  font-size: 44px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -1.3px;
+  margin: 15px 0;
+}
+.admin-heading > p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #717171;
+}
+.admin-content {
+  padding-top: 15px;
+  padding-bottom: 45px;
+}
+@media (max-width: 600px) {
+  .admin-heading h1 {
+    font-size: 34px;
+  }
+  .admin-heading > p {
+    font-size: 13px;
+  }
+}
 </style>
   </head>
   <body>
@@ -5221,7 +5473,8 @@ dialog::backdrop {
             </h1>
             <p>
               Dépannage, ordinateurs reconditionnés et solutions PME. Une équipe
-              à votre écoute, à distance et dans notre atelier de Martigny.
+              à votre écoute, à distance, dans notre atelier de Martigny et chez
+              vous.
             </p>
             <div class="welcome-actions">
               <a class="button dark" href="#/depannage"
@@ -5341,7 +5594,7 @@ dialog::backdrop {
       </div>
       <div id="shop-root" hidden>
         <nav class="shop-links" aria-label="Conseils et informations du shop">
-          <span>LE SHOP INFORMAQUIK</span
+          <span>LE SHOP INFORMAQUIK</span><a href="#services">Services</a
           ><a href="#/guide">Bien choisir son PC</a
           ><a href="#/reconditionnement">Le reconditionné</a
           ><a href="#/garanties">Garanties & SAV</a>
@@ -5428,7 +5681,7 @@ dialog::backdrop {
             </div>
             <p>
               Des références professionnelles,<br />un choix clair, le juste
-              nécessaire.<br /><span class="demo-note"
+              nécessaire.<br /><span class="demo-note" data-price-only
                 >Vos références professionnelles · Prix TTC en CHF.</span
               >
             </p>
@@ -5481,6 +5734,36 @@ dialog::backdrop {
             <button class="button dark" data-action="reset-filters">
               Effacer les filtres
             </button>
+          </div>
+        </section>
+        <section
+          id="services"
+          class="section shop-services"
+          aria-labelledby="services-title"
+        >
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">LES SERVICES INFORMAQUIK</span>
+              <h2 id="services-title">
+                Un ordinateur.<br /><em>Les services qui vont avec.</em>
+              </h2>
+            </div>
+            <p>
+              À ajouter seuls ou avec un PC.<br />Tarifs et intervention sur
+              devis.
+            </p>
+          </div>
+          <div id="service-products" class="service-grid"></div>
+          <div class="service-visit-note">
+            <strong>Nous nous déplaçons chez vous.</strong>
+            <p>
+              À domicile comme en entreprise, ou dans notre atelier de Martigny.
+              L’intervention, le déplacement et les modalités sont confirmés
+              avec votre offre.
+            </p>
+            <a href="#/contact?motif=domicile" class="text-link"
+              >Préparer une intervention <span data-icon="arrow"></span
+            ></a>
           </div>
         </section>
         <section id="approche" class="approach section">
@@ -5648,8 +5931,8 @@ dialog::backdrop {
         ><a href="#/depannage">Dépannage & atelier</a
         ><a href="#/guide">Bien choisir</a
         ><a href="#/reconditionnement">Le reconditionné</a
-        ><a href="#/garanties">Garanties & SAV</a
-        ><a href="#/contact">Contact</a>
+        ><a href="#/garanties">Garanties & SAV</a><a href="#/contact">Contact</a
+        ><a href="#/admin">Administration</a>
       </nav>
       <div class="footer-contact">
         <a href="tel:+41275653232">027 565 32 32</a
@@ -6015,6 +6298,60 @@ window.SHOP_PRODUCTS = [
     ],
   },
 ];
+
+/* Prestations demandées : tarifs à compléter, aucun montant n’est inventé. */
+window.SHOP_SERVICES = [
+  {
+    id: "service-transfert-donnees",
+    kind: "service",
+    model: "Transfert de données",
+    description:
+      "Transfert de vos fichiers vers un nouvel ordinateur. Le volume, les supports et les données à transférer sont définis avec vous.",
+    icon: "download",
+    price: null,
+    stock: null,
+  },
+  {
+    id: "service-installation-windows",
+    kind: "service",
+    model: "Installation Windows",
+    description:
+      "Installation ou réinstallation de Windows et des pilotes adaptés. Compatibilité, licence et sauvegarde des données à vérifier avant intervention.",
+    icon: "screen",
+    price: null,
+    stock: null,
+  },
+  {
+    id: "service-nettoyage-physique",
+    kind: "service",
+    model: "Nettoyage physique",
+    description:
+      "Dépoussiérage et nettoyage du matériel, selon l’état et l’accessibilité de votre ordinateur.",
+    icon: "tools",
+    price: null,
+    stock: null,
+  },
+  {
+    id: "service-nettoyage-logiciel",
+    kind: "service",
+    model: "Nettoyage logiciel",
+    description:
+      "Entretien du système, nettoyage des fichiers temporaires et optimisation des logiciels selon vos besoins.",
+    icon: "refresh",
+    price: null,
+    stock: null,
+  },
+  {
+    id: "service-detection-malwares",
+    kind: "service",
+    model: "Détection de malwares",
+    description:
+      "Analyse des logiciels malveillants, diagnostic et conseils de traitement en fonction des résultats.",
+    icon: "shield",
+    price: null,
+    stock: null,
+  },
+];
 </script><script>/* Photographies de présentation, référencées par famille de modèle. */
 window.SHOP_PHOTOS = {
   "hp-1030-g7": [
@@ -6165,9 +6502,127 @@ for (const product of window.SHOP_PRODUCTS) {
 }
 </script><script>"use strict";
 (() => {
+  const items = [...window.SHOP_PRODUCTS, ...window.SHOP_SERVICES];
+  const byId = new Map(items.map((p) => [p.id, p]));
+  const isService = (p) => p?.kind === "service";
+  const name = (p) => (isService(p) ? p.model : `${p.brand} ${p.model}`);
+  const describe = (p) =>
+    isService(p)
+      ? p.description
+      : `${p.cpu} · ${p.ram} Go RAM · ${p.storage} Go SSD`;
+  const priced = (p, visible) =>
+    visible && Number.isFinite(p.price) && p.price >= 0;
+  function summarize(rows, visible) {
+    const valid = rows.filter((r) => byId.has(r.id));
+    const hasPriced = valid.some((r) => priced(byId.get(r.id), visible));
+    return {
+      count: valid.reduce((n, r) => n + r.quantity, 0),
+      computers: valid
+        .filter((r) => !isService(byId.get(r.id)))
+        .reduce((n, r) => n + r.quantity, 0),
+      services: valid
+        .filter((r) => isService(byId.get(r.id)))
+        .reduce((n, r) => n + r.quantity, 0),
+      hasQuote: valid.some((r) => !priced(byId.get(r.id), visible)),
+      knownTotal: hasPriced
+        ? valid.reduce(
+            (n, r) =>
+              n +
+              (priced(byId.get(r.id), visible)
+                ? byId.get(r.id).price * r.quantity
+                : 0),
+            0,
+          )
+        : null,
+    };
+  }
+  window.SHOP_COMMERCE = {
+    items,
+    byId,
+    isService,
+    name,
+    describe,
+    priced,
+    summarize,
+  };
+})();
+</script><script>"use strict";
+(() => {
+  const localValue = window.SHOP_CONFIG.showPrices !== false;
+  const web = /^https?:$/.test(location.protocol);
+  let mode = web ? "loading" : "local",
+    visible = web ? false : localValue,
+    error = "";
+  function notify() {
+    window.dispatchEvent(new CustomEvent("shop:pricingchange"));
+  }
+  async function refresh() {
+    if (!web) return;
+    try {
+      const r = await fetch("/api/settings", {
+        cache: "no-store",
+        signal: AbortSignal.timeout(8000),
+      });
+      if (r.status === 404) {
+        mode = "local";
+        visible = localValue;
+        error = "";
+        notify();
+        return;
+      }
+      if (!r.ok) throw new Error("Réglages indisponibles");
+      const settings = await r.json();
+      if (typeof settings.showPrices !== "boolean")
+        throw new Error("Réglages invalides");
+      const changed = visible !== settings.showPrices || mode !== "server";
+      mode = "server";
+      visible = settings.showPrices;
+      error = "";
+      if (changed) notify();
+    } catch {
+      mode = "error";
+      visible = false;
+      error =
+        "Impossible de charger les réglages du site. Les prix restent masqués.";
+      notify();
+    }
+  }
+  const ready = web ? refresh() : Promise.resolve();
+  window.SHOP_PRICING = {
+    get visible() {
+      return visible;
+    },
+    get mode() {
+      return mode;
+    },
+    get error() {
+      return error;
+    },
+    ready,
+    refresh,
+  };
+  if (web) {
+    setInterval(() => {
+      if (mode === "server" && !document.hidden) refresh();
+    }, 30000);
+    window.addEventListener("focus", () => {
+      if (mode === "server" || mode === "error") refresh();
+    });
+  }
+})();
+</script><script>"use strict";
+(() => {
   const config = window.SHOP_CONFIG;
   const products = window.SHOP_PRODUCTS;
-  const byId = new Map(products.map((p) => [p.id, p]));
+  const { byId, isService, name, describe, priced, summarize } =
+    window.SHOP_COMMERCE;
+  const prices = window.SHOP_PRICING;
+  const hasPrice = (p) => priced(p, prices.visible);
+  const priceMarkup = (p) =>
+    hasPrice(p)
+      ? `<span class="price">${p.price}.–<small>${esc(config.currency)}</small></span>`
+      : `<span class="price quote-label">Sur devis</span>`;
+  let detailId = null;
   const $ = (selector, root = document) => root.querySelector(selector);
   const esc = (value) =>
     String(value ?? "").replace(
@@ -6271,7 +6726,7 @@ for (const product of window.SHOP_PRODUCTS) {
     $("#cart-count").textContent = n;
     $(".cart-trigger").setAttribute(
       "aria-label",
-      `Ouvrir le panier, ${n} ordinateur${n > 1 ? "s" : ""}`,
+      `Ouvrir le panier, ${n} article${n > 1 ? "s" : ""}`,
     );
   }
   function toast(message) {
@@ -6366,7 +6821,7 @@ for (const product of window.SHOP_PRODUCTS) {
       .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase();
   function productCard(p) {
-    return `<article class="product-card" data-id="${esc(p.id)}"><div class="product-art" data-action="details" data-id="${esc(p.id)}"><span class="product-tag">${esc(p.tag)}</span>${machine(p, { interactive: false })}<button class="art-detail" data-action="details" data-id="${esc(p.id)}" aria-label="Découvrir le ${esc(p.brand + " " + p.model)}">${icon("arrow")}</button></div><div class="product-info"><div class="product-meta"><span>${esc(p.brand)}</span><span class="grade">${p.grade ? "Grade " + esc(p.grade) : p.touch ? "Tactile · 360°" : "Gamme pro"}</span></div><h3><button class="product-title" data-action="details" data-id="${esc(p.id)}">${esc(p.model)}</button></h3><p class="product-generation">${esc(p.generation)} · Reconditionné</p><div class="product-specs"><span class="spec-chip">${icon("cpu")}${esc(p.cpuShort)}</span><span class="spec-chip">${icon("ram")}${p.ram} Go</span><span class="spec-chip">${icon("ssd")}${disk(p)}</span></div><p class="product-screen">${icon("screen")}${esc(p.screen)} · ${esc(p.os)}</p><div class="product-footer"><div><span class="price">${p.price}.–<small>${esc(config.currency)}</small></span><p class="price-note">TVA 8,1 % incluse</p></div><button class="add-button" data-action="add" data-id="${esc(p.id)}" aria-label="Ajouter le ${esc(p.brand + " " + p.model)} au panier" ${p.stock === 0 ? "disabled" : ""}>${icon("bag")}Ajouter</button></div></div></article>`;
+    return `<article class="product-card" data-id="${esc(p.id)}"><div class="product-art" data-action="details" data-id="${esc(p.id)}"><span class="product-tag">${esc(p.tag)}</span>${machine(p, { interactive: false })}<button class="art-detail" data-action="details" data-id="${esc(p.id)}" aria-label="Découvrir le ${esc(p.brand + " " + p.model)}">${icon("arrow")}</button></div><div class="product-info"><div class="product-meta"><span>${esc(p.brand)}</span><span class="grade">${p.grade ? "Grade " + esc(p.grade) : p.touch ? "Tactile · 360°" : "Gamme pro"}</span></div><h3><button class="product-title" data-action="details" data-id="${esc(p.id)}">${esc(p.model)}</button></h3><p class="product-generation">${esc(p.generation)} · Reconditionné</p><div class="product-specs"><span class="spec-chip">${icon("cpu")}${esc(p.cpuShort)}</span><span class="spec-chip">${icon("ram")}${p.ram} Go</span><span class="spec-chip">${icon("ssd")}${disk(p)}</span></div><p class="product-screen">${icon("screen")}${esc(p.screen)} · ${esc(p.os)}</p><div class="product-footer"><div>${priceMarkup(p)}${hasPrice(p) ? `<p class="price-note">TVA 8,1 % incluse</p>` : ""}</div><button class="add-button" data-action="add" data-id="${esc(p.id)}" aria-label="Ajouter le ${esc(p.brand + " " + p.model)} au panier" ${p.stock === 0 ? "disabled" : ""}>${icon("bag")}Ajouter</button></div></div></article>`;
   }
   function renderProducts() {
     let rows = products.filter(
@@ -6390,12 +6845,16 @@ for (const product of window.SHOP_PRODUCTS) {
   }
   function productDetails(id) {
     const p = byId.get(id);
-    if (!p) return;
-    productDialog.innerHTML = `<button class="dialog-close" data-action="product-close" aria-label="Fermer la fiche produit">${icon("close")}</button><div class="detail-layout"><div class="detail-art"><span>LA GAMME PRO, UNE SECONDE FOIS.</span>${machine(p, { open: false, readout: "detail-readout" })}${(p.photos || []).length > 1 ? `<div class="photo-strip" role="group" aria-label="Photos du modèle">${p.photos.map((photo, index) => `<button data-action="gallery" data-id="${esc(p.id)}" data-index="${index}" aria-label="Voir la photo ${index + 1} du ${esc(p.model)}" aria-pressed="${index === 0}"><img src="${esc(photo.src)}" alt="" width="60" height="42" loading="lazy"></button>`).join("")}</div>` : ""}<div class="component-readout" id="detail-readout" aria-live="polite">${componentContent(p, "cpu")}</div><p class="detail-art-note">La photo présente le modèle ; l’état et la configuration de l’exemplaire restent ceux de sa fiche. L’exploration des composants est une vue pédagogique, pas une photo de son intérieur.</p></div><div class="detail-copy"><span class="eyebrow">${esc(p.brand)} / ${esc(p.generation)}</span><h2 id="product-title">${esc(p.model)}</h2><p class="detail-description">${esc(p.description)}</p><div class="detail-badges"><span class="grade">Reconditionné · ${p.grade ? "Grade " + esc(p.grade) : p.touch ? "Tactile · 360°" : "Gamme pro"}</span><span class="grade">${esc(p.condition)}</span></div><dl class="detail-specs">${[["Processeur", p.cpu], ["Mémoire RAM", p.ram + " Go " + (p.ramType || "")], ["Stockage SSD", disk(p) + " " + (p.storageType || "")], ["Écran", p.screen], ["Définition", p.resolution], ["Système", p.os], ...(p.gpu ? [["Graphique", p.gpu]] : []), ["Connectique", p.ports], ["Batterie", p.battery], ["Provenance", p.origin]].map(([key, val]) => `<div><dt>${esc(key)}</dt><dd>${esc(val)}</dd></div>`).join("")}</dl><p class="detail-guarantee">${icon("shield")}Ordinateur : ${config.computerWarrantyMonths} mois de garantie.<br>Batterie : ${config.batteryWarrantyMonths} mois.</p><div class="detail-purchase"><span class="price">${p.price}.–<small>${esc(config.currency)}</small></span><button class="button dark" data-action="add" data-id="${esc(p.id)}" ${p.stock === 0 ? "disabled" : ""}>${icon("bag")}Ajouter au panier</button></div><p class="stock-note">${Number.isInteger(p.stock) ? p.stock + " exemplaire(s) disponible(s)" : "Disponibilité à confirmer"} · Prix TTC, TVA 8,1 %.</p></div></div>`;
+    if (!p || isService(p)) return;
+    detailId = id;
+    const wasOpen = productDialog.open;
+    productDialog.innerHTML = `<button class="dialog-close" data-action="product-close" aria-label="Fermer la fiche produit">${icon("close")}</button><div class="detail-layout"><div class="detail-art"><span>LA GAMME PRO, UNE SECONDE FOIS.</span>${machine(p, { open: false, readout: "detail-readout" })}${(p.photos || []).length > 1 ? `<div class="photo-strip" role="group" aria-label="Photos du modèle">${p.photos.map((photo, index) => `<button data-action="gallery" data-id="${esc(p.id)}" data-index="${index}" aria-label="Voir la photo ${index + 1} du ${esc(p.model)}" aria-pressed="${index === 0}"><img src="${esc(photo.src)}" alt="" width="60" height="42" loading="lazy"></button>`).join("")}</div>` : ""}<div class="component-readout" id="detail-readout" aria-live="polite">${componentContent(p, "cpu")}</div><p class="detail-art-note">La photo présente le modèle ; l’état et la configuration de l’exemplaire restent ceux de sa fiche. L’exploration des composants est une vue pédagogique, pas une photo de son intérieur.</p></div><div class="detail-copy"><span class="eyebrow">${esc(p.brand)} / ${esc(p.generation)}</span><h2 id="product-title">${esc(p.model)}</h2><p class="detail-description">${esc(p.description)}</p><div class="detail-badges"><span class="grade">Reconditionné · ${p.grade ? "Grade " + esc(p.grade) : p.touch ? "Tactile · 360°" : "Gamme pro"}</span><span class="grade">${esc(p.condition)}</span></div><dl class="detail-specs">${[["Processeur", p.cpu], ["Mémoire RAM", p.ram + " Go " + (p.ramType || "")], ["Stockage SSD", disk(p) + " " + (p.storageType || "")], ["Écran", p.screen], ["Définition", p.resolution], ["Système", p.os], ...(p.gpu ? [["Graphique", p.gpu]] : []), ["Connectique", p.ports], ["Batterie", p.battery], ["Provenance", p.origin]].map(([key, val]) => `<div><dt>${esc(key)}</dt><dd>${esc(val)}</dd></div>`).join("")}</dl><p class="detail-guarantee">${icon("shield")}Ordinateur : ${config.computerWarrantyMonths} mois de garantie.<br>Batterie : ${config.batteryWarrantyMonths} mois.</p><div class="detail-purchase">${priceMarkup(p)}<button class="button dark" data-action="add" data-id="${esc(p.id)}" ${p.stock === 0 ? "disabled" : ""}>${icon("bag")}Ajouter au panier</button></div><p class="stock-note">${Number.isInteger(p.stock) ? p.stock + " exemplaire(s) disponible(s)" : "Disponibilité à confirmer"}${hasPrice(p) ? " · Prix TTC, TVA 8,1 %." : ""}</p></div></div>`;
     productDialog.setAttribute("aria-labelledby", "product-title");
     wireMachines(productDialog);
-    productDialog.showModal();
-    $(".dialog-close", productDialog).focus();
+    if (!wasOpen) {
+      productDialog.showModal();
+      $(".dialog-close", productDialog).focus();
+    }
   }
   function addToCart(id) {
     const p = byId.get(id);
@@ -6409,26 +6868,57 @@ for (const product of window.SHOP_PRODUCTS) {
     else cart.push({ id, quantity: 1 });
     persist();
     if (cartDialog.open) renderCart();
-    toast(p.brand + " " + p.model + " ajouté à votre sélection.");
+    toast(name(p) + " ajouté à votre sélection.");
   }
-  function total() {
-    return cart.reduce(
-      (sum, row) => sum + byId.get(row.id).price * row.quantity,
-      0,
+  function renderServices() {
+    document.getElementById("service-products").innerHTML =
+      window.SHOP_SERVICES.map(
+        (p) =>
+          `<article class="service-product" data-id="${esc(p.id)}"><span class="service-product-icon">${icon(p.icon)}</span><span class="eyebrow">PRESTATION INFORMAQUIK</span><h3>${esc(p.model)}</h3><p>${esc(p.description)}</p><div class="service-product-footer"><span class="quote-label">${hasPrice(p) ? money(p.price) : "Sur devis"}</span><button class="button dark" data-action="add" data-id="${esc(p.id)}" aria-label="Ajouter ${esc(p.model)} au panier">${icon("plus")}Ajouter</button></div></article>`,
+      ).join("");
+  }
+  function summaryLabel(summary) {
+    return !prices.visible || summary.knownTotal === null
+      ? "Votre demande de devis"
+      : summary.hasQuote
+        ? "Sous-total connu · hors prestations sur devis"
+        : "Total indicatif";
+  }
+  function quoteText() {
+    const summary = summarize(cart, prices.visible);
+    const body = cart
+      .map((row) => {
+        const p = byId.get(row.id);
+        return `${row.quantity} × ${name(p)} — ${hasPrice(p) ? money(p.price * row.quantity) : "Sur devis"}`;
+      })
+      .join("\n");
+    return (
+      "Bonjour,\n\nJe souhaiterais une offre pour cette sélection :\n" +
+      body +
+      "\n\n" +
+      summaryLabel(summary) +
+      " : " +
+      (summary.knownTotal === null ? "Sur devis" : money(summary.knownTotal)) +
+      (summary.hasQuote ? "\nLes éléments sur devis restent à chiffrer." : "") +
+      "\n\nMerci."
     );
   }
+  function quoteMailto() {
+    return `mailto:${encodeURIComponent(config.contactEmail)}?subject=${encodeURIComponent("Demande d’offre — " + config.name)}&body=${encodeURIComponent(quoteText())}`;
+  }
   function renderCart() {
-    const n = cart.reduce((s, row) => s + row.quantity, 0);
-    cartDialog.innerHTML = `<div class="cart-shell"><div class="cart-header"><span class="eyebrow">UNE NOUVELLE HISTOIRE SE PRÉPARE.</span><h2 id="cart-title">Votre sélection<span>.</span></h2><button class="dialog-close" data-action="cart-close" aria-label="Fermer le panier">${icon("close")}</button></div><div class="cart-items">${
+    const summary = summarize(cart, prices.visible);
+    cartDialog.innerHTML = `<div class="cart-shell"><div class="cart-header"><span class="eyebrow">ORDINATEURS & SERVICES</span><h2 id="cart-title">Votre sélection<span>.</span></h2><button class="dialog-close" data-action="cart-close" aria-label="Fermer le panier">${icon("close")}</button></div><div class="cart-items">${
       cart.length
         ? cart
             .map((row) => {
-              const p = byId.get(row.id);
-              return `<article class="cart-item"><div class="cart-thumb">${machine(p, { interactive: false })}</div><div class="cart-item-copy"><span>${esc(p.brand)} · RECONDITIONNÉ</span><h3>${esc(p.model)}</h3><p>${esc(p.cpuShort)} · ${p.ram} Go RAM · ${disk(p)} SSD</p><div class="cart-item-bottom"><div class="quantity"><button data-action="quantity-down" data-id="${esc(p.id)}" aria-label="Diminuer la quantité de ${esc(p.model)}">−</button><span aria-label="Quantité">${row.quantity}</span><button data-action="quantity-up" data-id="${esc(p.id)}" aria-label="Augmenter la quantité de ${esc(p.model)}" ${row.quantity >= quantityLimit(p) ? "disabled" : ""}>+</button></div><strong>${money(p.price * row.quantity)}</strong></div><button class="cart-remove" data-action="remove" data-id="${esc(p.id)}">Retirer de la sélection</button></div></article>`;
+              const p = byId.get(row.id),
+                service = isService(p);
+              return `<article class="cart-item" data-id="${esc(p.id)}"><div class="cart-thumb">${service ? `<span class="cart-service-icon">${icon(p.icon)}</span>` : machine(p, { interactive: false })}</div><div class="cart-item-copy"><span>${service ? "PRESTATION INFORMAQUIK" : esc(p.brand) + " · RECONDITIONNÉ"}</span><h3>${esc(p.model)}</h3><p>${esc(describe(p))}</p><div class="cart-item-bottom"><div class="quantity"><button data-action="quantity-down" data-id="${esc(p.id)}" aria-label="Diminuer la quantité de ${esc(p.model)}">−</button><span aria-label="Quantité">${row.quantity}</span><button data-action="quantity-up" data-id="${esc(p.id)}" aria-label="Augmenter la quantité de ${esc(p.model)}" ${row.quantity >= quantityLimit(p) ? "disabled" : ""}>+</button></div><strong>${hasPrice(p) ? money(p.price * row.quantity) : "Sur devis"}</strong></div><button class="cart-remove" data-action="remove" data-id="${esc(p.id)}">Retirer de la sélection</button></div></article>`;
             })
             .join("")
-        : `<div class="cart-empty">${icon("bag")}Votre prochaine machine vous attend.<br>Découvrez les ordinateurs pour préparer votre sélection.<br><button class="button dark" style="margin-top:20px" data-action="cart-close">Découvrir la collection</button></div>`
-    }</div>${cart.length ? `<div class="cart-total"><div><span>Total indicatif · ${n} ordinateur${n > 1 ? "s" : ""}</span><strong>${money(total())}</strong></div><p>Chaque ordinateur : garantie ${config.computerWarrantyMonths} mois.<br>Batterie : garantie ${config.batteryWarrantyMonths} mois.</p><button class="button dark" data-action="export">${icon("download")}Exporter ma sélection</button><button class="button secondary" data-action="print">${icon("print")}Imprimer / enregistrer en PDF</button>${config.contactEmail ? '<button class="button primary" data-action="contact">Demander une offre</button>' : ""}<small class="cart-demo">Votre sélection prépare une offre. Aucun paiement n’est effectué sur cette version.</small></div>` : ""}</div>`;
+        : `<div class="cart-empty">${icon("bag")}Préparez votre sélection.<br>Ajoutez un ordinateur ou un service.<br><button class="button dark" style="margin-top:20px" data-action="cart-close">Continuer ma visite</button></div>`
+    }</div>${cart.length ? `<div class="cart-total"><div><span>${summaryLabel(summary)} · ${summary.count} article${summary.count > 1 ? "s" : ""}</span><strong>${summary.knownTotal === null ? "Sur devis" : money(summary.knownTotal)}</strong></div>${summary.hasQuote ? "<p>Les articles et services sur devis sont chiffrés dans votre offre. Aucun total complet n’est annoncé avant confirmation.</p>" : ""}${summary.computers ? `<p>Ordinateurs : garantie ${config.computerWarrantyMonths} mois.<br>Batterie : garantie ${config.batteryWarrantyMonths} mois.</p>` : ""}<button class="button dark" data-action="export">${icon("download")}Exporter ma sélection</button><button class="button secondary" data-action="print">${icon("print")}Imprimer / enregistrer en PDF</button>${config.contactEmail ? `<a class="button primary" href="${esc(quoteMailto())}">Demander une offre</a>` : ""}<small class="cart-demo">Votre sélection prépare une offre. Aucun paiement ni rendez-vous n’est confirmé automatiquement.</small></div>` : ""}</div>`;
   }
   function openCart() {
     renderCart();
@@ -6440,15 +6930,17 @@ for (const product of window.SHOP_PRODUCTS) {
       dateStyle: "long",
       timeZone: "Europe/Zurich",
     }).format(new Date());
-    return `<!doctype html><html lang="fr"><meta charset="utf-8"><title>${esc(config.name)} — Sélection</title><style>body{font:14px Arial,sans-serif;color:#2c2c2c;max-width:850px;margin:50px auto;padding:25px}h1{font-size:35px;letter-spacing:-2px}h1 span{color:#8c8c8c}h2{font-size:23px;font-weight:500}p{line-height:1.8;color:#838383;font-size:12px}table{border-collapse:collapse;width:100%;font-size:12px;margin:30px 0}th{text-align:left;background:#ededed;padding:14px}td{padding:17px 14px;border-bottom:1px solid #e5e5e5;vertical-align:top}small{display:block;color:#858585;margin-top:7px;line-height:1.6}.total{text-align:right;font-size:25px}.guarantee{border:1px solid #dedede;padding:20px;margin-top:30px}.demo{border-top:1px solid #e5e5e5;margin-top:30px;padding-top:15px}footer{margin-top:50px;font-size:11px;color:#949494}@media print{body{margin:0;max-width:none;padding:20px}tr{break-inside:avoid}.guarantee{break-inside:avoid}}</style><body><h1>${esc(config.name)}</h1><p>La performance a une seconde vie.</p><h2>Votre sélection d’ordinateurs</h2><p>${date}</p><table><thead><tr><th>Ordinateur professionnel reconditionné</th><th>Quantité</th><th>Prix unitaire</th><th>Total</th></tr></thead><tbody>${cart
+    const summary = summarize(cart, prices.visible);
+    const columns = prices.visible;
+    const rows = cart
       .map((row) => {
         const p = byId.get(row.id);
-        return `<tr><td><strong>${esc(p.brand + " " + p.model)}</strong><small>${esc(p.cpu)} · ${p.ram} Go RAM · ${disk(p)} SSD<br>${esc(p.screen)} · ${esc(p.os)} · ${p.grade ? "Grade " + esc(p.grade) : p.touch ? "Tactile · 360°" : "Gamme pro"}</small></td><td>${row.quantity}</td><td>${money(p.price)}</td><td>${money(p.price * row.quantity)}</td></tr>`;
+        return `<tr><td><strong>${esc(name(p))}</strong><small>${esc(describe(p))}${isService(p) ? "" : `<br>${esc(p.screen)} · ${esc(p.os)}`}</small></td><td>${row.quantity}</td>${columns ? `<td>${hasPrice(p) ? money(p.price) : "Sur devis"}</td><td>${hasPrice(p) ? money(p.price * row.quantity) : "Sur devis"}</td>` : ""}</tr>`;
       })
-      .join(
-        "",
-      )}</tbody></table><div class="total">Total indicatif : <strong>${money(total())}</strong></div><div class="guarantee"><strong>Garantie ordinateur : ${config.computerWarrantyMonths} mois.</strong><p>Garantie batterie : ${config.batteryWarrantyMonths} mois.</p></div><p class="demo">Prix TTC, TVA 8,1 % incluse. Disponibilité, état et provenance de chaque lot à confirmer. Cette sélection n’est ni une commande ni une facture.</p><footer>Ordinateurs professionnels reconditionnés · ${esc(config.name)}</footer></body></html>`;
+      .join("");
+    return `<!doctype html><html lang="fr"><meta charset="utf-8"><title>${esc(config.name)} — Sélection</title><style>body{font:14px Arial,sans-serif;color:#222;max-width:850px;margin:40px auto;padding:25px}h1{font-size:32px}h2{font-size:23px}p,small{line-height:1.8;color:#666}small{display:block;font-size:11px}table{border-collapse:collapse;width:100%;font-size:12px;margin:25px 0}th{text-align:left;background:#eee;padding:12px}td{padding:14px 12px;border-bottom:1px solid #ddd;vertical-align:top}.total{text-align:right;font-size:20px}.guarantee{border:1px solid #ddd;padding:18px;margin-top:25px}@media print{body{margin:0;padding:20px}tr{break-inside:avoid}}</style><body><h1>${esc(config.name)}</h1><h2>Votre sélection d’ordinateurs et de services</h2><p>${date}</p><table><thead><tr><th>Article ou prestation</th><th>Quantité</th>${columns ? "<th>Prix unitaire</th><th>Montant</th>" : ""}</tr></thead><tbody>${rows}</tbody></table><div class="total">${summaryLabel(summary)} : <strong>${summary.knownTotal === null ? "Sur devis" : money(summary.knownTotal)}</strong></div>${summary.hasQuote ? "<p>Les éléments sur devis sont chiffrés dans votre offre. Le sous-total éventuel ne les comprend pas.</p>" : ""}${summary.computers ? `<div class="guarantee">Garantie ordinateur : ${config.computerWarrantyMonths} mois.<br>Garantie batterie : ${config.batteryWarrantyMonths} mois.</div>` : ""}<p>${columns ? "Montants connus TTC, TVA 8,1 % incluse. " : ""}Disponibilité et modalités d’intervention à confirmer. Cette sélection n’est ni une commande ni une facture.</p><footer>Informaquik · Ordinateurs et services informatiques</footer></body></html>`;
   }
+
   function downloadQuote() {
     const url = URL.createObjectURL(
       new Blob([quoteHtml()], { type: "text/html;charset=utf-8" }),
@@ -6556,15 +7048,6 @@ for (const product of window.SHOP_PRODUCTS) {
     }
     if (action === "export") downloadQuote();
     if (action === "print") printQuote();
-    if (action === "contact" && config.contactEmail) {
-      const body = cart
-        .map(
-          (row) =>
-            `${row.quantity} × ${byId.get(row.id).brand} ${byId.get(row.id).model} — ${money(byId.get(row.id).price * row.quantity)}`,
-        )
-        .join("\n");
-      window.location.href = `mailto:${encodeURIComponent(config.contactEmail)}?subject=${encodeURIComponent("Demande d’offre — " + config.name)}&body=${encodeURIComponent("Bonjour,\n\nJe souhaiterais une offre pour cette sélection :\n" + body + "\n\nTotal indicatif : " + money(total()) + "\n\nMerci.")}`;
-    }
   });
   $("#search").addEventListener("input", (event) => {
     query = event.target.value;
@@ -6631,10 +7114,147 @@ for (const product of window.SHOP_PRODUCTS) {
       `<div><strong>${esc(heroProduct.cpuShort)}</strong><small>PROCESSEUR</small></div><span></span><div><strong>${heroProduct.ram} Go</strong><small>MÉMOIRE RAM</small></div><span></span><div><strong>${disk(heroProduct)} SSD</strong><small>STOCKAGE</small></div>`;
     renderBrands();
     renderProducts();
+    renderServices();
     wireMachines();
   }
+  function syncPricing() {
+    document
+      .querySelectorAll('#sort option[value^="price-"]')
+      .forEach((option) => {
+        option.hidden = option.disabled = !prices.visible;
+      });
+    if (!prices.visible && sort.startsWith("price-")) {
+      sort = "featured";
+      $("#sort").value = sort;
+    }
+    document.querySelectorAll("[data-price-only]").forEach((el) => {
+      el.hidden = !prices.visible;
+    });
+    if (catalogueReady) {
+      renderProducts();
+      renderServices();
+    }
+    if (cartDialog.open) renderCart();
+    if (productDialog.open && detailId) productDetails(detailId);
+  }
+  window.addEventListener("shop:pricingchange", syncPricing);
   window.SHOP_UI = { ensureCatalogue };
+  syncPricing();
   updateCount();
+})();
+</script><script>"use strict";
+(() => {
+  const pricing = window.SHOP_PRICING;
+  let csrfToken = "";
+  const esc = (v) =>
+    String(v ?? "").replace(
+      /[&<>"']/g,
+      (c) =>
+        ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;",
+        })[c],
+    );
+  async function api(url, method = "GET", data) {
+    const response = await fetch(url, {
+      method,
+      cache: "no-store",
+      headers: {
+        ...(data !== undefined ? { "Content-Type": "application/json" } : {}),
+        ...(csrfToken ? { "X-CSRF-Token": csrfToken } : {}),
+      },
+      ...(data !== undefined ? { body: JSON.stringify(data) } : {}),
+    });
+    const result = await response.json();
+    if (!response.ok)
+      throw new Error(result.error || "Une erreur est survenue.");
+    return result;
+  }
+  const status = (message) => {
+    const el = document.getElementById("admin-status");
+    if (el) el.textContent = message;
+  };
+  async function render() {
+    const panel = document.getElementById("admin-panel");
+    if (!panel) return;
+    await pricing.ready;
+    if (!panel.isConnected) return;
+    if (pricing.mode !== "server") {
+      panel.innerHTML = `<article class="admin-card"><h2>Administration du site hébergé</h2><p>${pricing.mode === "local" ? "Vous consultez une version autonome ou statique. Le réglage partagé des prix et la connexion protégée sont disponibles dans la version hébergée avec le serveur Informaquik." : "Les réglages du serveur sont indisponibles. Réessayez dans un instant."}</p><p>Le fichier HTML fonctionne pour consulter le shop et préparer une sélection. Il ne peut pas modifier les prix affichés sur un autre site.</p><a class="button dark" href="#/boutique">Revenir au shop</a></article>`;
+      return;
+    }
+    try {
+      const session = await api("/api/admin/session");
+      if (!panel.isConnected) return;
+      csrfToken = session.csrfToken || "";
+      if (!session.configured) {
+        panel.innerHTML =
+          '<article class="admin-card"><h2>Accès à configurer</h2><p>L’accès administrateur doit être activé par l’hébergeur avant la première connexion. Aucun mot de passe par défaut n’est publié.</p><a class="button secondary" href="#/contact">Revenir au contact</a></article>';
+        return;
+      }
+      if (!session.authenticated) {
+        panel.innerHTML =
+          '<form id="admin-login" class="admin-card"><span class="eyebrow">ACCÈS PROTÉGÉ</span><h2>Connexion administrateur</h2><label>Mot de passe<input type="password" name="password" autocomplete="current-password" required minlength="12" maxlength="256"></label><button type="submit" class="button dark">Se connecter</button><p id="admin-status" role="status"></p></form>';
+        return;
+      }
+      panel.innerHTML = `<form id="admin-settings" class="admin-card"><span class="eyebrow">RÉGLAGES POUR TOUS LES VISITEURS</span><h2>Affichage des prix</h2><label class="admin-switch"><input type="checkbox" name="hidePrices" ${pricing.visible ? "" : "checked"}><span><strong>Masquer les prix</strong><small>Afficher « Sur devis » dans le shop, les fiches et le panier. Retirer les montants des exports et demandes d’offre.</small></span></label><p>Le réglage est enregistré sur le serveur. Les autres visiteurs le voient à l’actualisation ou lors de la prochaine synchronisation automatique.</p><div class="admin-actions"><button type="submit" class="button dark">Enregistrer pour tous les visiteurs</button><button type="button" class="button secondary" data-admin-action="logout">Se déconnecter</button></div><p id="admin-status" role="status"></p></form>`;
+    } catch (error) {
+      if (panel.isConnected)
+        panel.innerHTML = `<article class="admin-card"><h2>Connexion indisponible</h2><p>${esc(error.message)}</p><button class="button secondary" data-admin-action="retry">Réessayer</button></article>`;
+    }
+  }
+  document.addEventListener("submit", async (event) => {
+    if (!["admin-login", "admin-settings"].includes(event.target.id)) return;
+    event.preventDefault();
+    const form = event.target,
+      button = form.querySelector("button[type=submit]");
+    button.disabled = true;
+    status("Enregistrement…");
+    try {
+      if (form.id === "admin-login") {
+        const data = Object.fromEntries(new FormData(form));
+        const result = await api("/api/admin/login", "POST", {
+          password: data.password,
+        });
+        csrfToken = result.csrfToken;
+        await pricing.refresh();
+        await render();
+      } else {
+        await api("/api/admin/settings", "PATCH", {
+          showPrices: !form.elements.hidePrices.checked,
+        });
+        await pricing.refresh();
+        await render();
+        status("Réglage enregistré pour tous les visiteurs.");
+      }
+    } catch (error) {
+      status(error.message);
+    } finally {
+      if (button.isConnected) button.disabled = false;
+    }
+  });
+  document.addEventListener("click", async (event) => {
+    const button = event.target.closest("[data-admin-action]");
+    if (!button) return;
+    if (button.dataset.adminAction === "retry") {
+      await pricing.refresh();
+      await render();
+    } else {
+      button.disabled = true;
+      try {
+        await api("/api/admin/logout", "POST", {});
+        csrfToken = "";
+        await render();
+      } catch (error) {
+        status(error.message);
+        button.disabled = false;
+      }
+    }
+  });
+  window.SHOP_ADMIN = { render };
 })();
 </script><script>"use strict";
 (() => {
@@ -6678,6 +7298,7 @@ for (const product of window.SHOP_PRODUCTS) {
     `<a class="button dark" href="${esc(cfg.support.anydesk)}" target="_blank" rel="noopener noreferrer">${supportLogo("anydesk")}Télécharger AnyDesk ${icon()}</a><a class="button secondary" href="${esc(cfg.support.teamviewer)}" target="_blank" rel="noopener noreferrer">${supportLogo("teamviewer")}TeamViewer QuickSupport ${icon()}</a>`;
   const serverVisual = `<div class="server-visual" aria-hidden="true"><span class="server-overline">INFORMAQUIK / PME</span><div class="server-rack"><div><i></i><span>SERVEURS HÉBERGÉS</span><b>01</b></div><div><i></i><span>DONNÉES & SAUVEGARDES</span><b>02</b></div><div><i></i><span>RÉSEAUX & ÉQUIPES</span><b>03</b></div></div><span class="server-caption">Votre infrastructure. Notre accompagnement.</span></div>`;
   const titles = {
+    admin: "Administration",
     accueil: "Accueil",
     boutique: "Shop",
     reconditionnement: "Le reconditionné",
@@ -6688,6 +7309,8 @@ for (const product of window.SHOP_PRODUCTS) {
     contact: "Contact",
   };
   const content = {
+    admin: () =>
+      '<section class="section admin-heading"><span class="eyebrow">INFORMAQUIK / ACCÈS ADMINISTRATEUR</span><h1 tabindex="-1">Administration</h1><p>Gérez l’affichage des prix pour tous les visiteurs du site.</p></section><section class="section admin-content"><div id="admin-panel" aria-live="polite">Chargement des réglages…</div></section>',
     reconditionnement: () =>
       hero(
         "Le reconditionné",
@@ -6714,10 +7337,10 @@ for (const product of window.SHOP_PRODUCTS) {
       hero(
         "Dépannage & atelier",
         "Une panne ? Une question ?<br><em>On s’en occupe ensemble.</em>",
-        "À distance ou dans notre magasin de Martigny, nos techniciens vous accompagnent pour diagnostiquer, entretenir et dépanner votre ordinateur.",
+        "À distance, dans notre magasin de Martigny ou chez vous : nos techniciens vous accompagnent pour diagnostiquer, entretenir et dépanner votre ordinateur.",
         `<div class="support-hero-card"><span class="eyebrow light">PARLONS DE VOTRE PROBLÈME</span><a href="tel:+41275653232">027 565 32 32</a><span>Lundi–vendredi · 09h–12h / 13h30–18h</span><small>Fermeture à 17h le vendredi et les veilles de fêtes.</small></div>`,
       ) +
-      `<section class="section page-section"><div class="editorial-grid three">${card("01 / À DISTANCE", "Un technicien, où que vous soyez", "Pour les problèmes qui peuvent être résolus à distance, nous vous guidons avec AnyDesk ou TeamViewer. Appelez-nous pour organiser l’intervention.", "screen")}${card("02 / EN MAGASIN", "Notre atelier à Martigny", "Apportez votre ordinateur en magasin. Notre atelier ouvert vous permet d’échanger avec les informaticiens qui prennent en charge votre appareil.", "tools")}${card("03 / POUR LES PME", "Sur votre infrastructure", "Nous intervenons aussi sur site et à distance pour les entreprises : postes de travail, serveurs, réseau et assistance aux collaborateurs.", "network")}</div></section>` +
+      `<section class="section page-section"><div class="editorial-grid three">${card("01 / À DISTANCE", "Un technicien, où que vous soyez", "Pour les problèmes qui peuvent être résolus à distance, nous vous guidons avec AnyDesk ou TeamViewer. Appelez-nous pour organiser l’intervention.", "screen")}${card("02 / EN MAGASIN", "Notre atelier à Martigny", "Apportez votre ordinateur en magasin. Notre atelier ouvert vous permet d’échanger avec les informaticiens qui prennent en charge votre appareil.", "tools")}${card("03 / CHEZ VOUS", "À domicile comme en entreprise", "Nous nous déplaçons chez vous pour diagnostiquer, dépanner ou installer votre matériel. Déplacement et modalités d’intervention sont confirmés avec votre offre.", "network")}</div></section>` +
       `<section class="remote-support section" id="assistance-distance"><div class="remote-intro"><span class="eyebrow light">DÉPANNAGE À DISTANCE</span><h2>Votre technicien vous guide.<br><em>Choisissez votre outil.</em></h2><p>Contactez Informaquik, puis ouvrez l’outil indiqué par votre technicien pour démarrer l’assistance.</p><a href="tel:+41275653232" class="text-link light">Appeler le 027 565 32 32 ${icon()}</a></div><div class="remote-downloads"><div class="support-platform"><span class="status-dot"></span>POUR WINDOWS</div><div class="support-download-buttons">${supportButtons()}</div><p>AnyDesk Informaquik et TeamViewer QuickSupport. Le téléchargement démarre lorsque vous cliquez sur le lien choisi.</p><ol class="remote-steps"><li><span>01</span>Appelez-nous et décrivez le problème.</li><li><span>02</span>Ouvrez l’outil demandé par le technicien.</li><li><span>03</span>Communiquez l’identifiant affiché et autorisez la connexion.</li></ol><small>Sur Mac ou un autre système ? Contactez-nous pour être guidé.</small></div></section>` +
       `<section class="section page-section" id="atelier"><div class="split-editorial"><div><span class="eyebrow">LE SERVICE, AUSSI EN MAGASIN</span><h2>Un vrai atelier.<br><em>Des échanges en direct.</em></h2><p class="section-description">Diagnostic, réparation, entretien et conseils : nous vous accueillons au magasin pour faire le point sur votre matériel.</p><div class="workshop-address"><strong>InformaQuik sàrl</strong><span>Rue du Simplon 27A · 1920 Martigny</span><span>Lundi–jeudi : 09h–12h / 13h30–18h</span><span>Vendredi et veilles de fêtes : fermeture à 17h</span></div>${link("#/contact?motif=atelier", "Contacter l’atelier")}</div><div class="workshop-services">${card("DIAGNOSTIC & RÉPARATION", "Retrouver un ordinateur qui vous suit", "Panne matérielle ou logicielle, nettoyage et désinfection, installation du système, de logiciels ou de matériel.", "tools")}${card("DONNÉES & CONSEILS", "Vous accompagner dans la durée", "Sauvegardes, récupération de données, conseils et entretien pour vos usages personnels ou professionnels.", "shield")}</div></div></section>` +
       `<section class="page-cta"><div><h2>Commençons par votre problème.</h2><p>Décrivez les symptômes, le modèle et le moment où la panne apparaît.</p></div>${link("#/contact?motif=depannage", "Demander un dépannage", "primary")}</section>`,
@@ -6738,7 +7361,7 @@ for (const product of window.SHOP_PRODUCTS) {
         "Quelques repères pour comparer les configurations. Puis un guide rapide pour retrouver les modèles de votre budget.",
         `<div class="page-emblem guide-emblem"><span>VOUS</span><span>VOTRE USAGE. VOTRE PROCHAIN PC.</span><i aria-hidden="true">${icon()}</i></div>`,
       ) +
-      `<section class="section page-section"><div class="guide-layout"><form id="guide-form" class="guide-form"><span class="eyebrow">VOTRE SÉLECTION EN QUELQUES CHOIX</span><h2>Qu’est-ce qui<br><em>compte pour vous ?</em></h2><label>Votre usage principal<select name="usage"><option value="everyday">Bureautique et usage quotidien</option><option value="mobile">Déplacements et mobilité</option><option value="multitask">Multitâche et beaucoup d’applications</option><option value="graphics">Applications graphiques professionnelles</option></select></label><label>Votre budget maximum<select name="budget"><option value="800">800 CHF</option><option value="600">600 CHF</option><option value="1000">1 000 CHF</option><option value="1500">1 500 CHF</option><option value="99999">Tous les budgets</option></select></label><label class="guide-checkbox"><input type="checkbox" name="touch">Je souhaite un écran tactile / convertible</label><button class="button dark" type="submit">Trouver mes modèles${icon()}</button><p>Une aide à la comparaison basée sur les caractéristiques du catalogue. La compatibilité avec vos logiciels reste à vérifier.</p></form><div id="guide-results" class="guide-results" aria-live="polite"><div class="guide-idle">${icon("spark")}<h3>Votre prochain ordinateur<br>commence par vos besoins.</h3><p>Choisissez un usage et un budget pour découvrir une sélection.</p></div></div></div></section>` +
+      `<section class="section page-section"><div class="guide-layout"><form id="guide-form" class="guide-form"><span class="eyebrow">VOTRE SÉLECTION EN QUELQUES CHOIX</span><h2>Qu’est-ce qui<br><em>compte pour vous ?</em></h2><label>Votre usage principal<select name="usage"><option value="everyday">Bureautique et usage quotidien</option><option value="mobile">Déplacements et mobilité</option><option value="multitask">Multitâche et beaucoup d’applications</option><option value="graphics">Applications graphiques professionnelles</option></select></label><label data-price-only>Votre budget maximum<select name="budget"><option value="800">800 CHF</option><option value="600">600 CHF</option><option value="1000">1 000 CHF</option><option value="1500">1 500 CHF</option><option value="99999">Tous les budgets</option></select></label><label class="guide-checkbox"><input type="checkbox" name="touch">Je souhaite un écran tactile / convertible</label><button class="button dark" type="submit">Trouver mes modèles${icon()}</button><p>Une aide à la comparaison basée sur les caractéristiques du catalogue. La compatibilité avec vos logiciels reste à vérifier.</p></form><div id="guide-results" class="guide-results" aria-live="polite"><div class="guide-idle">${icon("spark")}<h3>Votre prochain ordinateur<br>commence par vos besoins.</h3><p>Choisissez un usage et un budget pour découvrir une sélection.</p></div></div></div></section>` +
       `<section class="page-band"><div><span class="eyebrow light">QUATRE REPÈRES UTILES</span><h2>Comprendre la fiche.<br><em>Choisir sereinement.</em></h2></div><div class="spec-explainer"><div><strong>Le processeur</strong><p>Sa référence complète et sa génération comptent davantage que la seule mention i5 ou i7.</p></div><div><strong>La mémoire RAM</strong><p>16 Go pour de nombreux usages quotidiens ; 32 Go offrent plus de marge pour le multitâche et les applications gourmandes.</p></div><div><strong>Le stockage SSD</strong><p>250/256 Go, 512 Go : choisissez selon vos fichiers et applications. Une sauvegarde reste nécessaire.</p></div><div><strong>L’écran et la connectique</strong><p>Format, définition, tactile, ports USB, HDMI et station d’accueil : vérifiez votre façon de travailler.</p></div></div></section>` +
       cta(),
     contact: () =>
@@ -6748,7 +7371,7 @@ for (const product of window.SHOP_PRODUCTS) {
         "Préparez votre question, votre demande d’offre ou les informations nécessaires à une prise en charge.",
         `<div class="contact-brand"><span>INFORMAQUIK · MARTIGNY</span><strong>Parlons<br>informatique.</strong><a href="tel:+41275653232">027 565 32 32</a><a href="mailto:info@i-q.ch">info@i-q.ch</a><p>Rue du Simplon 27A<br>1920 Martigny</p></div>`,
       ) +
-      `<section class="section page-section"><div class="contact-layout"><form id="contact-form" class="contact-form"><span class="eyebrow">VOTRE MESSAGE</span><h2>Comment pouvons-nous<br><em>vous accompagner ?</em></h2><div class="contact-fields"><label>Votre nom<input name="name" autocomplete="name" maxlength="100" required></label><label>Votre e-mail<input type="email" name="email" autocomplete="email" maxlength="200" required></label><label>Entreprise (facultatif)<input name="company" autocomplete="organization" maxlength="150"></label><label>Votre demande<select name="reason"><option value="conseil">Conseil avant de choisir</option><option value="offre">Offre pour une sélection</option><option value="entreprise">PME / serveurs / équipement</option><option value="depannage">Dépannage à distance</option><option value="atelier">Réparation en atelier / magasin</option><option value="sav">Garantie / SAV</option></select></label><label class="full">Votre message<textarea name="message" rows="6" maxlength="3000" required placeholder="Modèle, usage, quantités, ou description du problème…"></textarea></label></div><button class="button dark" type="submit">${cfg.contactEmail ? "Préparer mon e-mail" : "Télécharger mon message"}${icon()}</button><p class="form-help">${cfg.contactEmail ? "Votre messagerie s’ouvrira pour vous permettre de vérifier et envoyer votre message." : "Votre message est préparé dans un fichier texte. Rien n’est envoyé automatiquement. Pour joindre Informaquik, utilisez les coordonnées du site i-q.ch."}</p><p id="contact-status" role="status"></p></form><aside class="contact-aside"><article class="editorial-card business-contact"><span class="eyebrow">RETROUVEZ-NOUS À MARTIGNY</span><h3>InformaQuik sàrl</h3><p>Rue du Simplon 27A, CP 626<br>1920 Martigny 1</p><a href="tel:+41275653232">027 565 32 32</a><a href="mailto:info@i-q.ch">info@i-q.ch</a><p>Lundi–jeudi : 09h–12h / 13h30–18h<br>Vendredi : fermeture à 17h.<br>Veilles de fêtes : fermeture à 17h.</p><a href="https://i-q.ch/" target="_blank" rel="noopener noreferrer" class="text-link">Coordonnées sur i-q.ch ${icon()}</a></article><article class="editorial-card"><span class="editorial-card-icon">${icon("screen")}</span><h3>Avant de choisir</h3><p>Indiquez vos usages, votre budget, les logiciels utilisés et vos préférences de format.</p><a class="text-link" href="#/guide">Consulter le guide ${icon()}</a></article><article class="editorial-card"><span class="editorial-card-icon">${icon("people")}</span><h3>Pour votre PME</h3><p>Hébergement de serveurs, sauvegardes, réseau ou équipement : décrivez votre infrastructure et vos besoins.</p><a class="text-link" href="#/entreprises">Découvrir nos solutions PME ${icon()}</a></article><article class="editorial-card"><span class="editorial-card-icon">${icon("shield")}</span><h3>Dépannage & atelier</h3><p>Assistance à distance avec AnyDesk ou TeamViewer et réparations dans notre atelier de Martigny.</p><a class="text-link" href="#/depannage">Accéder au dépannage ${icon()}</a></article></aside></div></section>`,
+      `<section class="section page-section"><div class="contact-layout"><form id="contact-form" class="contact-form"><span class="eyebrow">VOTRE MESSAGE</span><h2>Comment pouvons-nous<br><em>vous accompagner ?</em></h2><div class="contact-fields"><label>Votre nom<input name="name" autocomplete="name" maxlength="100" required></label><label>Votre e-mail<input type="email" name="email" autocomplete="email" maxlength="200" required></label><label>Entreprise (facultatif)<input name="company" autocomplete="organization" maxlength="150"></label><label>Votre demande<select name="reason"><option value="conseil">Conseil avant de choisir</option><option value="offre">Offre pour une sélection</option><option value="entreprise">PME / serveurs / équipement</option><option value="depannage">Dépannage à distance</option><option value="atelier">Réparation en atelier / magasin</option><option value="domicile">Intervention chez vous / en entreprise</option><option value="sav">Garantie / SAV</option></select></label><label class="full">Votre message<textarea name="message" rows="6" maxlength="3000" required placeholder="Modèle, usage, quantités, ou description du problème…"></textarea></label></div><button class="button dark" type="submit">${cfg.contactEmail ? "Préparer mon e-mail" : "Télécharger mon message"}${icon()}</button><p class="form-help">${cfg.contactEmail ? "Votre messagerie s’ouvrira pour vous permettre de vérifier et envoyer votre message." : "Votre message est préparé dans un fichier texte. Rien n’est envoyé automatiquement. Pour joindre Informaquik, utilisez les coordonnées du site i-q.ch."}</p><p id="contact-status" role="status"></p></form><aside class="contact-aside"><article class="editorial-card business-contact"><span class="eyebrow">RETROUVEZ-NOUS À MARTIGNY</span><h3>InformaQuik sàrl</h3><p>Rue du Simplon 27A, CP 626<br>1920 Martigny 1</p><a href="tel:+41275653232">027 565 32 32</a><a href="mailto:info@i-q.ch">info@i-q.ch</a><p>Lundi–jeudi : 09h–12h / 13h30–18h<br>Vendredi : fermeture à 17h.<br>Veilles de fêtes : fermeture à 17h.</p><a href="https://i-q.ch/" target="_blank" rel="noopener noreferrer" class="text-link">Coordonnées sur i-q.ch ${icon()}</a></article><article class="editorial-card"><span class="editorial-card-icon">${icon("screen")}</span><h3>Avant de choisir</h3><p>Indiquez vos usages, votre budget, les logiciels utilisés et vos préférences de format.</p><a class="text-link" href="#/guide">Consulter le guide ${icon()}</a></article><article class="editorial-card"><span class="editorial-card-icon">${icon("people")}</span><h3>Pour votre PME</h3><p>Hébergement de serveurs, sauvegardes, réseau ou équipement : décrivez votre infrastructure et vos besoins.</p><a class="text-link" href="#/entreprises">Découvrir nos solutions PME ${icon()}</a></article><article class="editorial-card"><span class="editorial-card-icon">${icon("shield")}</span><h3>Dépannage & atelier</h3><p>Assistance à distance avec AnyDesk ou TeamViewer et réparations dans notre atelier de Martigny.</p><a class="text-link" href="#/depannage">Accéder au dépannage ${icon()}</a></article></aside></div></section>`,
   };
   document.querySelectorAll("[data-support-tools]").forEach((el) => {
     el.innerHTML = supportButtons();
@@ -6803,15 +7426,22 @@ for (const product of window.SHOP_PRODUCTS) {
           (titles[key] || "Page introuvable") + " — Informaquik Shop";
         window.scrollTo({ top: 0, behavior: "instant" });
         root.querySelector("h1")?.focus({ preventScroll: true });
+        syncGuidePricing();
       }
+      if (key === "admin") window.SHOP_ADMIN?.render();
       if (key === "contact") {
         const reason = new URLSearchParams(hash.split("?")[1] || "").get(
           "motif",
         );
         if (
-          ["entreprise", "sav", "offre", "depannage", "atelier"].includes(
-            reason,
-          )
+          [
+            "entreprise",
+            "sav",
+            "offre",
+            "depannage",
+            "atelier",
+            "domicile",
+          ].includes(reason)
         )
           root.querySelector("[name=reason]").value = reason;
       }
@@ -6836,25 +7466,36 @@ for (const product of window.SHOP_PRODUCTS) {
     }
     route = key;
   }
+  function syncGuidePricing() {
+    root.querySelectorAll("[data-price-only]").forEach((el) => {
+      el.hidden = !window.SHOP_PRICING.visible;
+    });
+    const form = document.getElementById("guide-form");
+    if (form && document.querySelector(".guide-result-heading"))
+      recommend(form);
+  }
+  window.addEventListener("shop:pricingchange", syncGuidePricing);
   function recommend(form) {
     const b = Object.fromEntries(new FormData(form));
     let rows = products.filter(
-      (p) => p.price <= Number(b.budget) && (!b.touch || p.touch),
+      (p) =>
+        (!window.SHOP_PRICING.visible || p.price <= Number(b.budget)) &&
+        (!b.touch || p.touch),
     );
     if (b.usage === "mobile") rows = rows.filter((p) => p.usage === "mobile");
     if (b.usage === "multitask") rows = rows.filter((p) => p.ram >= 32);
     if (b.usage === "graphics")
       rows = rows.filter((p) => /NVIDIA/i.test(p.gpu || ""));
-    rows.sort((a, b) => a.price - b.price);
+    if (window.SHOP_PRICING.visible) rows.sort((a, b) => a.price - b.price);
     const results = document.getElementById("guide-results");
     results.innerHTML =
-      `<div class="guide-result-heading"><span class="eyebrow">VOTRE SÉLECTION</span><h3>${rows.length} modèle${rows.length > 1 ? "s" : ""} à découvrir</h3><p>${rows.length > 4 ? "Les 4 modèles les plus accessibles sont présentés ci-dessous. " : ""}Prix TTC · disponibilité à confirmer.</p></div>` +
+      `<div class="guide-result-heading"><span class="eyebrow">VOTRE SÉLECTION</span><h3>${rows.length} modèle${rows.length > 1 ? "s" : ""} à découvrir</h3><p>${rows.length > 4 ? "Les 4 premiers modèles sont présentés ci-dessous. " : ""}${window.SHOP_PRICING.visible ? "Prix TTC · " : ""}Disponibilité à confirmer.</p></div>` +
       (rows.length
         ? rows
             .slice(0, 4)
             .map(
               (p) =>
-                `<article class="recommended-product"><div><span>${esc(p.brand)}</span><h4>${esc(p.model)}</h4><p>${esc(p.generation)}<br>${esc(p.cpuShort)} · ${p.ram} Go RAM · ${p.storage} Go SSD</p></div><div><strong>${p.price}.– <small>CHF</small></strong><button class="text-link" data-action="details" data-id="${esc(p.id)}">Voir le modèle ${icon()}</button></div></article>`,
+                `<article class="recommended-product"><div><span>${esc(p.brand)}</span><h4>${esc(p.model)}</h4><p>${esc(p.generation)}<br>${esc(p.cpuShort)} · ${p.ram} Go RAM · ${p.storage} Go SSD</p></div><div>${window.SHOP_PRICING.visible ? `<strong>${p.price}.– <small>CHF</small></strong>` : `<span class="quote-label">Sur devis</span>`}<button class="text-link" data-action="details" data-id="${esc(p.id)}">Voir le modèle ${icon()}</button></div></article>`,
             )
             .join("")
         : `<div class="guide-no-results"><p>Aucun modèle du catalogue ne correspond à tous ces critères pour le moment.</p>${link("#/contact", "Discuter de mon besoin", "secondary")}</div>`);

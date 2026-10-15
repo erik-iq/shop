@@ -2,7 +2,15 @@
 (() => {
   const config = window.SHOP_CONFIG;
   const products = window.SHOP_PRODUCTS;
-  const byId = new Map(products.map((p) => [p.id, p]));
+  const { byId, isService, name, describe, priced, summarize } =
+    window.SHOP_COMMERCE;
+  const prices = window.SHOP_PRICING;
+  const hasPrice = (p) => priced(p, prices.visible);
+  const priceMarkup = (p) =>
+    hasPrice(p)
+      ? `<span class="price">${p.price}.–<small>${esc(config.currency)}</small></span>`
+      : `<span class="price quote-label">Sur devis</span>`;
+  let detailId = null;
   const $ = (selector, root = document) => root.querySelector(selector);
   const esc = (value) =>
     String(value ?? "").replace(
@@ -106,7 +114,7 @@
     $("#cart-count").textContent = n;
     $(".cart-trigger").setAttribute(
       "aria-label",
-      `Ouvrir le panier, ${n} ordinateur${n > 1 ? "s" : ""}`,
+      `Ouvrir le panier, ${n} article${n > 1 ? "s" : ""}`,
     );
   }
   function toast(message) {
@@ -201,7 +209,7 @@
       .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase();
   function productCard(p) {
-    return `<article class="product-card" data-id="${esc(p.id)}"><div class="product-art" data-action="details" data-id="${esc(p.id)}"><span class="product-tag">${esc(p.tag)}</span>${machine(p, { interactive: false })}<button class="art-detail" data-action="details" data-id="${esc(p.id)}" aria-label="Découvrir le ${esc(p.brand + " " + p.model)}">${icon("arrow")}</button></div><div class="product-info"><div class="product-meta"><span>${esc(p.brand)}</span><span class="grade">${p.grade ? "Grade " + esc(p.grade) : p.touch ? "Tactile · 360°" : "Gamme pro"}</span></div><h3><button class="product-title" data-action="details" data-id="${esc(p.id)}">${esc(p.model)}</button></h3><p class="product-generation">${esc(p.generation)} · Reconditionné</p><div class="product-specs"><span class="spec-chip">${icon("cpu")}${esc(p.cpuShort)}</span><span class="spec-chip">${icon("ram")}${p.ram} Go</span><span class="spec-chip">${icon("ssd")}${disk(p)}</span></div><p class="product-screen">${icon("screen")}${esc(p.screen)} · ${esc(p.os)}</p><div class="product-footer"><div><span class="price">${p.price}.–<small>${esc(config.currency)}</small></span><p class="price-note">TVA 8,1 % incluse</p></div><button class="add-button" data-action="add" data-id="${esc(p.id)}" aria-label="Ajouter le ${esc(p.brand + " " + p.model)} au panier" ${p.stock === 0 ? "disabled" : ""}>${icon("bag")}Ajouter</button></div></div></article>`;
+    return `<article class="product-card" data-id="${esc(p.id)}"><div class="product-art" data-action="details" data-id="${esc(p.id)}"><span class="product-tag">${esc(p.tag)}</span>${machine(p, { interactive: false })}<button class="art-detail" data-action="details" data-id="${esc(p.id)}" aria-label="Découvrir le ${esc(p.brand + " " + p.model)}">${icon("arrow")}</button></div><div class="product-info"><div class="product-meta"><span>${esc(p.brand)}</span><span class="grade">${p.grade ? "Grade " + esc(p.grade) : p.touch ? "Tactile · 360°" : "Gamme pro"}</span></div><h3><button class="product-title" data-action="details" data-id="${esc(p.id)}">${esc(p.model)}</button></h3><p class="product-generation">${esc(p.generation)} · Reconditionné</p><div class="product-specs"><span class="spec-chip">${icon("cpu")}${esc(p.cpuShort)}</span><span class="spec-chip">${icon("ram")}${p.ram} Go</span><span class="spec-chip">${icon("ssd")}${disk(p)}</span></div><p class="product-screen">${icon("screen")}${esc(p.screen)} · ${esc(p.os)}</p><div class="product-footer"><div>${priceMarkup(p)}${hasPrice(p) ? `<p class="price-note">TVA 8,1 % incluse</p>` : ""}</div><button class="add-button" data-action="add" data-id="${esc(p.id)}" aria-label="Ajouter le ${esc(p.brand + " " + p.model)} au panier" ${p.stock === 0 ? "disabled" : ""}>${icon("bag")}Ajouter</button></div></div></article>`;
   }
   function renderProducts() {
     let rows = products.filter(
@@ -225,12 +233,16 @@
   }
   function productDetails(id) {
     const p = byId.get(id);
-    if (!p) return;
-    productDialog.innerHTML = `<button class="dialog-close" data-action="product-close" aria-label="Fermer la fiche produit">${icon("close")}</button><div class="detail-layout"><div class="detail-art"><span>LA GAMME PRO, UNE SECONDE FOIS.</span>${machine(p, { open: false, readout: "detail-readout" })}${(p.photos || []).length > 1 ? `<div class="photo-strip" role="group" aria-label="Photos du modèle">${p.photos.map((photo, index) => `<button data-action="gallery" data-id="${esc(p.id)}" data-index="${index}" aria-label="Voir la photo ${index + 1} du ${esc(p.model)}" aria-pressed="${index === 0}"><img src="${esc(photo.src)}" alt="" width="60" height="42" loading="lazy"></button>`).join("")}</div>` : ""}<div class="component-readout" id="detail-readout" aria-live="polite">${componentContent(p, "cpu")}</div><p class="detail-art-note">La photo présente le modèle ; l’état et la configuration de l’exemplaire restent ceux de sa fiche. L’exploration des composants est une vue pédagogique, pas une photo de son intérieur.</p></div><div class="detail-copy"><span class="eyebrow">${esc(p.brand)} / ${esc(p.generation)}</span><h2 id="product-title">${esc(p.model)}</h2><p class="detail-description">${esc(p.description)}</p><div class="detail-badges"><span class="grade">Reconditionné · ${p.grade ? "Grade " + esc(p.grade) : p.touch ? "Tactile · 360°" : "Gamme pro"}</span><span class="grade">${esc(p.condition)}</span></div><dl class="detail-specs">${[["Processeur", p.cpu], ["Mémoire RAM", p.ram + " Go " + (p.ramType || "")], ["Stockage SSD", disk(p) + " " + (p.storageType || "")], ["Écran", p.screen], ["Définition", p.resolution], ["Système", p.os], ...(p.gpu ? [["Graphique", p.gpu]] : []), ["Connectique", p.ports], ["Batterie", p.battery], ["Provenance", p.origin]].map(([key, val]) => `<div><dt>${esc(key)}</dt><dd>${esc(val)}</dd></div>`).join("")}</dl><p class="detail-guarantee">${icon("shield")}Ordinateur : ${config.computerWarrantyMonths} mois de garantie.<br>Batterie : ${config.batteryWarrantyMonths} mois.</p><div class="detail-purchase"><span class="price">${p.price}.–<small>${esc(config.currency)}</small></span><button class="button dark" data-action="add" data-id="${esc(p.id)}" ${p.stock === 0 ? "disabled" : ""}>${icon("bag")}Ajouter au panier</button></div><p class="stock-note">${Number.isInteger(p.stock) ? p.stock + " exemplaire(s) disponible(s)" : "Disponibilité à confirmer"} · Prix TTC, TVA 8,1 %.</p></div></div>`;
+    if (!p || isService(p)) return;
+    detailId = id;
+    const wasOpen = productDialog.open;
+    productDialog.innerHTML = `<button class="dialog-close" data-action="product-close" aria-label="Fermer la fiche produit">${icon("close")}</button><div class="detail-layout"><div class="detail-art"><span>LA GAMME PRO, UNE SECONDE FOIS.</span>${machine(p, { open: false, readout: "detail-readout" })}${(p.photos || []).length > 1 ? `<div class="photo-strip" role="group" aria-label="Photos du modèle">${p.photos.map((photo, index) => `<button data-action="gallery" data-id="${esc(p.id)}" data-index="${index}" aria-label="Voir la photo ${index + 1} du ${esc(p.model)}" aria-pressed="${index === 0}"><img src="${esc(photo.src)}" alt="" width="60" height="42" loading="lazy"></button>`).join("")}</div>` : ""}<div class="component-readout" id="detail-readout" aria-live="polite">${componentContent(p, "cpu")}</div><p class="detail-art-note">La photo présente le modèle ; l’état et la configuration de l’exemplaire restent ceux de sa fiche. L’exploration des composants est une vue pédagogique, pas une photo de son intérieur.</p></div><div class="detail-copy"><span class="eyebrow">${esc(p.brand)} / ${esc(p.generation)}</span><h2 id="product-title">${esc(p.model)}</h2><p class="detail-description">${esc(p.description)}</p><div class="detail-badges"><span class="grade">Reconditionné · ${p.grade ? "Grade " + esc(p.grade) : p.touch ? "Tactile · 360°" : "Gamme pro"}</span><span class="grade">${esc(p.condition)}</span></div><dl class="detail-specs">${[["Processeur", p.cpu], ["Mémoire RAM", p.ram + " Go " + (p.ramType || "")], ["Stockage SSD", disk(p) + " " + (p.storageType || "")], ["Écran", p.screen], ["Définition", p.resolution], ["Système", p.os], ...(p.gpu ? [["Graphique", p.gpu]] : []), ["Connectique", p.ports], ["Batterie", p.battery], ["Provenance", p.origin]].map(([key, val]) => `<div><dt>${esc(key)}</dt><dd>${esc(val)}</dd></div>`).join("")}</dl><p class="detail-guarantee">${icon("shield")}Ordinateur : ${config.computerWarrantyMonths} mois de garantie.<br>Batterie : ${config.batteryWarrantyMonths} mois.</p><div class="detail-purchase">${priceMarkup(p)}<button class="button dark" data-action="add" data-id="${esc(p.id)}" ${p.stock === 0 ? "disabled" : ""}>${icon("bag")}Ajouter au panier</button></div><p class="stock-note">${Number.isInteger(p.stock) ? p.stock + " exemplaire(s) disponible(s)" : "Disponibilité à confirmer"}${hasPrice(p) ? " · Prix TTC, TVA 8,1 %." : ""}</p></div></div>`;
     productDialog.setAttribute("aria-labelledby", "product-title");
     wireMachines(productDialog);
-    productDialog.showModal();
-    $(".dialog-close", productDialog).focus();
+    if (!wasOpen) {
+      productDialog.showModal();
+      $(".dialog-close", productDialog).focus();
+    }
   }
   function addToCart(id) {
     const p = byId.get(id);
@@ -244,26 +256,57 @@
     else cart.push({ id, quantity: 1 });
     persist();
     if (cartDialog.open) renderCart();
-    toast(p.brand + " " + p.model + " ajouté à votre sélection.");
+    toast(name(p) + " ajouté à votre sélection.");
   }
-  function total() {
-    return cart.reduce(
-      (sum, row) => sum + byId.get(row.id).price * row.quantity,
-      0,
+  function renderServices() {
+    document.getElementById("service-products").innerHTML =
+      window.SHOP_SERVICES.map(
+        (p) =>
+          `<article class="service-product" data-id="${esc(p.id)}"><span class="service-product-icon">${icon(p.icon)}</span><span class="eyebrow">PRESTATION INFORMAQUIK</span><h3>${esc(p.model)}</h3><p>${esc(p.description)}</p><div class="service-product-footer"><span class="quote-label">${hasPrice(p) ? money(p.price) : "Sur devis"}</span><button class="button dark" data-action="add" data-id="${esc(p.id)}" aria-label="Ajouter ${esc(p.model)} au panier">${icon("plus")}Ajouter</button></div></article>`,
+      ).join("");
+  }
+  function summaryLabel(summary) {
+    return !prices.visible || summary.knownTotal === null
+      ? "Votre demande de devis"
+      : summary.hasQuote
+        ? "Sous-total connu · hors prestations sur devis"
+        : "Total indicatif";
+  }
+  function quoteText() {
+    const summary = summarize(cart, prices.visible);
+    const body = cart
+      .map((row) => {
+        const p = byId.get(row.id);
+        return `${row.quantity} × ${name(p)} — ${hasPrice(p) ? money(p.price * row.quantity) : "Sur devis"}`;
+      })
+      .join("\n");
+    return (
+      "Bonjour,\n\nJe souhaiterais une offre pour cette sélection :\n" +
+      body +
+      "\n\n" +
+      summaryLabel(summary) +
+      " : " +
+      (summary.knownTotal === null ? "Sur devis" : money(summary.knownTotal)) +
+      (summary.hasQuote ? "\nLes éléments sur devis restent à chiffrer." : "") +
+      "\n\nMerci."
     );
   }
+  function quoteMailto() {
+    return `mailto:${encodeURIComponent(config.contactEmail)}?subject=${encodeURIComponent("Demande d’offre — " + config.name)}&body=${encodeURIComponent(quoteText())}`;
+  }
   function renderCart() {
-    const n = cart.reduce((s, row) => s + row.quantity, 0);
-    cartDialog.innerHTML = `<div class="cart-shell"><div class="cart-header"><span class="eyebrow">UNE NOUVELLE HISTOIRE SE PRÉPARE.</span><h2 id="cart-title">Votre sélection<span>.</span></h2><button class="dialog-close" data-action="cart-close" aria-label="Fermer le panier">${icon("close")}</button></div><div class="cart-items">${
+    const summary = summarize(cart, prices.visible);
+    cartDialog.innerHTML = `<div class="cart-shell"><div class="cart-header"><span class="eyebrow">ORDINATEURS & SERVICES</span><h2 id="cart-title">Votre sélection<span>.</span></h2><button class="dialog-close" data-action="cart-close" aria-label="Fermer le panier">${icon("close")}</button></div><div class="cart-items">${
       cart.length
         ? cart
             .map((row) => {
-              const p = byId.get(row.id);
-              return `<article class="cart-item"><div class="cart-thumb">${machine(p, { interactive: false })}</div><div class="cart-item-copy"><span>${esc(p.brand)} · RECONDITIONNÉ</span><h3>${esc(p.model)}</h3><p>${esc(p.cpuShort)} · ${p.ram} Go RAM · ${disk(p)} SSD</p><div class="cart-item-bottom"><div class="quantity"><button data-action="quantity-down" data-id="${esc(p.id)}" aria-label="Diminuer la quantité de ${esc(p.model)}">−</button><span aria-label="Quantité">${row.quantity}</span><button data-action="quantity-up" data-id="${esc(p.id)}" aria-label="Augmenter la quantité de ${esc(p.model)}" ${row.quantity >= quantityLimit(p) ? "disabled" : ""}>+</button></div><strong>${money(p.price * row.quantity)}</strong></div><button class="cart-remove" data-action="remove" data-id="${esc(p.id)}">Retirer de la sélection</button></div></article>`;
+              const p = byId.get(row.id),
+                service = isService(p);
+              return `<article class="cart-item" data-id="${esc(p.id)}"><div class="cart-thumb">${service ? `<span class="cart-service-icon">${icon(p.icon)}</span>` : machine(p, { interactive: false })}</div><div class="cart-item-copy"><span>${service ? "PRESTATION INFORMAQUIK" : esc(p.brand) + " · RECONDITIONNÉ"}</span><h3>${esc(p.model)}</h3><p>${esc(describe(p))}</p><div class="cart-item-bottom"><div class="quantity"><button data-action="quantity-down" data-id="${esc(p.id)}" aria-label="Diminuer la quantité de ${esc(p.model)}">−</button><span aria-label="Quantité">${row.quantity}</span><button data-action="quantity-up" data-id="${esc(p.id)}" aria-label="Augmenter la quantité de ${esc(p.model)}" ${row.quantity >= quantityLimit(p) ? "disabled" : ""}>+</button></div><strong>${hasPrice(p) ? money(p.price * row.quantity) : "Sur devis"}</strong></div><button class="cart-remove" data-action="remove" data-id="${esc(p.id)}">Retirer de la sélection</button></div></article>`;
             })
             .join("")
-        : `<div class="cart-empty">${icon("bag")}Votre prochaine machine vous attend.<br>Découvrez les ordinateurs pour préparer votre sélection.<br><button class="button dark" style="margin-top:20px" data-action="cart-close">Découvrir la collection</button></div>`
-    }</div>${cart.length ? `<div class="cart-total"><div><span>Total indicatif · ${n} ordinateur${n > 1 ? "s" : ""}</span><strong>${money(total())}</strong></div><p>Chaque ordinateur : garantie ${config.computerWarrantyMonths} mois.<br>Batterie : garantie ${config.batteryWarrantyMonths} mois.</p><button class="button dark" data-action="export">${icon("download")}Exporter ma sélection</button><button class="button secondary" data-action="print">${icon("print")}Imprimer / enregistrer en PDF</button>${config.contactEmail ? '<button class="button primary" data-action="contact">Demander une offre</button>' : ""}<small class="cart-demo">Votre sélection prépare une offre. Aucun paiement n’est effectué sur cette version.</small></div>` : ""}</div>`;
+        : `<div class="cart-empty">${icon("bag")}Préparez votre sélection.<br>Ajoutez un ordinateur ou un service.<br><button class="button dark" style="margin-top:20px" data-action="cart-close">Continuer ma visite</button></div>`
+    }</div>${cart.length ? `<div class="cart-total"><div><span>${summaryLabel(summary)} · ${summary.count} article${summary.count > 1 ? "s" : ""}</span><strong>${summary.knownTotal === null ? "Sur devis" : money(summary.knownTotal)}</strong></div>${summary.hasQuote ? "<p>Les articles et services sur devis sont chiffrés dans votre offre. Aucun total complet n’est annoncé avant confirmation.</p>" : ""}${summary.computers ? `<p>Ordinateurs : garantie ${config.computerWarrantyMonths} mois.<br>Batterie : garantie ${config.batteryWarrantyMonths} mois.</p>` : ""}<button class="button dark" data-action="export">${icon("download")}Exporter ma sélection</button><button class="button secondary" data-action="print">${icon("print")}Imprimer / enregistrer en PDF</button>${config.contactEmail ? `<a class="button primary" href="${esc(quoteMailto())}">Demander une offre</a>` : ""}<small class="cart-demo">Votre sélection prépare une offre. Aucun paiement ni rendez-vous n’est confirmé automatiquement.</small></div>` : ""}</div>`;
   }
   function openCart() {
     renderCart();
@@ -275,15 +318,17 @@
       dateStyle: "long",
       timeZone: "Europe/Zurich",
     }).format(new Date());
-    return `<!doctype html><html lang="fr"><meta charset="utf-8"><title>${esc(config.name)} — Sélection</title><style>body{font:14px Arial,sans-serif;color:#2c2c2c;max-width:850px;margin:50px auto;padding:25px}h1{font-size:35px;letter-spacing:-2px}h1 span{color:#8c8c8c}h2{font-size:23px;font-weight:500}p{line-height:1.8;color:#838383;font-size:12px}table{border-collapse:collapse;width:100%;font-size:12px;margin:30px 0}th{text-align:left;background:#ededed;padding:14px}td{padding:17px 14px;border-bottom:1px solid #e5e5e5;vertical-align:top}small{display:block;color:#858585;margin-top:7px;line-height:1.6}.total{text-align:right;font-size:25px}.guarantee{border:1px solid #dedede;padding:20px;margin-top:30px}.demo{border-top:1px solid #e5e5e5;margin-top:30px;padding-top:15px}footer{margin-top:50px;font-size:11px;color:#949494}@media print{body{margin:0;max-width:none;padding:20px}tr{break-inside:avoid}.guarantee{break-inside:avoid}}</style><body><h1>${esc(config.name)}</h1><p>La performance a une seconde vie.</p><h2>Votre sélection d’ordinateurs</h2><p>${date}</p><table><thead><tr><th>Ordinateur professionnel reconditionné</th><th>Quantité</th><th>Prix unitaire</th><th>Total</th></tr></thead><tbody>${cart
+    const summary = summarize(cart, prices.visible);
+    const columns = prices.visible;
+    const rows = cart
       .map((row) => {
         const p = byId.get(row.id);
-        return `<tr><td><strong>${esc(p.brand + " " + p.model)}</strong><small>${esc(p.cpu)} · ${p.ram} Go RAM · ${disk(p)} SSD<br>${esc(p.screen)} · ${esc(p.os)} · ${p.grade ? "Grade " + esc(p.grade) : p.touch ? "Tactile · 360°" : "Gamme pro"}</small></td><td>${row.quantity}</td><td>${money(p.price)}</td><td>${money(p.price * row.quantity)}</td></tr>`;
+        return `<tr><td><strong>${esc(name(p))}</strong><small>${esc(describe(p))}${isService(p) ? "" : `<br>${esc(p.screen)} · ${esc(p.os)}`}</small></td><td>${row.quantity}</td>${columns ? `<td>${hasPrice(p) ? money(p.price) : "Sur devis"}</td><td>${hasPrice(p) ? money(p.price * row.quantity) : "Sur devis"}</td>` : ""}</tr>`;
       })
-      .join(
-        "",
-      )}</tbody></table><div class="total">Total indicatif : <strong>${money(total())}</strong></div><div class="guarantee"><strong>Garantie ordinateur : ${config.computerWarrantyMonths} mois.</strong><p>Garantie batterie : ${config.batteryWarrantyMonths} mois.</p></div><p class="demo">Prix TTC, TVA 8,1 % incluse. Disponibilité, état et provenance de chaque lot à confirmer. Cette sélection n’est ni une commande ni une facture.</p><footer>Ordinateurs professionnels reconditionnés · ${esc(config.name)}</footer></body></html>`;
+      .join("");
+    return `<!doctype html><html lang="fr"><meta charset="utf-8"><title>${esc(config.name)} — Sélection</title><style>body{font:14px Arial,sans-serif;color:#222;max-width:850px;margin:40px auto;padding:25px}h1{font-size:32px}h2{font-size:23px}p,small{line-height:1.8;color:#666}small{display:block;font-size:11px}table{border-collapse:collapse;width:100%;font-size:12px;margin:25px 0}th{text-align:left;background:#eee;padding:12px}td{padding:14px 12px;border-bottom:1px solid #ddd;vertical-align:top}.total{text-align:right;font-size:20px}.guarantee{border:1px solid #ddd;padding:18px;margin-top:25px}@media print{body{margin:0;padding:20px}tr{break-inside:avoid}}</style><body><h1>${esc(config.name)}</h1><h2>Votre sélection d’ordinateurs et de services</h2><p>${date}</p><table><thead><tr><th>Article ou prestation</th><th>Quantité</th>${columns ? "<th>Prix unitaire</th><th>Montant</th>" : ""}</tr></thead><tbody>${rows}</tbody></table><div class="total">${summaryLabel(summary)} : <strong>${summary.knownTotal === null ? "Sur devis" : money(summary.knownTotal)}</strong></div>${summary.hasQuote ? "<p>Les éléments sur devis sont chiffrés dans votre offre. Le sous-total éventuel ne les comprend pas.</p>" : ""}${summary.computers ? `<div class="guarantee">Garantie ordinateur : ${config.computerWarrantyMonths} mois.<br>Garantie batterie : ${config.batteryWarrantyMonths} mois.</div>` : ""}<p>${columns ? "Montants connus TTC, TVA 8,1 % incluse. " : ""}Disponibilité et modalités d’intervention à confirmer. Cette sélection n’est ni une commande ni une facture.</p><footer>Informaquik · Ordinateurs et services informatiques</footer></body></html>`;
   }
+
   function downloadQuote() {
     const url = URL.createObjectURL(
       new Blob([quoteHtml()], { type: "text/html;charset=utf-8" }),
@@ -391,15 +436,6 @@
     }
     if (action === "export") downloadQuote();
     if (action === "print") printQuote();
-    if (action === "contact" && config.contactEmail) {
-      const body = cart
-        .map(
-          (row) =>
-            `${row.quantity} × ${byId.get(row.id).brand} ${byId.get(row.id).model} — ${money(byId.get(row.id).price * row.quantity)}`,
-        )
-        .join("\n");
-      window.location.href = `mailto:${encodeURIComponent(config.contactEmail)}?subject=${encodeURIComponent("Demande d’offre — " + config.name)}&body=${encodeURIComponent("Bonjour,\n\nJe souhaiterais une offre pour cette sélection :\n" + body + "\n\nTotal indicatif : " + money(total()) + "\n\nMerci.")}`;
-    }
   });
   $("#search").addEventListener("input", (event) => {
     query = event.target.value;
@@ -466,8 +502,31 @@
       `<div><strong>${esc(heroProduct.cpuShort)}</strong><small>PROCESSEUR</small></div><span></span><div><strong>${heroProduct.ram} Go</strong><small>MÉMOIRE RAM</small></div><span></span><div><strong>${disk(heroProduct)} SSD</strong><small>STOCKAGE</small></div>`;
     renderBrands();
     renderProducts();
+    renderServices();
     wireMachines();
   }
+  function syncPricing() {
+    document
+      .querySelectorAll('#sort option[value^="price-"]')
+      .forEach((option) => {
+        option.hidden = option.disabled = !prices.visible;
+      });
+    if (!prices.visible && sort.startsWith("price-")) {
+      sort = "featured";
+      $("#sort").value = sort;
+    }
+    document.querySelectorAll("[data-price-only]").forEach((el) => {
+      el.hidden = !prices.visible;
+    });
+    if (catalogueReady) {
+      renderProducts();
+      renderServices();
+    }
+    if (cartDialog.open) renderCart();
+    if (productDialog.open && detailId) productDetails(detailId);
+  }
+  window.addEventListener("shop:pricingchange", syncPricing);
   window.SHOP_UI = { ensureCatalogue };
+  syncPricing();
   updateCount();
 })();

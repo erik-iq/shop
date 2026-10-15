@@ -345,3 +345,57 @@ window.SHOP_PRODUCTS = [
     ],
   },
 ];
+
+/* Prestations demandées : tarifs à compléter, aucun montant n’est inventé. */
+window.SHOP_SERVICES = [
+  {
+    id: "service-transfert-donnees",
+    kind: "service",
+    model: "Transfert de données",
+    description:
+      "Transfert de vos fichiers vers un nouvel ordinateur. Le volume, les supports et les données à transférer sont définis avec vous.",
+    icon: "download",
+    price: null,
+    stock: null,
+  },
+  {
+    id: "service-installation-windows",
+    kind: "service",
+    model: "Installation Windows",
+    description:
+      "Installation ou réinstallation de Windows et des pilotes adaptés. Compatibilité, licence et sauvegarde des données à vérifier avant intervention.",
+    icon: "screen",
+    price: null,
+    stock: null,
+  },
+  {
+    id: "service-nettoyage-physique",
+    kind: "service",
+    model: "Nettoyage physique",
+    description:
+      "Dépoussiérage et nettoyage du matériel, selon l’état et l’accessibilité de votre ordinateur.",
+    icon: "tools",
+    price: null,
+    stock: null,
+  },
+  {
+    id: "service-nettoyage-logiciel",
+    kind: "service",
+    model: "Nettoyage logiciel",
+    description:
+      "Entretien du système, nettoyage des fichiers temporaires et optimisation des logiciels selon vos besoins.",
+    icon: "refresh",
+    price: null,
+    stock: null,
+  },
+  {
+    id: "service-detection-malwares",
+    kind: "service",
+    model: "Détection de malwares",
+    description:
+      "Analyse des logiciels malveillants, diagnostic et conseils de traitement en fonction des résultats.",
+    icon: "shield",
+    price: null,
+    stock: null,
+  },
+];

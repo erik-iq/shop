@@ -15,7 +15,10 @@
     <link rel="stylesheet" href="style.css" />
     <script defer src="catalogue.js"></script>
     <script defer src="photos.js"></script>
+    <script defer src="commerce.js"></script>
+    <script defer src="pricing.js"></script>
     <script defer src="app.js"></script>
+    <script defer src="admin.js"></script>
     <script defer src="pages.js"></script>
   </head>
   <body>
@@ -80,7 +83,8 @@
             </h1>
             <p>
               Dépannage, ordinateurs reconditionnés et solutions PME. Une équipe
-              à votre écoute, à distance et dans notre atelier de Martigny.
+              à votre écoute, à distance, dans notre atelier de Martigny et chez
+              vous.
             </p>
             <div class="welcome-actions">
               <a class="button dark" href="#/depannage"
@@ -200,7 +204,7 @@
       </div>
       <div id="shop-root" hidden>
         <nav class="shop-links" aria-label="Conseils et informations du shop">
-          <span>LE SHOP INFORMAQUIK</span
+          <span>LE SHOP INFORMAQUIK</span><a href="#services">Services</a
           ><a href="#/guide">Bien choisir son PC</a
           ><a href="#/reconditionnement">Le reconditionné</a
           ><a href="#/garanties">Garanties & SAV</a>
@@ -287,7 +291,7 @@
             </div>
             <p>
               Des références professionnelles,<br />un choix clair, le juste
-              nécessaire.<br /><span class="demo-note"
+              nécessaire.<br /><span class="demo-note" data-price-only
                 >Vos références professionnelles · Prix TTC en CHF.</span
               >
             </p>
@@ -340,6 +344,36 @@
             <button class="button dark" data-action="reset-filters">
               Effacer les filtres
             </button>
+          </div>
+        </section>
+        <section
+          id="services"
+          class="section shop-services"
+          aria-labelledby="services-title"
+        >
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">LES SERVICES INFORMAQUIK</span>
+              <h2 id="services-title">
+                Un ordinateur.<br /><em>Les services qui vont avec.</em>
+              </h2>
+            </div>
+            <p>
+              À ajouter seuls ou avec un PC.<br />Tarifs et intervention sur
+              devis.
+            </p>
+          </div>
+          <div id="service-products" class="service-grid"></div>
+          <div class="service-visit-note">
+            <strong>Nous nous déplaçons chez vous.</strong>
+            <p>
+              À domicile comme en entreprise, ou dans notre atelier de Martigny.
+              L’intervention, le déplacement et les modalités sont confirmés
+              avec votre offre.
+            </p>
+            <a href="#/contact?motif=domicile" class="text-link"
+              >Préparer une intervention <span data-icon="arrow"></span
+            ></a>
           </div>
         </section>
         <section id="approche" class="approach section">
@@ -507,8 +541,8 @@
         ><a href="#/depannage">Dépannage & atelier</a
         ><a href="#/guide">Bien choisir</a
         ><a href="#/reconditionnement">Le reconditionné</a
-        ><a href="#/garanties">Garanties & SAV</a
-        ><a href="#/contact">Contact</a>
+        ><a href="#/garanties">Garanties & SAV</a><a href="#/contact">Contact</a
+        ><a href="#/admin">Administration</a>
       </nav>
       <div class="footer-contact">
         <a href="tel:+41275653232">027 565 32 32</a
