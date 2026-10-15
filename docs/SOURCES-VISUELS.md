@@ -91,3 +91,12 @@ Sources publiques relues le 15 octobre 2026 :
 - TeamViewer QuickSupport : https://download.teamviewer.com/download/TeamViewerQS.exe
 
 L’affichage des liens ne lance ni téléchargement ni connexion à distance. L’utilisateur clique sur l’outil, puis l’ouvre lui-même à la demande du technicien. Aucun délai de réponse, tarif, taux de disponibilité ou niveau de service d’hébergement n’a été inventé.
+
+## Logos des outils d’assistance
+
+Les marques sont présentées en monochrome avec leur nom à côté. Les SVG sont conservés localement, sans appel à un CDN lors de la visite :
+
+- AnyDesk : https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/anydesk.svg
+- TeamViewer : https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/teamviewer.svg
+
+Source : Simple Icons ; consultation le 15 octobre 2026. Les marques restent celles de leurs propriétaires respectifs. Les liens de téléchargement Informaquik restent ceux relevés sur i-q.ch.

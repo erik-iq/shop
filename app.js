@@ -26,6 +26,10 @@
   const disk = (p) =>
     p.storage >= 1024 ? `${p.storage / 1024} To` : `${p.storage} Go`;
   const icons = {
+    tools:
+      '<path d="m14 6 4 4M3 21l7-7m3-9a6 6 0 0 0-7 7L2 20l2 2 8-4a6 6 0 0 0 7-7l-4 3-5-5 3-4Z"/>',
+    server:
+      '<rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01M12 6.5h5M12 17.5h5"/>',
     bag: '<path d="M5 7h14l1 14H4L5 7Z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/>',
     arrow: '<path d="M4 12h16m-6-6 6 6-6 6"/>',
     down: '<path d="M12 3v18m-6-6 6 6 6-6"/>',
@@ -147,11 +151,6 @@
   }
   const heroProduct =
     products.find((p) => p.id === config.featuredProductId) || products[0];
-  $("#hero-machine").innerHTML = machine(heroProduct, {
-    readout: "hero-readout",
-  });
-  $("#hero-readout").innerHTML =
-    `<div><strong>${esc(heroProduct.cpuShort)}</strong><small>PROCESSEUR</small></div><span></span><div><strong>${heroProduct.ram} Go</strong><small>MÉMOIRE RAM</small></div><span></span><div><strong>${disk(heroProduct)} SSD</strong><small>STOCKAGE</small></div>`;
   function setOpen(el, open) {
     el.classList.toggle("is-open", open);
     const toggle = $(".explore-toggle", el);
@@ -456,8 +455,19 @@
       if (cartDialog.open) renderCart();
     }
   });
-  renderBrands();
-  renderProducts();
-  wireMachines();
+  let catalogueReady = false;
+  function ensureCatalogue() {
+    if (catalogueReady) return;
+    catalogueReady = true;
+    $("#hero-machine").innerHTML = machine(heroProduct, {
+      readout: "hero-readout",
+    });
+    $("#hero-readout").innerHTML =
+      `<div><strong>${esc(heroProduct.cpuShort)}</strong><small>PROCESSEUR</small></div><span></span><div><strong>${heroProduct.ram} Go</strong><small>MÉMOIRE RAM</small></div><span></span><div><strong>${disk(heroProduct)} SSD</strong><small>STOCKAGE</small></div>`;
+    renderBrands();
+    renderProducts();
+    wireMachines();
+  }
+  window.SHOP_UI = { ensureCatalogue };
   updateCount();
 })();

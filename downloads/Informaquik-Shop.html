@@ -6,9 +6,11 @@
     <meta name="theme-color" content="#181818" />
     <meta
       name="description"
-      content="Des ordinateurs portables professionnels reconditionnés. Découvrez leurs composants, comparez les modèles et préparez votre sélection."
+      content="Informaquik à Martigny : dépannage informatique à distance et en atelier, serveurs et services PME, ordinateurs professionnels reconditionnés."
     />
-    <title>Informaquik Shop — La performance a une seconde vie.</title>
+    <title>
+      Informaquik — Informatique, dépannage et solutions PME à Martigny
+    </title>
     <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9IiMxOTE5MTkiLz48cGF0aCBkPSJNMTcgMTh2MjhtLTYtMjhoMTJtLTEyIDI4aDEyIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iNCIvPjxjaXJjbGUgY3g9IjQxIiBjeT0iMzEiIHI9IjEzIiBmaWxsPSJub25lIiBzdHJva2U9IiM3Njc2NzYiIHN0cm9rZS13aWR0aD0iNCIvPjxwYXRoIGQ9Im00MSAzNiAxMiAxMyIgc3Ryb2tlPSIjNzY3Njc2IiBzdHJva2Utd2lkdGg9IjQiLz48L3N2Zz4K" type="image/svg+xml" />
     <style>:root {
   --ink: #222222;
@@ -4401,35 +4403,786 @@ dialog::backdrop {
     height: 10px;
   }
 }
+
+/* Accueil Informaquik et en-tête commun : cinq accès, assistance toujours visible. */
+.header {
+  display: grid;
+  grid-template-columns: 240px 1fr auto;
+  grid-template-rows: 88px 44px;
+  height: auto;
+  gap: 0;
+  padding: 0 5%;
+  background: #fff;
+}
+.header > .wordmark {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  letter-spacing: 0;
+}
+.header .wordmark .brand-logo {
+  width: 190px;
+  height: 41px;
+  max-height: none;
+}
+.header .brand-descriptor {
+  font-size: 7px;
+  font-weight: 400;
+  letter-spacing: 1.05px;
+  color: #666;
+  white-space: nowrap;
+}
+.header-tools {
+  grid-column: 2/4;
+  grid-row: 1;
+  justify-self: end;
+}
+.remote-access {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.remote-access-label {
+  font-size: 10px;
+  color: #777;
+  line-height: 1.7;
+}
+.remote-access-label strong {
+  color: #333;
+  font-weight: 500;
+}
+.remote-access-links {
+  display: flex;
+  gap: 10px;
+}
+.support-header-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 13px;
+  border: 1px solid #d9d9d9;
+  border-radius: 9px;
+  background: #fafafa;
+  min-height: 56px;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+.support-header-button:hover {
+  background: #ededed;
+  border-color: #aaa;
+}
+.support-header-button > img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex: none;
+}
+.support-header-button > span {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+}
+.support-header-button small {
+  font-size: 8px;
+  font-weight: 400;
+  color: #777;
+  white-space: nowrap;
+}
+.support-header-button > svg {
+  height: 14px;
+  width: 14px;
+  margin-left: 7px;
+  color: #777;
+}
+.header #main-nav {
+  grid-column: 1/3;
+  grid-row: 2;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  height: 100%;
+  font-size: 12px;
+}
+.header .cart-trigger {
+  grid-column: 3;
+  grid-row: 2;
+  justify-self: end;
+  font-size: 11px;
+}
+.header .menu-toggle {
+  display: none;
+}
+#main-content:focus,
+#welcome-title:focus {
+  outline: none;
+}
+.shop-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 25px;
+  padding: 17px 5%;
+  background: #f3f3f3;
+  border-bottom: 1px solid #e7e7e7;
+  font-size: 11px;
+  color: #616161;
+}
+.shop-links > span {
+  margin-right: auto;
+  font-size: 8px;
+  letter-spacing: 1.4px;
+}
+.shop-links a:hover {
+  color: #111;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.welcome-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 75px;
+  padding: 65px 5%;
+  align-items: center;
+  background: linear-gradient(115deg, #f7f7f7, #ededed);
+}
+.welcome-copy h1 {
+  font-size: 82px;
+  letter-spacing: -4px;
+  line-height: 1.04;
+  font-weight: 600;
+  margin: 26px 0;
+}
+.welcome-copy h1 em {
+  color: #777;
+}
+.welcome-copy > p {
+  font-size: 16px;
+  line-height: 1.9;
+  color: #656565;
+  max-width: 540px;
+}
+.welcome-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+.welcome-actions .button {
+  font-size: 12px;
+  padding: 18px 23px;
+}
+.welcome-phone {
+  display: flex;
+  gap: 17px;
+  align-items: center;
+  font-size: 11px;
+  color: #777;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+.welcome-phone strong {
+  font-weight: 500;
+  color: #333;
+}
+.welcome-shortcuts {
+  padding: 32px;
+  background: #202020;
+  color: #fff;
+  border-radius: 19px;
+  box-shadow: 0 24px 50px #0000000c;
+}
+.welcome-shortcuts > .small-caps {
+  font-size: 8px;
+  color: #aaa;
+  letter-spacing: 1.5px;
+}
+.welcome-shortcuts > a {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  padding: 27px 0;
+  border-bottom: 1px solid #ffffff20;
+}
+.welcome-shortcuts > a:last-of-type {
+  border-bottom: 0;
+}
+.welcome-shortcuts > a > span:nth-child(2) {
+  flex: 1;
+  display: grid;
+  gap: 9px;
+}
+.welcome-shortcuts strong {
+  font-size: 17px;
+  font-weight: 500;
+}
+.welcome-shortcuts small {
+  font-size: 11px;
+  color: #aaa;
+  line-height: 1.6;
+}
+.welcome-shortcuts > a > svg:first-child {
+  width: 26px;
+  height: 26px;
+  color: #bdbdbd;
+  flex: none;
+}
+.welcome-shortcuts > a > svg:last-child {
+  width: 17px;
+  height: 17px;
+  color: #aaa;
+  transition: transform 0.2s;
+}
+.welcome-shortcuts > a:hover > svg:last-child {
+  transform: translateX(4px);
+}
+.welcome-shortcuts-note {
+  font-size: 9px;
+  color: #999;
+  border-top: 1px solid #ffffff20;
+  padding-top: 24px;
+}
+.welcome-services {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+.welcome-section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+.welcome-section-heading h2 {
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: -1.3px;
+  line-height: 1.2;
+  margin-top: 17px;
+}
+.welcome-section-heading > p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #777;
+}
+.welcome-service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+.welcome-service {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #e1e1e1;
+  border-radius: 12px;
+  padding: 30px;
+  transition:
+    border-color 0.2s,
+    transform 0.2s;
+}
+.welcome-service:hover {
+  border-color: #aaa;
+  transform: translateY(-3px);
+}
+.welcome-service > svg {
+  width: 27px;
+  height: 27px;
+  color: #555;
+  margin-bottom: 24px;
+}
+.welcome-service h3 {
+  font-size: 24px;
+  letter-spacing: -0.7px;
+  line-height: 1.35;
+  font-weight: 500;
+  margin: 0 0 15px;
+}
+.welcome-service p {
+  font-size: 13px;
+  line-height: 1.9;
+  color: #717171;
+  margin-bottom: 24px;
+}
+.welcome-service > .text-link {
+  margin-top: auto;
+  font-size: 11px;
+}
+.welcome-visit {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 80px;
+  background: #202020;
+  color: #fff;
+  padding: 55px 5%;
+}
+.welcome-visit h2 {
+  font-size: 43px;
+  font-weight: 500;
+  letter-spacing: -1.4px;
+  line-height: 1.2;
+  margin: 20px 0;
+}
+.welcome-visit h2 em {
+  color: #bcbcbc;
+}
+.welcome-visit p {
+  font-size: 13px;
+  line-height: 1.9;
+  color: #ccc;
+}
+.welcome-visit .button {
+  font-size: 11px;
+  margin-top: 23px;
+}
+.visit-details {
+  display: grid;
+  gap: 27px;
+  align-content: center;
+}
+.visit-details > div {
+  display: grid;
+  gap: 13px;
+}
+.visit-details > div > span {
+  font-size: 8px;
+  letter-spacing: 1.4px;
+  color: #999;
+}
+.visit-details > div > a {
+  font-size: 27px;
+  letter-spacing: -0.7px;
+}
+.visit-details small {
+  font-size: 10px;
+  color: #999;
+}
+.visit-details > .text-link {
+  font-size: 11px;
+  color: #ddd;
+}
+.support-download-buttons .button {
+  justify-content: flex-start;
+}
+.support-download-buttons .button > svg {
+  margin-left: auto;
+}
+.support-download-buttons .button > img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+}
+.support-download-buttons .button.secondary > img {
+  filter: invert(1);
+}
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 0.8fr;
+  gap: 45px;
+  align-items: start;
+  padding: 40px 5%;
+  background: #efefef;
+}
+.footer-brand .wordmark {
+  display: block;
+}
+.footer .wordmark .brand-logo {
+  width: 170px;
+  height: 36px;
+}
+.footer-brand p {
+  font-size: 11px;
+  line-height: 1.9;
+  color: #777;
+  margin-top: 20px;
+}
+.footer .footer-links {
+  display: grid;
+  width: auto;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px 25px !important;
+  font-size: 11px;
+}
+.footer .footer-contact {
+  display: grid;
+  gap: 15px;
+  font-size: 12px;
+}
+.footer-contact > span {
+  font-size: 10px;
+  color: #777;
+  line-height: 1.8;
+}
+@media (max-width: 1100px) {
+  .welcome-hero {
+    gap: 40px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .welcome-copy h1 {
+    font-size: 66px;
+  }
+  .welcome-copy > p {
+    font-size: 14px;
+  }
+  .welcome-shortcuts {
+    padding: 28px;
+  }
+  .welcome-shortcuts strong {
+    font-size: 15px;
+  }
+  .welcome-service {
+    padding: 25px;
+  }
+  .welcome-service h3 {
+    font-size: 21px;
+  }
+  .remote-access-label {
+    display: none;
+  }
+  .footer {
+    gap: 25px;
+  }
+}
+@media (max-width: 900px) {
+  .header {
+    grid-template-columns: 1fr auto auto;
+    grid-template-rows: 65px auto;
+    gap: 0 12px;
+  }
+  .header > .wordmark {
+    grid-column: 1;
+    grid-row: 1;
+    gap: 6px;
+  }
+  .header .wordmark .brand-logo {
+    width: 150px;
+    height: 32px;
+  }
+  .header .brand-descriptor {
+    font-size: 5.5px;
+    letter-spacing: 0.7px;
+  }
+  .header-tools {
+    grid-column: 1/4;
+    grid-row: 2;
+    justify-self: stretch;
+    padding: 0 0 12px;
+  }
+  .remote-access {
+    display: block;
+  }
+  .remote-access-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .support-header-button {
+    padding: 9px 13px;
+    min-height: 50px;
+    gap: 11px;
+  }
+  .support-header-button > span {
+    font-size: 12px;
+    gap: 5px;
+  }
+  .support-header-button > svg {
+    margin-left: auto;
+  }
+  .header .menu-toggle {
+    display: flex;
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+  }
+  .header .cart-trigger {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .header .cart-label {
+    display: none;
+  }
+  .header #main-nav {
+    display: none;
+  }
+  .header.nav-open #main-nav {
+    display: flex;
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    top: calc(100% + 6px);
+    padding: 17px 22px;
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px #0002;
+  }
+  .header.nav-open #main-nav a {
+    width: 100%;
+    padding: 13px 0;
+    font-size: 12px;
+  }
+  .welcome-hero {
+    gap: 25px;
+  }
+  .welcome-copy h1 {
+    font-size: 58px;
+  }
+  .welcome-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .welcome-actions .button {
+    padding: 16px 20px;
+  }
+  .welcome-phone {
+    font-size: 10px;
+    gap: 10px;
+  }
+  .welcome-shortcuts {
+    padding: 24px;
+  }
+  .welcome-shortcuts > a {
+    gap: 13px;
+  }
+  .welcome-shortcuts strong {
+    font-size: 14px;
+  }
+  .welcome-shortcuts small {
+    font-size: 10px;
+  }
+}
+@media (max-width: 760px) {
+  .welcome-hero {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 40px 5%;
+  }
+  .welcome-copy h1 {
+    font-size: 56px;
+    letter-spacing: -2.5px;
+    margin: 20px 0;
+  }
+  .welcome-copy > p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .welcome-actions {
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .welcome-actions .button {
+    font-size: 11px;
+    padding: 16px 17px;
+  }
+  .welcome-phone {
+    margin-top: 22px;
+    font-size: 11px;
+  }
+  .welcome-shortcuts {
+    padding: 25px;
+  }
+  .welcome-shortcuts > a {
+    padding: 23px 0;
+  }
+  .welcome-shortcuts strong {
+    font-size: 16px;
+  }
+  .welcome-shortcuts small {
+    font-size: 11px;
+  }
+  .welcome-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .welcome-section-heading h2 {
+    font-size: 32px;
+    letter-spacing: -1px;
+  }
+  .welcome-section-heading > p br {
+    display: none;
+  }
+  .welcome-services {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  .welcome-service-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .welcome-service {
+    padding: 27px;
+  }
+  .welcome-service h3 {
+    font-size: 23px;
+  }
+  .welcome-service p {
+    font-size: 13px;
+  }
+  .welcome-service > svg {
+    margin-bottom: 20px;
+  }
+  .welcome-visit {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 40px 5%;
+  }
+  .welcome-visit h2 {
+    font-size: 35px;
+  }
+  .visit-details {
+    padding-top: 30px;
+    border-top: 1px solid #ffffff25;
+    gap: 25px;
+  }
+  .shop-links {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 13px 22px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 10px;
+  }
+  .shop-links > span {
+    width: 100%;
+  }
+  .footer {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 35px 5%;
+  }
+  .footer .footer-links {
+    width: 100% !important;
+  }
+  .footer .footer-contact {
+    padding-top: 22px;
+    border-top: 1px solid #ddd;
+  }
+}
+@media (max-width: 360px) {
+  .support-header-button {
+    padding: 9px 10px;
+    gap: 8px;
+  }
+  .support-header-button > img {
+    width: 24px;
+    height: 24px;
+  }
+  .support-header-button > span {
+    font-size: 11px;
+  }
+  .support-header-button small {
+    font-size: 7px;
+  }
+  .support-header-button > svg {
+    display: none;
+  }
+  .welcome-copy h1 {
+    font-size: 49px;
+  }
+  .welcome-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .welcome-actions .button {
+    justify-content: space-between;
+  }
+  .welcome-shortcuts strong {
+    font-size: 14px;
+  }
+  .welcome-shortcuts {
+    padding: 22px;
+  }
+}
+
+:root {
+  scroll-padding-top: 148px;
+}
+@media (max-width: 900px) {
+  :root {
+    scroll-padding-top: 138px;
+  }
+}
+
+.header .brand-descriptor {
+  font-size: 9px;
+  letter-spacing: 0.6px;
+}
+.editorial-card p,
+.page-faq p,
+.section-description {
+  font-size: 14px;
+  line-height: 1.85;
+}
+.page-hero p {
+  font-size: 15px;
+}
+@media (max-width: 900px) {
+  .header .brand-descriptor {
+    font-size: 8px;
+    letter-spacing: 0.4px;
+  }
+}
+@media (max-width: 760px) {
+  .page-hero p {
+    font-size: 14px;
+  }
+}
+.welcome-copy {
+  min-width: 0;
+}
+@media (max-width: 900px) {
+  .welcome-hero {
+    grid-template-columns: 1fr;
+  }
+  .welcome-actions {
+    flex-direction: row;
+  }
+}
+@media (max-width: 760px) {
+  .welcome-copy h1 {
+    font-size: clamp(43px, 13.6vw, 56px);
+  }
+}
 </style>
   </head>
   <body>
-    <a class="skip-link" href="#catalogue">Aller au catalogue</a>
-    <div class="announcement">
-      <div><span class="status-dot"></span>Informaquik · Martigny</div>
-      <div
-        class="quick-support"
-        data-support-quick-links
-        aria-label="Téléchargements de dépannage pour Windows"
-      ></div>
-      <span class="market">Suisse · CHF</span>
-    </div>
+    <a class="skip-link" href="#main-content">Aller au contenu</a>
     <header class="header">
-      <a
-        href="#/boutique"
-        class="wordmark"
-        aria-label="Informaquik Shop, accueil"
+      <a href="#/accueil" class="wordmark" aria-label="Informaquik, accueil"
         ><img
           class="brand-logo"
           src="data:image/png;base64,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"
           alt="InformaQuik"
-        /><span class="shop-word">SHOP</span></a
+          width="190"
+          height="41"
+        /><span class="brand-descriptor">Informatique · Martigny</span></a
       >
+      <div class="header-tools">
+        <div class="remote-access">
+          <span class="remote-access-label"
+            >Dépannage<br /><strong>à distance</strong></span
+          >
+          <div class="remote-access-links" data-support-header></div>
+        </div>
+      </div>
       <nav id="main-nav" aria-label="Navigation principale">
-        <a href="#/boutique">Shop</a
-        ><a href="#/reconditionnement">Le reconditionné</a
-        ><a href="#/entreprises">PME</a><a href="#/depannage">Dépannage</a
-        ><a href="#/guide">Bien choisir</a><a href="#/garanties">Garanties</a
+        <a href="#/accueil">Accueil</a><a href="#/boutique">Shop</a
+        ><a href="#/entreprises">Solutions PME</a
+        ><a href="#/depannage">Dépannage & atelier</a
         ><a href="#/contact">Contact</a>
       </nav>
       <button
@@ -4458,14 +5211,147 @@ dialog::backdrop {
         ><span id="cart-count" class="cart-count">0</span>
       </button>
     </header>
-    <main id="main-content">
-      <div id="shop-root">
+    <main id="main-content" tabindex="-1">
+      <div id="home-root">
+        <section class="welcome-hero" aria-labelledby="welcome-title">
+          <div class="welcome-copy">
+            <span class="eyebrow">INFORMAQUIK / MARTIGNY</span>
+            <h1 id="welcome-title" tabindex="-1">
+              L’informatique,<br /><em>simplement.</em>
+            </h1>
+            <p>
+              Dépannage, ordinateurs reconditionnés et solutions PME. Une équipe
+              à votre écoute, à distance et dans notre atelier de Martigny.
+            </p>
+            <div class="welcome-actions">
+              <a class="button dark" href="#/depannage"
+                >J’ai besoin d’aide <span data-icon="arrow"></span></a
+              ><a class="button secondary" href="#/boutique"
+                >Découvrir le shop <span data-icon="arrow"></span
+              ></a>
+            </div>
+            <a class="welcome-phone" href="tel:+41275653232"
+              >Parlons de votre besoin <strong>027 565 32 32</strong></a
+            >
+          </div>
+          <aside
+            class="welcome-shortcuts"
+            aria-label="Accès directs à nos services"
+          >
+            <span class="small-caps">COMMENT POUVONS-NOUS VOUS AIDER ?</span
+            ><a href="#/depannage"
+              ><span class="welcome-shortcut-icon" data-icon="tools"></span
+              ><span
+                ><strong>Dépanner un ordinateur</strong
+                ><small>À distance ou dans notre atelier</small></span
+              ><span data-icon="arrow"></span></a
+            ><a href="#/entreprises"
+              ><span class="welcome-shortcut-icon" data-icon="server"></span
+              ><span
+                ><strong>Accompagner votre PME</strong
+                ><small>Serveurs, sauvegardes et réseau</small></span
+              ><span data-icon="arrow"></span></a
+            ><a href="#/boutique"
+              ><span class="welcome-shortcut-icon" data-icon="screen"></span
+              ><span
+                ><strong>Trouver votre prochain PC</strong
+                ><small>Des gammes pro reconditionnées</small></span
+              ><span data-icon="arrow"></span
+            ></a>
+            <div class="welcome-shortcuts-note">
+              Conseil · Vente · Dépannage · Hébergement
+            </div>
+          </aside>
+        </section>
+        <section
+          class="welcome-services section"
+          aria-labelledby="welcome-services-title"
+        >
+          <div class="welcome-section-heading">
+            <div>
+              <span class="eyebrow">TOUS NOS SERVICES, AU MÊME ENDROIT</span>
+              <h2 id="welcome-services-title">De quoi avez-vous besoin ?</h2>
+            </div>
+            <p>Trois accès simples pour trouver<br />le bon service.</p>
+          </div>
+          <div class="welcome-service-grid">
+            <a class="welcome-service" href="#/depannage"
+              ><span class="welcome-service-icon" data-icon="tools"></span>
+              <h3>Dépannage & atelier</h3>
+              <p>
+                Un problème avec votre ordinateur ? Nos techniciens vous aident
+                à distance ou vous accueillent au magasin.
+              </p>
+              <span class="text-link"
+                >Trouver de l’aide <span data-icon="arrow"></span></span></a
+            ><a class="welcome-service" href="#/entreprises"
+              ><span class="welcome-service-icon" data-icon="server"></span>
+              <h3>Solutions pour les PME</h3>
+              <p>
+                Serveurs hébergés, sauvegardes, réseaux et entretien de votre
+                parc informatique.
+              </p>
+              <span class="text-link"
+                >Découvrir nos solutions
+                <span data-icon="arrow"></span></span></a
+            ><a class="welcome-service" href="#/boutique"
+              ><span class="welcome-service-icon" data-icon="screen"></span>
+              <h3>Ordinateurs reconditionnés</h3>
+              <p>
+                Comparez les configurations HP et Lenovo et préparez votre
+                sélection de matériel professionnel.
+              </p>
+              <span class="text-link"
+                >Visiter le shop <span data-icon="arrow"></span></span
+            ></a>
+          </div>
+        </section>
+        <section class="welcome-visit" aria-labelledby="visit-title">
+          <div>
+            <span class="eyebrow light">NOTRE MAGASIN & NOTRE ATELIER</span>
+            <h2 id="visit-title">
+              Une équipe.<br /><em>Une adresse à Martigny.</em>
+            </h2>
+            <p>
+              Rue du Simplon 27A · 1920 Martigny<br />Conseils, vente et
+              réparation sur place.
+            </p>
+            <a class="button light-button" href="#/contact"
+              >Nous contacter <span data-icon="arrow"></span
+            ></a>
+          </div>
+          <div class="visit-details">
+            <div>
+              <span>APPELEZ-NOUS</span
+              ><a href="tel:+41275653232">027 565 32 32</a>
+            </div>
+            <div>
+              <span>HORAIRES DU MAGASIN</span>
+              <p>
+                Lundi–jeudi : 09h–12h / 13h30–18h<br />Vendredi : 09h–12h /
+                13h30–17h
+              </p>
+              <small>Fermeture à 17h les veilles de fêtes.</small>
+            </div>
+            <a href="#/depannage" class="text-link light"
+              >Besoin d’un dépannage à distance ? <span data-icon="arrow"></span
+            ></a>
+          </div>
+        </section>
+      </div>
+      <div id="shop-root" hidden>
+        <nav class="shop-links" aria-label="Conseils et informations du shop">
+          <span>LE SHOP INFORMAQUIK</span
+          ><a href="#/guide">Bien choisir son PC</a
+          ><a href="#/reconditionnement">Le reconditionné</a
+          ><a href="#/garanties">Garanties & SAV</a>
+        </nav>
         <section class="hero" aria-labelledby="hero-title">
           <div class="hero-copy">
             <span class="eyebrow light"
               ><i></i>RECONDITIONNÉS. PROFESSIONNELS. PRÊTS POUR LA SUITE.</span
             >
-            <h1 id="hero-title">
+            <h1 id="hero-title" tabindex="-1">
               La seconde vie.<br />La <em>première classe.</em>
             </h1>
             <p>
@@ -4595,49 +5481,6 @@ dialog::backdrop {
             <button class="button dark" data-action="reset-filters">
               Effacer les filtres
             </button>
-          </div>
-        </section>
-        <section class="section home-services" aria-labelledby="services-title">
-          <div class="section-heading">
-            <div>
-              <span class="eyebrow">INFORMAQUIK / BIEN PLUS QU’UN SHOP</span>
-              <h2 id="services-title">
-                Vos ordinateurs.<br /><em>Et tout ce qui va avec.</em>
-              </h2>
-            </div>
-            <p>
-              Un partenaire informatique à Martigny,<br />pour les particuliers
-              et les PME.
-            </p>
-          </div>
-          <div class="home-services-grid">
-            <a class="home-service-card" href="#/entreprises"
-              ><span class="small-caps">01 / SOLUTIONS PME</span>
-              <h3>Votre infrastructure,<br />notre accompagnement.</h3>
-              <p>
-                Serveurs hébergés, sauvegardes, réseaux et maintenance de votre
-                parc informatique.
-              </p>
-              <span class="text-link"
-                >Découvrir les services PME
-                <span data-icon="arrow"></span></span></a
-            ><a class="home-service-card" href="#/depannage"
-              ><span class="small-caps">02 / DÉPANNAGE & ATELIER</span>
-              <h3>À distance.<br />Et à deux pas de vous.</h3>
-              <p>
-                Dépannage à distance avec AnyDesk ou TeamViewer, réparations et
-                conseils dans notre atelier de Martigny.
-              </p>
-              <span class="text-link"
-                >Trouver de l’aide <span data-icon="arrow"></span></span
-            ></a>
-          </div>
-          <div class="home-support-bar">
-            <div>
-              <strong>Déjà en contact avec un technicien ?</strong
-              ><span>Accès rapide aux outils de dépannage pour Windows.</span>
-            </div>
-            <div class="home-support-tools" data-support-tools></div>
           </div>
         </section>
         <section id="approche" class="approach section">
@@ -4785,27 +5628,33 @@ dialog::backdrop {
       <div id="editorial-root" hidden></div>
     </main>
     <footer class="footer">
-      <a class="wordmark" href="#/boutique"
-        ><img
-          class="brand-logo"
-          src="data:image/png;base64,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"
-          alt="InformaQuik"
-        /><span class="shop-word">SHOP</span></a
-      >
-      <p>La performance a une seconde vie.</p>
-      <div>
-        <span>Ordinateurs professionnels reconditionnés</span
-        ><span>Catalogue en préparation · disponibilité à confirmer</span>
+      <div class="footer-brand">
+        <a class="wordmark" href="#/accueil"
+          ><img
+            class="brand-logo"
+            src="data:image/png;base64,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"
+            alt="InformaQuik"
+            width="170"
+            height="36"
+        /></a>
+        <p>
+          Votre partenaire informatique à Martigny.<br />Pour les particuliers
+          et les PME.
+        </p>
       </div>
-      <div class="footer-links">
-        <a href="#/reconditionnement">Notre approche</a
-        ><a href="#/guide">Guide d’achat</a><a href="#/entreprises">PME</a
-        ><a href="#/depannage">Dépannage &amp; atelier</a
-        ><a href="#/garanties">Garanties &amp; SAV</a
-        ><a href="#/contact">Contact</a
-        ><a href="https://i-q.ch/" target="_blank" rel="noopener noreferrer"
-          >i-q.ch ↗</a
-        >
+      <nav class="footer-links" aria-label="Tous les accès du site">
+        <a href="#/accueil">Accueil</a><a href="#/boutique">Shop</a
+        ><a href="#/entreprises">Solutions PME</a
+        ><a href="#/depannage">Dépannage & atelier</a
+        ><a href="#/guide">Bien choisir</a
+        ><a href="#/reconditionnement">Le reconditionné</a
+        ><a href="#/garanties">Garanties & SAV</a
+        ><a href="#/contact">Contact</a>
+      </nav>
+      <div class="footer-contact">
+        <a href="tel:+41275653232">027 565 32 32</a
+        ><a href="mailto:info@i-q.ch">info@i-q.ch</a
+        ><span>Rue du Simplon 27A · Martigny</span>
       </div>
     </footer>
     <dialog
@@ -5342,6 +6191,10 @@ for (const product of window.SHOP_PRODUCTS) {
   const disk = (p) =>
     p.storage >= 1024 ? `${p.storage / 1024} To` : `${p.storage} Go`;
   const icons = {
+    tools:
+      '<path d="m14 6 4 4M3 21l7-7m3-9a6 6 0 0 0-7 7L2 20l2 2 8-4a6 6 0 0 0 7-7l-4 3-5-5 3-4Z"/>',
+    server:
+      '<rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01M12 6.5h5M12 17.5h5"/>',
     bag: '<path d="M5 7h14l1 14H4L5 7Z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/>',
     arrow: '<path d="M4 12h16m-6-6 6 6-6 6"/>',
     down: '<path d="M12 3v18m-6-6 6 6 6-6"/>',
@@ -5463,11 +6316,6 @@ for (const product of window.SHOP_PRODUCTS) {
   }
   const heroProduct =
     products.find((p) => p.id === config.featuredProductId) || products[0];
-  $("#hero-machine").innerHTML = machine(heroProduct, {
-    readout: "hero-readout",
-  });
-  $("#hero-readout").innerHTML =
-    `<div><strong>${esc(heroProduct.cpuShort)}</strong><small>PROCESSEUR</small></div><span></span><div><strong>${heroProduct.ram} Go</strong><small>MÉMOIRE RAM</small></div><span></span><div><strong>${disk(heroProduct)} SSD</strong><small>STOCKAGE</small></div>`;
   function setOpen(el, open) {
     el.classList.toggle("is-open", open);
     const toggle = $(".explore-toggle", el);
@@ -5772,9 +6620,20 @@ for (const product of window.SHOP_PRODUCTS) {
       if (cartDialog.open) renderCart();
     }
   });
-  renderBrands();
-  renderProducts();
-  wireMachines();
+  let catalogueReady = false;
+  function ensureCatalogue() {
+    if (catalogueReady) return;
+    catalogueReady = true;
+    $("#hero-machine").innerHTML = machine(heroProduct, {
+      readout: "hero-readout",
+    });
+    $("#hero-readout").innerHTML =
+      `<div><strong>${esc(heroProduct.cpuShort)}</strong><small>PROCESSEUR</small></div><span></span><div><strong>${heroProduct.ram} Go</strong><small>MÉMOIRE RAM</small></div><span></span><div><strong>${disk(heroProduct)} SSD</strong><small>STOCKAGE</small></div>`;
+    renderBrands();
+    renderProducts();
+    wireMachines();
+  }
+  window.SHOP_UI = { ensureCatalogue };
   updateCount();
 })();
 </script><script>"use strict";
@@ -5782,7 +6641,8 @@ for (const product of window.SHOP_PRODUCTS) {
   const cfg = window.SHOP_CONFIG,
     products = window.SHOP_PRODUCTS;
   const root = document.getElementById("editorial-root"),
-    shop = document.getElementById("shop-root");
+    shop = document.getElementById("shop-root"),
+    home = document.getElementById("home-root");
   const esc = (v) =>
     String(v ?? "").replace(
       /[&<>"']/g,
@@ -5800,7 +6660,7 @@ for (const product of window.SHOP_PRODUCTS) {
   const link = (href, text, type = "dark") =>
     `<a class="button ${type}" href="${href}">${text}${icon()}</a>`;
   const hero = (label, title, description, aside = "") =>
-    `<section class="page-hero"><div class="page-breadcrumb"><a href="#/boutique">Informaquik Shop</a><span>/</span><span>${label}</span></div><div class="page-hero-grid"><div><span class="eyebrow">INFORMAQUIK / ${label.toUpperCase()}</span><h1 tabindex="-1">${title}</h1><p>${description}</p></div>${aside}</div></section>`;
+    `<section class="page-hero"><div class="page-breadcrumb"><a href="#/accueil">Informaquik</a><span>/</span><span>${label}</span></div><div class="page-hero-grid"><div><span class="eyebrow">INFORMAQUIK / ${label.toUpperCase()}</span><h1 tabindex="-1">${title}</h1><p>${description}</p></div>${aside}</div></section>`;
   const card = (number, title, text, svg = "check") =>
     `<article class="editorial-card"><span class="editorial-card-icon">${icon(svg)}</span><span class="small-caps">${number}</span><h3>${title}</h3><p>${text}</p></article>`;
   const cta = (
@@ -5808,10 +6668,17 @@ for (const product of window.SHOP_PRODUCTS) {
     text = "Retrouvez les configurations et leurs caractéristiques dans la boutique.",
   ) =>
     `<section class="page-cta"><div><h2>${title}</h2><p>${text}</p></div>${link("#/boutique", "Découvrir le shop", "primary")}</section>`;
+  const supportLogos = {
+    anydesk: "data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+QW55RGVzazwvdGl0bGU+PHBhdGggZD0iTTguMzIyIDMuNjc3TDAgMTJsOC4zMjIgOC4zMjNMMTYuNjQ1IDEyem03LjM3MS4wMWwtMS44NDkgMS44NSA2LjQ5IDYuNDU2LTYuNDkgNi40OSAxLjg1IDEuODE3TDI0IDExLjk5M1oiLz48L3N2Zz4=",
+    teamviewer: "data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+VGVhbVZpZXdlcjwvdGl0bGU+PHBhdGggZD0ibTIwLjE3IDExLjk5OC02LjIyNS0zLjQwMS42ODUgMi4xNDRIOS4zN2wuNjg0LTIuMTQ1TDMuODI5IDEybDYuMjI1IDMuNDA0LS42ODMtMi4xNDdoNS4yNmwtLjY4NiAyLjE0N3pNMjAuNDQ4IDBIMy41NTNBMy41NTMgMy41NTMgMCAwIDAgLjAwMSAzLjU1MnYxNi44OTVBMy41NTMgMy41NTMgMCAwIDAgMy41NTMgMjRoMTYuODk1QTMuNTUzIDMuNTUzIDAgMCAwIDI0IDIwLjQ0N1YzLjU1MkEzLjU1MyAzLjU1MyAwIDAgMCAyMC40NDggMHpNMTIgMjEuNjQ2Yy01LjMyOCAwLTkuNjQ4LTQuMzItOS42NDgtOS42NDggMC01LjMyOSA0LjMyLTkuNjQ2IDkuNjQ4LTkuNjQ2UzIxLjY1IDYuNjcyIDIxLjY1IDEycy00LjMyIDkuNjQ4LTkuNjQ5IDkuNjQ4eiIvPjwvc3ZnPg==",
+  };
+  const supportLogo = (brand) =>
+    `<img src="${esc(supportLogos[brand])}" width="28" height="28" alt="" aria-hidden="true">`;
   const supportButtons = () =>
-    `<a class="button dark" href="${esc(cfg.support.anydesk)}" target="_blank" rel="noopener noreferrer">Télécharger AnyDesk ${icon()}</a><a class="button secondary" href="${esc(cfg.support.teamviewer)}" target="_blank" rel="noopener noreferrer">TeamViewer QuickSupport ${icon()}</a>`;
+    `<a class="button dark" href="${esc(cfg.support.anydesk)}" target="_blank" rel="noopener noreferrer">${supportLogo("anydesk")}Télécharger AnyDesk ${icon()}</a><a class="button secondary" href="${esc(cfg.support.teamviewer)}" target="_blank" rel="noopener noreferrer">${supportLogo("teamviewer")}TeamViewer QuickSupport ${icon()}</a>`;
   const serverVisual = `<div class="server-visual" aria-hidden="true"><span class="server-overline">INFORMAQUIK / PME</span><div class="server-rack"><div><i></i><span>SERVEURS HÉBERGÉS</span><b>01</b></div><div><i></i><span>DONNÉES & SAUVEGARDES</span><b>02</b></div><div><i></i><span>RÉSEAUX & ÉQUIPES</span><b>03</b></div></div><span class="server-caption">Votre infrastructure. Notre accompagnement.</span></div>`;
   const titles = {
+    accueil: "Accueil",
     boutique: "Shop",
     reconditionnement: "Le reconditionné",
     entreprises: "Solutions PME",
@@ -5886,8 +6753,8 @@ for (const product of window.SHOP_PRODUCTS) {
   document.querySelectorAll("[data-support-tools]").forEach((el) => {
     el.innerHTML = supportButtons();
   });
-  document.querySelectorAll("[data-support-quick-links]").forEach((el) => {
-    el.innerHTML = `<span class="quick-support-label">Dépannage Windows</span><a href="${esc(cfg.support.anydesk)}" target="_blank" rel="noopener noreferrer" aria-label="Télécharger AnyDesk Informaquik pour Windows">AnyDesk ${icon()}</a><a href="${esc(cfg.support.teamviewer)}" target="_blank" rel="noopener noreferrer" aria-label="Télécharger TeamViewer QuickSupport pour Windows">TeamViewer ${icon()}</a>`;
+  document.querySelectorAll("[data-support-header]").forEach((el) => {
+    el.innerHTML = `<a class="support-header-button" href="${esc(cfg.support.anydesk)}" target="_blank" rel="noopener noreferrer" aria-label="Télécharger AnyDesk Informaquik pour Windows">${supportLogo("anydesk")}<span>AnyDesk<small>Windows</small></span>${icon()}</a><a class="support-header-button" href="${esc(cfg.support.teamviewer)}" target="_blank" rel="noopener noreferrer" aria-label="Télécharger TeamViewer QuickSupport pour Windows">${supportLogo("teamviewer")}<span>TeamViewer<small>QuickSupport · Windows</small></span>${icon()}</a>`;
   });
   let route = "";
   function closeMenu() {
@@ -5900,13 +6767,27 @@ for (const product of window.SHOP_PRODUCTS) {
     const hash = location.hash;
     const key = hash.startsWith("#/")
       ? hash.slice(2).split("?")[0]
-      : "boutique";
+      : hash && hash !== "#main-content"
+        ? "boutique"
+        : "accueil";
     closeMenu();
-    if (key === "boutique") {
+    home.hidden = key !== "accueil";
+    if (key === "accueil") {
+      shop.hidden = true;
+      root.hidden = true;
+      document.title =
+        "Informaquik — Informatique, dépannage et solutions PME à Martigny";
+      if (route && route !== key) {
+        window.scrollTo({ top: 0, behavior: "instant" });
+        home.querySelector("h1").focus({ preventScroll: true });
+      }
+    } else if (key === "boutique") {
       shop.hidden = false;
       root.hidden = true;
+      window.SHOP_UI.ensureCatalogue();
       document.title = "Informaquik Shop — La performance a une seconde vie.";
-      if (route !== key && hash.startsWith("#/")) window.scrollTo({ top: 0 });
+      if (route !== key && hash.startsWith("#/"))
+        window.scrollTo({ top: 0, behavior: "instant" });
     } else {
       shop.hidden = true;
       root.hidden = false;
@@ -5920,7 +6801,7 @@ for (const product of window.SHOP_PRODUCTS) {
             ) + cta();
         document.title =
           (titles[key] || "Page introuvable") + " — Informaquik Shop";
-        window.scrollTo({ top: 0 });
+        window.scrollTo({ top: 0, behavior: "instant" });
         root.querySelector("h1")?.focus({ preventScroll: true });
       }
       if (key === "contact") {
@@ -5936,11 +6817,23 @@ for (const product of window.SHOP_PRODUCTS) {
       }
     }
     document.querySelectorAll("#main-nav a").forEach((a) => {
-      const current = a.hash === "#/" + key;
+      const sectionKey = ["guide", "garanties", "reconditionnement"].includes(
+        key,
+      )
+        ? "boutique"
+        : key;
+      const current = a.hash === "#/" + sectionKey;
       a.classList.toggle("current", current);
-      if (current) a.setAttribute("aria-current", "page");
+      if (current)
+        a.setAttribute(
+          "aria-current",
+          sectionKey === key ? "page" : "location",
+        );
       else a.removeAttribute("aria-current");
     });
+    if (hash && !hash.startsWith("#/") && hash !== "#main-content") {
+      document.getElementById(hash.slice(1))?.scrollIntoView();
+    }
     route = key;
   }
   function recommend(form) {
@@ -6004,6 +6897,17 @@ for (const product of window.SHOP_PRODUCTS) {
   });
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") closeMenu();
+  });
+  window
+    .matchMedia("(min-width: 901px)")
+    .addEventListener("change", (event) => {
+      if (event.matches) closeMenu();
+    });
+  document.querySelector(".skip-link").addEventListener("click", (event) => {
+    event.preventDefault();
+    const main = document.getElementById("main-content");
+    main.focus({ preventScroll: true });
+    main.scrollIntoView({ block: "start" });
   });
   window.addEventListener("hashchange", renderPage);
   renderPage();

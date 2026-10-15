@@ -6,9 +6,11 @@
     <meta name="theme-color" content="#181818" />
     <meta
       name="description"
-      content="Des ordinateurs portables professionnels reconditionnés. Découvrez leurs composants, comparez les modèles et préparez votre sélection."
+      content="Informaquik à Martigny : dépannage informatique à distance et en atelier, serveurs et services PME, ordinateurs professionnels reconditionnés."
     />
-    <title>Informaquik Shop — La performance a une seconde vie.</title>
+    <title>
+      Informaquik — Informatique, dépannage et solutions PME à Martigny
+    </title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="style.css" />
     <script defer src="catalogue.js"></script>
@@ -17,32 +19,29 @@
     <script defer src="pages.js"></script>
   </head>
   <body>
-    <a class="skip-link" href="#catalogue">Aller au catalogue</a>
-    <div class="announcement">
-      <div><span class="status-dot"></span>Informaquik · Martigny</div>
-      <div
-        class="quick-support"
-        data-support-quick-links
-        aria-label="Téléchargements de dépannage pour Windows"
-      ></div>
-      <span class="market">Suisse · CHF</span>
-    </div>
+    <a class="skip-link" href="#main-content">Aller au contenu</a>
     <header class="header">
-      <a
-        href="#/boutique"
-        class="wordmark"
-        aria-label="Informaquik Shop, accueil"
+      <a href="#/accueil" class="wordmark" aria-label="Informaquik, accueil"
         ><img
           class="brand-logo"
           src="assets/informaquik-logo.png"
           alt="InformaQuik"
-        /><span class="shop-word">SHOP</span></a
+          width="190"
+          height="41"
+        /><span class="brand-descriptor">Informatique · Martigny</span></a
       >
+      <div class="header-tools">
+        <div class="remote-access">
+          <span class="remote-access-label"
+            >Dépannage<br /><strong>à distance</strong></span
+          >
+          <div class="remote-access-links" data-support-header></div>
+        </div>
+      </div>
       <nav id="main-nav" aria-label="Navigation principale">
-        <a href="#/boutique">Shop</a
-        ><a href="#/reconditionnement">Le reconditionné</a
-        ><a href="#/entreprises">PME</a><a href="#/depannage">Dépannage</a
-        ><a href="#/guide">Bien choisir</a><a href="#/garanties">Garanties</a
+        <a href="#/accueil">Accueil</a><a href="#/boutique">Shop</a
+        ><a href="#/entreprises">Solutions PME</a
+        ><a href="#/depannage">Dépannage & atelier</a
         ><a href="#/contact">Contact</a>
       </nav>
       <button
@@ -71,14 +70,147 @@
         ><span id="cart-count" class="cart-count">0</span>
       </button>
     </header>
-    <main id="main-content">
-      <div id="shop-root">
+    <main id="main-content" tabindex="-1">
+      <div id="home-root">
+        <section class="welcome-hero" aria-labelledby="welcome-title">
+          <div class="welcome-copy">
+            <span class="eyebrow">INFORMAQUIK / MARTIGNY</span>
+            <h1 id="welcome-title" tabindex="-1">
+              L’informatique,<br /><em>simplement.</em>
+            </h1>
+            <p>
+              Dépannage, ordinateurs reconditionnés et solutions PME. Une équipe
+              à votre écoute, à distance et dans notre atelier de Martigny.
+            </p>
+            <div class="welcome-actions">
+              <a class="button dark" href="#/depannage"
+                >J’ai besoin d’aide <span data-icon="arrow"></span></a
+              ><a class="button secondary" href="#/boutique"
+                >Découvrir le shop <span data-icon="arrow"></span
+              ></a>
+            </div>
+            <a class="welcome-phone" href="tel:+41275653232"
+              >Parlons de votre besoin <strong>027 565 32 32</strong></a
+            >
+          </div>
+          <aside
+            class="welcome-shortcuts"
+            aria-label="Accès directs à nos services"
+          >
+            <span class="small-caps">COMMENT POUVONS-NOUS VOUS AIDER ?</span
+            ><a href="#/depannage"
+              ><span class="welcome-shortcut-icon" data-icon="tools"></span
+              ><span
+                ><strong>Dépanner un ordinateur</strong
+                ><small>À distance ou dans notre atelier</small></span
+              ><span data-icon="arrow"></span></a
+            ><a href="#/entreprises"
+              ><span class="welcome-shortcut-icon" data-icon="server"></span
+              ><span
+                ><strong>Accompagner votre PME</strong
+                ><small>Serveurs, sauvegardes et réseau</small></span
+              ><span data-icon="arrow"></span></a
+            ><a href="#/boutique"
+              ><span class="welcome-shortcut-icon" data-icon="screen"></span
+              ><span
+                ><strong>Trouver votre prochain PC</strong
+                ><small>Des gammes pro reconditionnées</small></span
+              ><span data-icon="arrow"></span
+            ></a>
+            <div class="welcome-shortcuts-note">
+              Conseil · Vente · Dépannage · Hébergement
+            </div>
+          </aside>
+        </section>
+        <section
+          class="welcome-services section"
+          aria-labelledby="welcome-services-title"
+        >
+          <div class="welcome-section-heading">
+            <div>
+              <span class="eyebrow">TOUS NOS SERVICES, AU MÊME ENDROIT</span>
+              <h2 id="welcome-services-title">De quoi avez-vous besoin ?</h2>
+            </div>
+            <p>Trois accès simples pour trouver<br />le bon service.</p>
+          </div>
+          <div class="welcome-service-grid">
+            <a class="welcome-service" href="#/depannage"
+              ><span class="welcome-service-icon" data-icon="tools"></span>
+              <h3>Dépannage & atelier</h3>
+              <p>
+                Un problème avec votre ordinateur ? Nos techniciens vous aident
+                à distance ou vous accueillent au magasin.
+              </p>
+              <span class="text-link"
+                >Trouver de l’aide <span data-icon="arrow"></span></span></a
+            ><a class="welcome-service" href="#/entreprises"
+              ><span class="welcome-service-icon" data-icon="server"></span>
+              <h3>Solutions pour les PME</h3>
+              <p>
+                Serveurs hébergés, sauvegardes, réseaux et entretien de votre
+                parc informatique.
+              </p>
+              <span class="text-link"
+                >Découvrir nos solutions
+                <span data-icon="arrow"></span></span></a
+            ><a class="welcome-service" href="#/boutique"
+              ><span class="welcome-service-icon" data-icon="screen"></span>
+              <h3>Ordinateurs reconditionnés</h3>
+              <p>
+                Comparez les configurations HP et Lenovo et préparez votre
+                sélection de matériel professionnel.
+              </p>
+              <span class="text-link"
+                >Visiter le shop <span data-icon="arrow"></span></span
+            ></a>
+          </div>
+        </section>
+        <section class="welcome-visit" aria-labelledby="visit-title">
+          <div>
+            <span class="eyebrow light">NOTRE MAGASIN & NOTRE ATELIER</span>
+            <h2 id="visit-title">
+              Une équipe.<br /><em>Une adresse à Martigny.</em>
+            </h2>
+            <p>
+              Rue du Simplon 27A · 1920 Martigny<br />Conseils, vente et
+              réparation sur place.
+            </p>
+            <a class="button light-button" href="#/contact"
+              >Nous contacter <span data-icon="arrow"></span
+            ></a>
+          </div>
+          <div class="visit-details">
+            <div>
+              <span>APPELEZ-NOUS</span
+              ><a href="tel:+41275653232">027 565 32 32</a>
+            </div>
+            <div>
+              <span>HORAIRES DU MAGASIN</span>
+              <p>
+                Lundi–jeudi : 09h–12h / 13h30–18h<br />Vendredi : 09h–12h /
+                13h30–17h
+              </p>
+              <small>Fermeture à 17h les veilles de fêtes.</small>
+            </div>
+            <a href="#/depannage" class="text-link light"
+              >Besoin d’un dépannage à distance ? <span data-icon="arrow"></span
+            ></a>
+          </div>
+        </section>
+      </div>
+      <div id="shop-root" hidden>
+        <nav class="shop-links" aria-label="Conseils et informations du shop">
+          <span>LE SHOP INFORMAQUIK</span
+          ><a href="#/guide">Bien choisir son PC</a
+          ><a href="#/reconditionnement">Le reconditionné</a
+          ><a href="#/garanties">Garanties & SAV</a>
+        </nav>
         <section class="hero" aria-labelledby="hero-title">
           <div class="hero-copy">
             <span class="eyebrow light"
               ><i></i>RECONDITIONNÉS. PROFESSIONNELS. PRÊTS POUR LA SUITE.</span
             >
-            <h1 id="hero-title">
+            <h1 id="hero-title" tabindex="-1">
               La seconde vie.<br />La <em>première classe.</em>
             </h1>
             <p>
@@ -208,49 +340,6 @@
             <button class="button dark" data-action="reset-filters">
               Effacer les filtres
             </button>
-          </div>
-        </section>
-        <section class="section home-services" aria-labelledby="services-title">
-          <div class="section-heading">
-            <div>
-              <span class="eyebrow">INFORMAQUIK / BIEN PLUS QU’UN SHOP</span>
-              <h2 id="services-title">
-                Vos ordinateurs.<br /><em>Et tout ce qui va avec.</em>
-              </h2>
-            </div>
-            <p>
-              Un partenaire informatique à Martigny,<br />pour les particuliers
-              et les PME.
-            </p>
-          </div>
-          <div class="home-services-grid">
-            <a class="home-service-card" href="#/entreprises"
-              ><span class="small-caps">01 / SOLUTIONS PME</span>
-              <h3>Votre infrastructure,<br />notre accompagnement.</h3>
-              <p>
-                Serveurs hébergés, sauvegardes, réseaux et maintenance de votre
-                parc informatique.
-              </p>
-              <span class="text-link"
-                >Découvrir les services PME
-                <span data-icon="arrow"></span></span></a
-            ><a class="home-service-card" href="#/depannage"
-              ><span class="small-caps">02 / DÉPANNAGE & ATELIER</span>
-              <h3>À distance.<br />Et à deux pas de vous.</h3>
-              <p>
-                Dépannage à distance avec AnyDesk ou TeamViewer, réparations et
-                conseils dans notre atelier de Martigny.
-              </p>
-              <span class="text-link"
-                >Trouver de l’aide <span data-icon="arrow"></span></span
-            ></a>
-          </div>
-          <div class="home-support-bar">
-            <div>
-              <strong>Déjà en contact avec un technicien ?</strong
-              ><span>Accès rapide aux outils de dépannage pour Windows.</span>
-            </div>
-            <div class="home-support-tools" data-support-tools></div>
           </div>
         </section>
         <section id="approche" class="approach section">
@@ -398,27 +487,33 @@
       <div id="editorial-root" hidden></div>
     </main>
     <footer class="footer">
-      <a class="wordmark" href="#/boutique"
-        ><img
-          class="brand-logo"
-          src="assets/informaquik-logo.png"
-          alt="InformaQuik"
-        /><span class="shop-word">SHOP</span></a
-      >
-      <p>La performance a une seconde vie.</p>
-      <div>
-        <span>Ordinateurs professionnels reconditionnés</span
-        ><span>Catalogue en préparation · disponibilité à confirmer</span>
+      <div class="footer-brand">
+        <a class="wordmark" href="#/accueil"
+          ><img
+            class="brand-logo"
+            src="assets/informaquik-logo.png"
+            alt="InformaQuik"
+            width="170"
+            height="36"
+        /></a>
+        <p>
+          Votre partenaire informatique à Martigny.<br />Pour les particuliers
+          et les PME.
+        </p>
       </div>
-      <div class="footer-links">
-        <a href="#/reconditionnement">Notre approche</a
-        ><a href="#/guide">Guide d’achat</a><a href="#/entreprises">PME</a
-        ><a href="#/depannage">Dépannage &amp; atelier</a
-        ><a href="#/garanties">Garanties &amp; SAV</a
-        ><a href="#/contact">Contact</a
-        ><a href="https://i-q.ch/" target="_blank" rel="noopener noreferrer"
-          >i-q.ch ↗</a
-        >
+      <nav class="footer-links" aria-label="Tous les accès du site">
+        <a href="#/accueil">Accueil</a><a href="#/boutique">Shop</a
+        ><a href="#/entreprises">Solutions PME</a
+        ><a href="#/depannage">Dépannage & atelier</a
+        ><a href="#/guide">Bien choisir</a
+        ><a href="#/reconditionnement">Le reconditionné</a
+        ><a href="#/garanties">Garanties & SAV</a
+        ><a href="#/contact">Contact</a>
+      </nav>
+      <div class="footer-contact">
+        <a href="tel:+41275653232">027 565 32 32</a
+        ><a href="mailto:info@i-q.ch">info@i-q.ch</a
+        ><span>Rue du Simplon 27A · Martigny</span>
       </div>
     </footer>
     <dialog

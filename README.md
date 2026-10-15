@@ -1,14 +1,14 @@
-# Informaquik Shop
+# Informaquik — accueil, services et shop
 
-Boutique visuelle d’ordinateurs professionnels reconditionnés, en français, avec dix configurations transcrites des fiches fournies.
+Site Informaquik en français : accueil, dépannage et atelier à Martigny, solutions PME et boutique d’ordinateurs professionnels reconditionnés. Dix configurations transcrites des fiches fournies.
 
-![Accueil Informaquik Shop](docs/accueil.png)
+![Accueil Informaquik](docs/accueil.png)
 
-[Aperçu des solutions PME](docs/pme.png) · [Dépannage à distance et atelier](docs/depannage.png)
+[Aperçu du shop](docs/shop.png) · [Aperçu des solutions PME](docs/pme.png) · [Dépannage à distance et atelier](docs/depannage.png)
 
 ## Tester sans installation
 
-Ouvrez **`downloads/Informaquik-Shop.html`** dans Edge, Chrome ou Firefox. Ce fichier contient toute la boutique et fonctionne sans serveur ni connexion Internet. L’archive **`downloads/Informaquik-Shop.zip`** contient la même version et ses instructions. Les téléchargements des outils de dépannage nécessitent une connexion Internet.
+Ouvrez **`downloads/Informaquik-Shop.html`** dans Edge, Chrome ou Firefox. Ce fichier contient tout le site et fonctionne sans serveur ni connexion Internet. L’archive **`downloads/Informaquik-Shop.zip`** contient la même version et ses instructions. Les téléchargements des outils de dépannage nécessitent une connexion Internet.
 
 Depuis les sources, ouvrir `index.html` fonctionne également. Conservez `app.js`, `pages.js`, `photos.js`, `style.css`, `catalogue.js` et `assets/` à côté du fichier.
 
@@ -17,10 +17,12 @@ Depuis les sources, ouvrir `index.html` fonctionne également. Conservez `app.js
 - Identité inspirée de [i-q.ch](https://i-q.ch/) : logo officiel conservé, palette noire, blanche et grise ; composition éditoriale propre à la boutique.
 - Photos de chaque famille de modèles, conservées localement ; galerie de deux vues pour les HP.
 - Exploration pédagogique des composants au survol ou au bouton, utilisable au clavier et sur mobile.
-- Six pages complémentaires : **Le reconditionné**, **Solutions PME**, **Dépannage & atelier**, **Bien choisir**, **Garanties & SAV**, **Contact**.
+- Accueil Informaquik organisé autour de trois besoins : être dépanné, accompagner une PME, trouver un ordinateur.
+- Menu principal à cinq entrées : **Accueil**, **Shop**, **Solutions PME**, **Dépannage & atelier**, **Contact**.
+- **Bien choisir**, **Le reconditionné** et **Garanties & SAV** sont accessibles dans la navigation du shop et dans le pied de page.
 - Solutions PME : serveurs hébergés, sauvegardes et restauration, réseaux et Wi-Fi professionnels, maintenance, antivirus, assistance et équipement. Banque d’heures présentée sans tarif inventé.
 - Atelier de Martigny, réparations en magasin et dépannage à distance ou sur site pour les PME.
-- Accès AnyDesk Informaquik et TeamViewer QuickSupport pour Windows dans le bandeau supérieur, sur l’accueil et dans la page Dépannage. Les liens reprennent ceux d’i-q.ch ; aucun outil n’est téléchargé ni exécuté automatiquement.
+- Accès AnyDesk Informaquik et TeamViewer QuickSupport pour Windows avec leurs logos SVG locaux, dans l’en-tête fixe en haut à droite et dans la page Dépannage. Les liens reprennent ceux d’i-q.ch ; aucun outil n’est téléchargé ni exécuté automatiquement.
 - Guide interactif : recommandations selon l’usage, le budget et le besoin d’un écran tactile.
 - Contact : coordonnées publiques vérifiées, formulaire qui prépare un e-mail dans la messagerie du visiteur, motif SAV ou entreprise prérempli depuis les pages correspondantes.
 - Catalogue organisé par marque et modèle, recherche, filtres d’usage et tactile, tri par prix ou mémoire.
@@ -32,6 +34,15 @@ Depuis les sources, ouvrir `index.html` fonctionne également. Conservez `app.js
 - Mise en page adaptée aux ordinateurs et mobiles ; animations désactivables selon la préférence de mouvement réduit.
 
 Les photos présentent les modèles, pas l’état d’un exemplaire précis. Le schéma des composants est générique et explicitement pédagogique. Les sources et crédits figurent dans [docs/SOURCES-VISUELS.md](docs/SOURCES-VISUELS.md). Les coûts d’achat et marges des captures ne sont pas inclus dans le catalogue ni la distribution.
+
+## Performance et simplicité
+
+- L’accueil s’ouvre par défaut. Le catalogue et ses images sont initialisés au premier accès au shop ; le panier reste utilisable sur toutes les pages.
+- Aucune bibliothèque, police ou image distante nécessaire pour afficher le site. Les photos restent locales et se chargent progressivement.
+- Le serveur Node utilise Brotli/gzip pour HTML, CSS, JavaScript et SVG, ainsi que des ETag pour éviter de retransmettre les ressources inchangées. Les fichiers modifiés restent détectés pendant le développement.
+- La version HTML autonome contient les logos et photos pour fonctionner hors ligne. La compression HTTP concerne la version servie par Node.
+
+Vérification locale du 15 octobre 2026 : aucun fichier photo produit demandé à l’ouverture de l’accueil ; 186 993 octets de ressources textuelles (HTML, CSS, JavaScript et deux logos SVG) transmis en 47 282 octets avec Brotli, soit environ 75 % de moins. Il s’agit des corps HTTP de ces fichiers, pas d’une mesure de temps de chargement sur un hébergement public.
 
 ## Le catalogue fourni
 
@@ -74,7 +85,7 @@ npm run package
 
 Le serveur de développement utilise le port 4173 (`PORT` et `HOST` configurables). Il sert uniquement les ressources de la boutique. `npm run package` fabrique le fichier HTML autonome et le ZIP dans `downloads/` avec les sommes SHA-256.
 
-La version autonome est vérifiée dans un navigateur, notamment l’ouverture sans serveur, le chargement des photos, les galeries, les six pages complémentaires, le guide, le formulaire, l’exploration des composants, les filtres, les fiches, le panier persistant, l’export et la mise en page mobile. Les tests Node vérifient la fidélité des données et l’exclusion des coûts internes.
+La version autonome est vérifiée dans un navigateur, notamment l’ouverture sans serveur, le chargement des photos, les galeries, les pages de services et les accès secondaires, le guide, le formulaire, l’exploration des composants, les filtres, les fiches, le panier persistant, l’export et la mise en page mobile. Les tests Node vérifient la fidélité des données, l’exclusion des coûts internes, les ressources embarquées et la compression/cache du serveur.
 
 ## Configuration cloud
 

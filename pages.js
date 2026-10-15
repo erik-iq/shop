@@ -3,7 +3,8 @@
   const cfg = window.SHOP_CONFIG,
     products = window.SHOP_PRODUCTS;
   const root = document.getElementById("editorial-root"),
-    shop = document.getElementById("shop-root");
+    shop = document.getElementById("shop-root"),
+    home = document.getElementById("home-root");
   const esc = (v) =>
     String(v ?? "").replace(
       /[&<>"']/g,
@@ -21,7 +22,7 @@
   const link = (href, text, type = "dark") =>
     `<a class="button ${type}" href="${href}">${text}${icon()}</a>`;
   const hero = (label, title, description, aside = "") =>
-    `<section class="page-hero"><div class="page-breadcrumb"><a href="#/boutique">Informaquik Shop</a><span>/</span><span>${label}</span></div><div class="page-hero-grid"><div><span class="eyebrow">INFORMAQUIK / ${label.toUpperCase()}</span><h1 tabindex="-1">${title}</h1><p>${description}</p></div>${aside}</div></section>`;
+    `<section class="page-hero"><div class="page-breadcrumb"><a href="#/accueil">Informaquik</a><span>/</span><span>${label}</span></div><div class="page-hero-grid"><div><span class="eyebrow">INFORMAQUIK / ${label.toUpperCase()}</span><h1 tabindex="-1">${title}</h1><p>${description}</p></div>${aside}</div></section>`;
   const card = (number, title, text, svg = "check") =>
     `<article class="editorial-card"><span class="editorial-card-icon">${icon(svg)}</span><span class="small-caps">${number}</span><h3>${title}</h3><p>${text}</p></article>`;
   const cta = (
@@ -29,10 +30,17 @@
     text = "Retrouvez les configurations et leurs caractéristiques dans la boutique.",
   ) =>
     `<section class="page-cta"><div><h2>${title}</h2><p>${text}</p></div>${link("#/boutique", "Découvrir le shop", "primary")}</section>`;
+  const supportLogos = {
+    anydesk: "assets/brands/anydesk.svg",
+    teamviewer: "assets/brands/teamviewer.svg",
+  };
+  const supportLogo = (brand) =>
+    `<img src="${esc(supportLogos[brand])}" width="28" height="28" alt="" aria-hidden="true">`;
   const supportButtons = () =>
-    `<a class="button dark" href="${esc(cfg.support.anydesk)}" target="_blank" rel="noopener noreferrer">Télécharger AnyDesk ${icon()}</a><a class="button secondary" href="${esc(cfg.support.teamviewer)}" target="_blank" rel="noopener noreferrer">TeamViewer QuickSupport ${icon()}</a>`;
+    `<a class="button dark" href="${esc(cfg.support.anydesk)}" target="_blank" rel="noopener noreferrer">${supportLogo("anydesk")}Télécharger AnyDesk ${icon()}</a><a class="button secondary" href="${esc(cfg.support.teamviewer)}" target="_blank" rel="noopener noreferrer">${supportLogo("teamviewer")}TeamViewer QuickSupport ${icon()}</a>`;
   const serverVisual = `<div class="server-visual" aria-hidden="true"><span class="server-overline">INFORMAQUIK / PME</span><div class="server-rack"><div><i></i><span>SERVEURS HÉBERGÉS</span><b>01</b></div><div><i></i><span>DONNÉES & SAUVEGARDES</span><b>02</b></div><div><i></i><span>RÉSEAUX & ÉQUIPES</span><b>03</b></div></div><span class="server-caption">Votre infrastructure. Notre accompagnement.</span></div>`;
   const titles = {
+    accueil: "Accueil",
     boutique: "Shop",
     reconditionnement: "Le reconditionné",
     entreprises: "Solutions PME",
@@ -107,8 +115,8 @@
   document.querySelectorAll("[data-support-tools]").forEach((el) => {
     el.innerHTML = supportButtons();
   });
-  document.querySelectorAll("[data-support-quick-links]").forEach((el) => {
-    el.innerHTML = `<span class="quick-support-label">Dépannage Windows</span><a href="${esc(cfg.support.anydesk)}" target="_blank" rel="noopener noreferrer" aria-label="Télécharger AnyDesk Informaquik pour Windows">AnyDesk ${icon()}</a><a href="${esc(cfg.support.teamviewer)}" target="_blank" rel="noopener noreferrer" aria-label="Télécharger TeamViewer QuickSupport pour Windows">TeamViewer ${icon()}</a>`;
+  document.querySelectorAll("[data-support-header]").forEach((el) => {
+    el.innerHTML = `<a class="support-header-button" href="${esc(cfg.support.anydesk)}" target="_blank" rel="noopener noreferrer" aria-label="Télécharger AnyDesk Informaquik pour Windows">${supportLogo("anydesk")}<span>AnyDesk<small>Windows</small></span>${icon()}</a><a class="support-header-button" href="${esc(cfg.support.teamviewer)}" target="_blank" rel="noopener noreferrer" aria-label="Télécharger TeamViewer QuickSupport pour Windows">${supportLogo("teamviewer")}<span>TeamViewer<small>QuickSupport · Windows</small></span>${icon()}</a>`;
   });
   let route = "";
   function closeMenu() {
@@ -121,13 +129,27 @@
     const hash = location.hash;
     const key = hash.startsWith("#/")
       ? hash.slice(2).split("?")[0]
-      : "boutique";
+      : hash && hash !== "#main-content"
+        ? "boutique"
+        : "accueil";
     closeMenu();
-    if (key === "boutique") {
+    home.hidden = key !== "accueil";
+    if (key === "accueil") {
+      shop.hidden = true;
+      root.hidden = true;
+      document.title =
+        "Informaquik — Informatique, dépannage et solutions PME à Martigny";
+      if (route && route !== key) {
+        window.scrollTo({ top: 0, behavior: "instant" });
+        home.querySelector("h1").focus({ preventScroll: true });
+      }
+    } else if (key === "boutique") {
       shop.hidden = false;
       root.hidden = true;
+      window.SHOP_UI.ensureCatalogue();
       document.title = "Informaquik Shop — La performance a une seconde vie.";
-      if (route !== key && hash.startsWith("#/")) window.scrollTo({ top: 0 });
+      if (route !== key && hash.startsWith("#/"))
+        window.scrollTo({ top: 0, behavior: "instant" });
     } else {
       shop.hidden = true;
       root.hidden = false;
@@ -141,7 +163,7 @@
             ) + cta();
         document.title =
           (titles[key] || "Page introuvable") + " — Informaquik Shop";
-        window.scrollTo({ top: 0 });
+        window.scrollTo({ top: 0, behavior: "instant" });
         root.querySelector("h1")?.focus({ preventScroll: true });
       }
       if (key === "contact") {
@@ -157,11 +179,23 @@
       }
     }
     document.querySelectorAll("#main-nav a").forEach((a) => {
-      const current = a.hash === "#/" + key;
+      const sectionKey = ["guide", "garanties", "reconditionnement"].includes(
+        key,
+      )
+        ? "boutique"
+        : key;
+      const current = a.hash === "#/" + sectionKey;
       a.classList.toggle("current", current);
-      if (current) a.setAttribute("aria-current", "page");
+      if (current)
+        a.setAttribute(
+          "aria-current",
+          sectionKey === key ? "page" : "location",
+        );
       else a.removeAttribute("aria-current");
     });
+    if (hash && !hash.startsWith("#/") && hash !== "#main-content") {
+      document.getElementById(hash.slice(1))?.scrollIntoView();
+    }
     route = key;
   }
   function recommend(form) {
@@ -225,6 +259,17 @@
   });
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") closeMenu();
+  });
+  window
+    .matchMedia("(min-width: 901px)")
+    .addEventListener("change", (event) => {
+      if (event.matches) closeMenu();
+    });
+  document.querySelector(".skip-link").addEventListener("click", (event) => {
+    event.preventDefault();
+    const main = document.getElementById("main-content");
+    main.focus({ preventScroll: true });
+    main.scrollIntoView({ block: "start" });
   });
   window.addEventListener("hashchange", renderPage);
   renderPage();

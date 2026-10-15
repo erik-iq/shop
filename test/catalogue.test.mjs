@@ -113,7 +113,7 @@ test("Chaque référence possède des photos locales du modèle, sourcées et va
   const i7 = products.find((p) => p.id === "hp-850-g7-i7");
   assert.equal(i5.photos, i7.photos);
 });
-test("La distribution incorpore toutes les photos pour un fonctionnement hors ligne", () => {
+test("La distribution incorpore les photos et logos pour un fonctionnement hors ligne", () => {
   const html = readFileSync(
     new URL("../downloads/Informaquik-Shop.html", import.meta.url),
     "utf8",
@@ -128,6 +128,18 @@ test("La distribution incorpore toutes les photos pour un fonctionnement hors li
     assert.ok(html.includes(base64), src);
     assert.equal(html.includes(src), false);
   }
+  for (const asset of [
+    "assets/brands/anydesk.svg",
+    "assets/brands/teamviewer.svg",
+    "assets/informaquik-logo.png",
+  ]) {
+    const base64 = readFileSync(
+      new URL("../" + asset, import.meta.url),
+    ).toString("base64");
+    assert.ok(html.includes(base64), asset);
+    assert.equal(html.includes(asset), false);
+  }
+  assert.match(html, /id="home-root"/);
   assert.match(html, /id="editorial-root"/);
   assert.match(html, /id="guide-form"/);
   assert.match(html, /id="contact-form"/);
