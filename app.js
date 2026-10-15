@@ -60,8 +60,7 @@
       .forEach((el) => (el.outerHTML = icon(el.dataset.icon)));
   }
   hydrateIcons();
-  let svgId = 0,
-    brand = "all",
+  let brand = "all",
     query = "",
     usage = "all",
     sort = "featured",
@@ -115,53 +114,14 @@
       2800,
     );
   }
-  function laptopSvg(color) {
-    const id = "machine-" + ++svgId,
-      tint = /^#[0-9a-f]{6}$/i.test(color) ? color : "#89978d";
-    return `<svg viewBox="0 0 760 500" aria-hidden="true" focusable="false"><defs>
-      <linearGradient id="${id}-metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d4dbd0"/><stop offset=".48" stop-color="${tint}"/><stop offset="1" stop-color="#465347"/></linearGradient>
-      <linearGradient id="${id}-edge" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#a6b4a4"/><stop offset="1" stop-color="#566454"/></linearGradient>
-      <linearGradient id="${id}-display" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#253728"/><stop offset=".45" stop-color="#18251b"/><stop offset="1" stop-color="#08120c"/></linearGradient>
-      <radialGradient id="${id}-green"><stop stop-color="#d1ff79" stop-opacity=".4"/><stop offset="1" stop-color="#d1ff79" stop-opacity="0"/></radialGradient>
-      <pattern id="${id}-keys" width="25" height="22" patternUnits="userSpaceOnUse"><rect x="2" y="2" width="21" height="18" rx="2" fill="#263029" stroke="#9ead9529" stroke-width="1"/><path d="M8 6h6" stroke="#c9d5c650" stroke-width="1"/></pattern>
-      <pattern id="${id}-circuits" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M0 12h14v12h22M23 0v10h13" fill="none" stroke="#65864c40" stroke-width=".8"/><circle cx="14" cy="12" r="2" fill="#75954b50"/></pattern>
-      </defs><ellipse cx="382" cy="429" rx="260" ry="23" fill="#000" opacity=".12"/>
-      <g class="lid"><path d="m140 21 479 31c15 1 19 9 15 22l-59 190L53 225 122 35c3-9 8-15 18-14Z" fill="url(#${id}-metal)" stroke="#b8c7b444" stroke-width="2"/><path d="m143 37 467 31-58 178L71 213 134 44c2-5 4-7 9-7Z" fill="#101712" stroke="#28372b" stroke-width="5"/>
-      <g transform="matrix(1 .069 -.34 .66 146 45)"><rect width="443" height="245" rx="5" fill="url(#${id}-display)"/><circle cx="355" cy="125" r="155" fill="url(#${id}-green)"/><path d="M28 50h384M28 195h384" stroke="#b2d09c22"/>
-      <text x="30" y="34" fill="#bac8aa" font-size="11" font-family="Arial,sans-serif" letter-spacing="2">INFORMAQUIK SHOP</text><text x="31" y="111" fill="#ecf2df" font-size="35" font-family="Arial,sans-serif" font-weight="600">Ready for</text><text x="31" y="150" fill="#d1ff79" font-size="35" font-family="Georgia,serif" font-style="italic">what’s next.</text>
-      <rect x="31" y="172" width="122" height="4" rx="2" fill="#d1ff79" opacity=".6"/><circle cx="317" cy="116" r="45" fill="none" stroke="#b9d89c33" stroke-width="1"/><circle cx="317" cy="116" r="32" fill="none" stroke="#b9d89c20" stroke-dasharray="4 6"/><path d="m306 126 22-22m-20 0h20v20" fill="none" stroke="#d1ff79" stroke-width="4"/>
-      <text x="31" y="224" fill="#6a825c" font-size="8" font-family="Arial,sans-serif" letter-spacing="1.4">PROFESSIONAL. RECONDITIONED. YOURS.</text></g><circle cx="370" cy="48" r="2.3" fill="#e2ebd5"/><path d="m54 227 520 36-1 7-521-37Z" fill="#29332b"/></g>
-      <path d="m54 240 521 36 132 89-4 12-495 58L33 300l3-16Z" fill="url(#${id}-edge)" stroke="#60745b88"/><path d="m54 238 521 36 132 89-498 60L35 288Z" fill="#18231a" stroke="#8ea28088" stroke-width="1.3"/>
-      <g class="interior" transform="matrix(1 .07 .62 .41 85 258)"><rect x="0" y="0" width="455" height="210" rx="12" fill="#223823"/><rect x="4" y="4" width="447" height="202" rx="9" fill="url(#${id}-circuits)" stroke="#79945a55"/>
-      <path d="M82 42h54v40h96M190 97v25h61M227 45h52M399 65v64h-62" fill="none" stroke="#a8c07a55" stroke-width="2"/>
-      <circle cx="55" cy="54" r="37" fill="#111c14" stroke="#728c6255" stroke-width="3"/>
-      ${Array.from({ length: 12 }, (_, i) => `<path d="M53 49q16-27 27-4q-21-9-22 12Z" fill="#5a7150" opacity=".9" transform="rotate(${i * 30} 55 54)"/>`).join("")}<circle cx="55" cy="54" r="9" fill="#899d76"/>
-      <path d="M84 26q60-20 81 1v11H87Z" fill="#a49169" stroke="#c8b88a" stroke-width="1"/>
-      <rect x="146" y="19" width="86" height="70" rx="5" fill="#18281a" stroke="#d1ff79" stroke-width="1.8"/><rect x="157" y="28" width="64" height="49" rx="3" fill="#708361"/>
-      <text x="170" y="58" font-family="Arial,sans-serif" font-size="15" fill="#d8e6c4" font-weight="700">CPU</text><g fill="#bfd399">${Array.from({ length: 7 }, (_, i) => `<rect x="${151 + i * 11}" y="13" width="5" height="4"/><rect x="${151 + i * 11}" y="92" width="5" height="4"/>`).join("")}</g>
-      <rect x="267" y="16" width="139" height="28" rx="3" fill="#466039" stroke="#8ca66d"/><rect x="267" y="53" width="139" height="28" rx="3" fill="#3f5734" stroke="#8ca66d"/>
-      ${Array.from({ length: 4 }, (_, i) => `<rect x="${277 + i * 31}" y="20" width="23" height="19" rx="1" fill="#19271b"/><rect x="${277 + i * 31}" y="57" width="23" height="19" rx="1" fill="#19271b"/>`).join("")}
-      <path d="M277 44h118M277 81h118" stroke="#c3b37a" stroke-width="3"/>
-      <rect x="315" y="104" width="112" height="28" rx="4" fill="#71845d" stroke="#adc386"/><rect x="324" y="108" width="65" height="19" rx="2" fill="#cad8b9"/><text x="332" y="120" font-size="8" font-family="Arial,sans-serif" fill="#456031">NVMe SSD</text><circle cx="418" cy="118" r="3" fill="#baca9d"/>
-      <rect x="92" y="142" width="210" height="48" rx="7" fill="#0c170f" stroke="#536949"/>
-      <path d="M142 145v42m50-42v42m50-42v42" stroke="#29402c" stroke-width="2"/><text x="152" y="170" font-family="Arial,sans-serif" font-size="8" letter-spacing="2" fill="#869d72">BATTERY</text>
-      <path d="M304 165h52v-22h72" fill="none" stroke="#d1ff7966" stroke-width="2"/><g fill="#afc494">${[
-        [12, 12],
-        [444, 12],
-        [12, 196],
-        [444, 196],
-      ]
-        .map(([x, y]) => `<circle cx="${x}" cy="${y}" r="3"/>`)
-        .join("")}</g></g>
-      <ellipse class="chip-glow" cx="304" cy="310" rx="85" ry="28" fill="url(#${id}-green)"/>
-      <g class="deck"><path d="m54 237 521 36 132 89-498 60L35 288Z" fill="url(#${id}-metal)" stroke="#cbd7c35a"/>
-      <g transform="matrix(1 .07 .62 .41 91 254)"><rect width="445" height="121" rx="5" fill="#3d483c" stroke="#adc19b44"/><rect x="5" y="5" width="435" height="109" rx="4" fill="url(#${id}-keys)"/><rect x="136" y="94" width="137" height="14" rx="3" fill="#263029"/><circle cx="221" cy="52" r="4" fill="#e27467"/></g>
-      <path d="m273 335 114 8 59 40-126 15-62-48Z" fill="#a2b19977" stroke="#55695177" stroke-width="1"/><path d="m65 292 121 91" stroke="#d8e1d07a" stroke-width="1"/><text x="532" y="342" fill="#d9e4d188" font-size="10" font-family="Arial,sans-serif" transform="rotate(7 532 342)">PRO</text></g>
-      <path d="m214 429 87-10-2 4-81 9Z" fill="#d8e1cf" opacity=".45"/><path d="m77 327 23 17-1 5-24-17Z" fill="#1c2b1d"/><path d="m119 360 20 14-1 5-20-14Z" fill="#1c2b1d"/><path d="m164 389 15 10-1 4-15-10Z" fill="#1c2b1d"/><circle cx="626" cy="388" r="2" fill="#d1ff79"/>
-      </svg>`;
+  function photoMarkup(p, eager = false) {
+    const photo = p.photos?.[0];
+    return photo
+      ? `<img class="machine-photo" src="${esc(photo.src)}" alt="${esc(photo.alt)}" width="1000" height="750" loading="${eager ? "eager" : "lazy"}" ${eager ? 'fetchpriority="high"' : ""} decoding="async">`
+      : `<div class="photo-pending"><span>${icon("screen")}</span><strong>${esc(p.brand)} ${esc(p.model)}</strong><small>Photo du modèle en préparation</small></div>`;
   }
   function machine(p, { open = false, interactive = true, readout = "" } = {}) {
-    return `<div class="machine ${open ? "is-open" : ""}" data-product="${esc(p.id)}" data-pinned="${open}" data-readout="${esc(readout)}">${laptopSvg(p.color)}${interactive ? `<button class="explore-toggle" data-action="explore" aria-expanded="${open}" aria-label="Explorer l’intérieur du ${esc(p.brand + " " + p.model)}">${icon("layers")}<span>${open ? "Refermer le portable" : "Explorer l’intérieur"}</span></button>${["cpu", "ram", "ssd", "battery"].map((key, i) => `<button class="hotspot ${key}" data-action="component" data-component="${key}" aria-label="${{ cpu: "Processeur", ram: "Mémoire RAM", ssd: "Stockage SSD", battery: "Batterie" }[key]} du ${esc(p.model)}" tabindex="${open ? "0" : "-1"}">${i + 1}</button>`).join("")}<span class="machine-note">Vue illustrée</span>` : ""}</div>`;
+    return `<div class="machine photographic ${open ? "is-open" : ""}" data-product="${esc(p.id)}" data-pinned="${open}" data-readout="${esc(readout)}"><div class="photo-stage">${photoMarkup(p, readout === "hero-readout")}</div>${interactive ? `<div class="component-board" aria-hidden="true"><div class="board-traces"></div><span class="board-fan">✳</span><span class="board-cpu">CPU</span><span class="board-ram">RAM<br><i></i><i></i></span><span class="board-ssd">NVMe SSD</span><span class="board-battery">BATTERY</span><small>VUE PÉDAGOGIQUE DES COMPOSANTS</small></div><button class="explore-toggle" data-action="explore" aria-expanded="${open}" aria-label="Explorer les composants du ${esc(p.brand + " " + p.model)}">${icon("layers")}<span>${open ? "Revenir à la photo" : "Explorer les composants"}</span></button>${["cpu", "ram", "ssd", "battery"].map((key, i) => `<button class="hotspot ${key}" data-action="component" data-component="${key}" aria-label="${{ cpu: "Processeur", ram: "Mémoire RAM", ssd: "Stockage SSD", battery: "Batterie" }[key]} du ${esc(p.model)}" tabindex="${open ? "0" : "-1"}">${i + 1}</button>`).join("")}<span class="machine-note">Photo du modèle · composants illustrés</span>` : ""}</div>`;
   }
   function componentContent(p, key) {
     const data = {
@@ -185,7 +145,8 @@
     const [label, value, hint] = data[key] || data.cpu;
     return `<div><strong>${esc(value)}</strong><small>${esc(label)}</small></div><span></span><div>${esc(hint)}</div>`;
   }
-  const heroProduct = products[0];
+  const heroProduct =
+    products.find((p) => p.id === config.featuredProductId) || products[0];
   $("#hero-machine").innerHTML = machine(heroProduct, {
     readout: "hero-readout",
   });
@@ -197,8 +158,8 @@
     if (toggle) {
       toggle.setAttribute("aria-expanded", String(open));
       $("span", toggle).textContent = open
-        ? "Refermer le portable"
-        : "Explorer l’intérieur";
+        ? "Revenir à la photo"
+        : "Explorer les composants";
     }
     el.querySelectorAll(".hotspot").forEach(
       (button) => (button.tabIndex = open ? 0 : -1),
@@ -217,7 +178,9 @@
         )
           setOpen(el, false);
       });
-      el.addEventListener("focusin", () => setOpen(el, true));
+      el.addEventListener("focusin", (event) => {
+        if (event.target.closest(".explore-toggle,.hotspot")) setOpen(el, true);
+      });
       el.addEventListener("focusout", (event) => {
         if (el.dataset.pinned !== "true" && !el.contains(event.relatedTarget))
           setOpen(el, false);
@@ -264,7 +227,7 @@
   function productDetails(id) {
     const p = byId.get(id);
     if (!p) return;
-    productDialog.innerHTML = `<button class="dialog-close" data-action="product-close" aria-label="Fermer la fiche produit">${icon("close")}</button><div class="detail-layout"><div class="detail-art"><span>LA GAMME PRO, UNE SECONDE FOIS.</span>${machine(p, { open: true, readout: "detail-readout" })}<div class="component-readout" id="detail-readout" aria-live="polite">${componentContent(p, "cpu")}</div><p class="detail-art-note">Explorez les quatre points pour découvrir les composants. L’illustration explique la configuration et ne représente pas le châssis exact du modèle.</p></div><div class="detail-copy"><span class="eyebrow">${esc(p.brand)} / ${esc(p.generation)}</span><h2 id="product-title">${esc(p.model)}</h2><p class="detail-description">${esc(p.description)}</p><div class="detail-badges"><span class="grade">Reconditionné · ${p.grade ? "Grade " + esc(p.grade) : p.touch ? "Tactile · 360°" : "Gamme pro"}</span><span class="grade">${esc(p.condition)}</span></div><dl class="detail-specs">${[["Processeur", p.cpu], ["Mémoire RAM", p.ram + " Go " + (p.ramType || "")], ["Stockage SSD", disk(p) + " " + (p.storageType || "")], ["Écran", p.screen], ["Définition", p.resolution], ["Système", p.os], ...(p.gpu ? [["Graphique", p.gpu]] : []), ["Connectique", p.ports], ["Batterie", p.battery], ["Provenance", p.origin]].map(([key, val]) => `<div><dt>${esc(key)}</dt><dd>${esc(val)}</dd></div>`).join("")}</dl><p class="detail-guarantee">${icon("shield")}Ordinateur : ${config.computerWarrantyMonths} mois de garantie.<br>Batterie : ${config.batteryWarrantyMonths} mois.</p><div class="detail-purchase"><span class="price">${p.price}.–<small>${esc(config.currency)}</small></span><button class="button dark" data-action="add" data-id="${esc(p.id)}" ${p.stock === 0 ? "disabled" : ""}>${icon("bag")}Ajouter au panier</button></div><p class="stock-note">${Number.isInteger(p.stock) ? p.stock + " exemplaire(s) disponible(s)" : "Disponibilité à confirmer"} · Prix TTC, TVA 8,1 %.</p></div></div>`;
+    productDialog.innerHTML = `<button class="dialog-close" data-action="product-close" aria-label="Fermer la fiche produit">${icon("close")}</button><div class="detail-layout"><div class="detail-art"><span>LA GAMME PRO, UNE SECONDE FOIS.</span>${machine(p, { open: false, readout: "detail-readout" })}${(p.photos || []).length > 1 ? `<div class="photo-strip" role="group" aria-label="Photos du modèle">${p.photos.map((photo, index) => `<button data-action="gallery" data-id="${esc(p.id)}" data-index="${index}" aria-label="Voir la photo ${index + 1} du ${esc(p.model)}" aria-pressed="${index === 0}"><img src="${esc(photo.src)}" alt="" width="60" height="42" loading="lazy"></button>`).join("")}</div>` : ""}<div class="component-readout" id="detail-readout" aria-live="polite">${componentContent(p, "cpu")}</div><p class="detail-art-note">La photo présente le modèle ; l’état et la configuration de l’exemplaire restent ceux de sa fiche. L’exploration des composants est une vue pédagogique, pas une photo de son intérieur.</p></div><div class="detail-copy"><span class="eyebrow">${esc(p.brand)} / ${esc(p.generation)}</span><h2 id="product-title">${esc(p.model)}</h2><p class="detail-description">${esc(p.description)}</p><div class="detail-badges"><span class="grade">Reconditionné · ${p.grade ? "Grade " + esc(p.grade) : p.touch ? "Tactile · 360°" : "Gamme pro"}</span><span class="grade">${esc(p.condition)}</span></div><dl class="detail-specs">${[["Processeur", p.cpu], ["Mémoire RAM", p.ram + " Go " + (p.ramType || "")], ["Stockage SSD", disk(p) + " " + (p.storageType || "")], ["Écran", p.screen], ["Définition", p.resolution], ["Système", p.os], ...(p.gpu ? [["Graphique", p.gpu]] : []), ["Connectique", p.ports], ["Batterie", p.battery], ["Provenance", p.origin]].map(([key, val]) => `<div><dt>${esc(key)}</dt><dd>${esc(val)}</dd></div>`).join("")}</dl><p class="detail-guarantee">${icon("shield")}Ordinateur : ${config.computerWarrantyMonths} mois de garantie.<br>Batterie : ${config.batteryWarrantyMonths} mois.</p><div class="detail-purchase"><span class="price">${p.price}.–<small>${esc(config.currency)}</small></span><button class="button dark" data-action="add" data-id="${esc(p.id)}" ${p.stock === 0 ? "disabled" : ""}>${icon("bag")}Ajouter au panier</button></div><p class="stock-note">${Number.isInteger(p.stock) ? p.stock + " exemplaire(s) disponible(s)" : "Disponibilité à confirmer"} · Prix TTC, TVA 8,1 %.</p></div></div>`;
     productDialog.setAttribute("aria-labelledby", "product-title");
     wireMachines(productDialog);
     productDialog.showModal();
@@ -402,6 +365,21 @@
       el.dataset.pinned = el.dataset.pinned === "true" ? "false" : "true";
       setOpen(el, el.dataset.pinned === "true");
     }
+    if (action === "gallery") {
+      const p = byId.get(id),
+        photo = p?.photos?.[Number(button.dataset.index)],
+        el = productDialog.querySelector(".machine");
+      if (photo && el) {
+        const img = el.querySelector(".machine-photo");
+        img.src = photo.src;
+        img.alt = photo.alt;
+        el.dataset.pinned = "false";
+        setOpen(el, false);
+        productDialog
+          .querySelectorAll("[data-action=gallery]")
+          .forEach((b) => b.setAttribute("aria-pressed", String(b === button)));
+      }
+    }
     if (action === "component") {
       const el = button.closest(".machine"),
         p = byId.get(el.dataset.product),
@@ -443,7 +421,8 @@
         document.activeElement.tagName,
       ) &&
       !productDialog.open &&
-      !cartDialog.open
+      !cartDialog.open &&
+      !document.getElementById("shop-root").hidden
     ) {
       event.preventDefault();
       $("#search").focus();

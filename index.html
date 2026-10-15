@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#121713" />
+    <meta name="theme-color" content="#19181f" />
     <meta
       name="description"
       content="Des ordinateurs portables professionnels reconditionnés. Découvrez leurs composants, comparez les modèles et préparez votre sélection."
@@ -12,7 +12,9 @@
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="style.css" />
     <script defer src="catalogue.js"></script>
+    <script defer src="photos.js"></script>
     <script defer src="app.js"></script>
+    <script defer src="pages.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#catalogue">Aller au catalogue</a>
@@ -24,14 +26,40 @@
       ><span class="market">Suisse · CHF</span>
     </div>
     <header class="header">
-      <a href="#" class="wordmark" aria-label="Informaquik Shop, accueil"
-        >Informaquik<span class="shop-word">SHOP ↗</span></a
+      <a
+        href="#/boutique"
+        class="wordmark"
+        aria-label="Informaquik Shop, accueil"
+        ><img
+          class="brand-logo"
+          src="assets/informaquik-logo.png"
+          alt="InformaQuik"
+        /><span class="shop-word">SHOP</span></a
       >
-      <nav aria-label="Navigation principale">
-        <a href="#catalogue">Les ordinateurs</a
-        ><a href="#approche">La seconde vie</a
-        ><a href="#garanties">Nos garanties</a>
+      <nav id="main-nav" aria-label="Navigation principale">
+        <a href="#/boutique">Shop</a
+        ><a href="#/reconditionnement">Le reconditionné</a
+        ><a href="#/entreprises">Entreprises</a
+        ><a href="#/guide">Bien choisir</a><a href="#/garanties">Garanties</a
+        ><a href="#/contact">Contact</a>
       </nav>
+      <button
+        class="menu-toggle"
+        data-site-action="menu"
+        aria-controls="main-nav"
+        aria-expanded="false"
+        aria-label="Ouvrir le menu"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          aria-hidden="true"
+        >
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
       <button
         class="cart-trigger"
         data-action="cart-open"
@@ -41,290 +69,311 @@
         ><span id="cart-count" class="cart-count">0</span>
       </button>
     </header>
-    <main>
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <span class="eyebrow light"
-            ><i></i>RECONDITIONNÉS. PROFESSIONNELS. PRÊTS POUR LA SUITE.</span
-          >
-          <h1 id="hero-title">
-            La seconde vie.<br />La <em>première classe.</em>
-          </h1>
-          <p>
-            Le meilleur du matériel professionnel,<br />avec une nouvelle
-            histoire à écrire.<br />Et cette fois, c’est la vôtre.
-          </p>
-          <div class="hero-actions">
-            <a class="button lime" href="#catalogue"
-              >Trouver mon ordinateur<span data-icon="arrow"></span></a
-            ><a class="text-link light" href="#approche"
-              >Notre approche<span data-icon="arrow"></span
+    <main id="main-content">
+      <div id="shop-root">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <span class="eyebrow light"
+              ><i></i>RECONDITIONNÉS. PROFESSIONNELS. PRÊTS POUR LA SUITE.</span
+            >
+            <h1 id="hero-title">
+              La seconde vie.<br />La <em>première classe.</em>
+            </h1>
+            <p>
+              Le meilleur du matériel professionnel,<br />avec une nouvelle
+              histoire à écrire.<br />Et cette fois, c’est la vôtre.
+            </p>
+            <div class="hero-actions">
+              <a class="button lime" href="#catalogue"
+                >Trouver mon ordinateur<span data-icon="arrow"></span></a
+              ><a class="text-link light" href="#/reconditionnement"
+                >Notre approche<span data-icon="arrow"></span
+              ></a>
+            </div>
+            <div class="hero-proof">
+              <span data-icon="shield"></span
+              ><span
+                ><strong>24 mois de garantie</strong
+                ><small>6 mois pour la batterie</small></span
+              ><span class="proof-separator"></span
+              ><span data-icon="leaf"></span
+              ><span
+                ><strong>Un choix de bon sens</strong
+                ><small>Prolonger la vie du matériel</small></span
+              >
+            </div>
+          </div>
+          <div class="hero-showcase">
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <div class="floating-label">
+              <span class="status-dot"></span>Professionnel, à nouveau.
+            </div>
+            <div id="hero-machine"></div>
+            <div class="hero-art-caption">
+              <span class="small-caps">LA BEAUTÉ EST AUSSI À L’INTÉRIEUR.</span
+              ><span data-icon="cursor"></span
+              ><span>Survolez la photo pour découvrir les composants</span>
+            </div>
+            <div
+              class="component-readout"
+              id="hero-readout"
+              aria-live="polite"
+            ></div>
+          </div>
+          <div class="hero-bottom">
+            <span>UN NOUVEAU DÉPART, PAS UN NOUVEL ORDINATEUR.</span
+            ><a href="#catalogue"
+              >Découvrez la collection<span data-icon="down"></span
             ></a>
           </div>
-          <div class="hero-proof">
-            <span data-icon="shield"></span
-            ><span
-              ><strong>24 mois de garantie</strong
-              ><small>6 mois pour la batterie</small></span
-            ><span class="proof-separator"></span><span data-icon="leaf"></span
-            ><span
-              ><strong>Un choix de bon sens</strong
-              ><small>Prolonger la vie du matériel</small></span
-            >
-          </div>
-        </div>
-        <div class="hero-showcase">
-          <div class="orbit orbit-one"></div>
-          <div class="orbit orbit-two"></div>
-          <div class="floating-label">
-            <span class="status-dot"></span>Professionnel, à nouveau.
-          </div>
-          <div id="hero-machine"></div>
-          <div class="hero-art-caption">
-            <span class="small-caps">LA BEAUTÉ EST AUSSI À L’INTÉRIEUR.</span
-            ><span data-icon="cursor"></span
-            ><span>Survolez ou explorez le portable</span>
-          </div>
-          <div
-            class="component-readout"
-            id="hero-readout"
-            aria-live="polite"
-          ></div>
-        </div>
-        <div class="hero-bottom">
-          <span>UN NOUVEAU DÉPART, PAS UN NOUVEL ORDINATEUR.</span
-          ><a href="#catalogue"
-            >Découvrez la collection<span data-icon="down"></span
-          ></a>
-        </div>
-      </section>
-      <section class="trust-strip" aria-label="Nos engagements">
-        <div>
-          <span data-icon="briefcase"></span
-          ><span>Gammes professionnelles</span>
-        </div>
-        <div>
-          <span data-icon="refresh"></span><span>Une seconde vie utile</span>
-        </div>
-        <div>
-          <span data-icon="shield"></span
-          ><span>Garantie ordinateur · 24 mois</span>
-        </div>
-        <div>
-          <span data-icon="battery"></span
-          ><span>Garantie batterie · 6 mois</span>
-        </div>
-      </section>
-      <section id="catalogue" class="catalogue section">
-        <div class="section-heading">
+        </section>
+        <section class="trust-strip" aria-label="Nos engagements">
           <div>
-            <span class="eyebrow">01 / LA COLLECTION</span>
-            <h2>Votre prochain PC.<br /><em>Déjà une belle histoire.</em></h2>
+            <span data-icon="briefcase"></span
+            ><span>Gammes professionnelles</span>
           </div>
-          <p>
-            Des références professionnelles,<br />un choix clair, le juste
-            nécessaire.<br /><span class="demo-note"
-              >Vos références professionnelles · Prix TTC en CHF.</span
-            >
-          </p>
-        </div>
-        <div class="filter-top">
-          <div
-            id="brand-filters"
-            class="brand-filters"
-            role="group"
-            aria-label="Filtrer par marque"
-          ></div>
-          <label class="search-box"
-            ><span data-icon="search"></span
-            ><input
-              type="search"
-              id="search"
-              placeholder="Un modèle, une marque…"
-              aria-label="Rechercher un ordinateur"
-            /><kbd>/</kbd></label
-          >
-        </div>
-        <div class="filter-bottom">
-          <span id="result-count" aria-live="polite"></span>
-          <div class="filter-selects">
-            <label
-              ><span>Votre usage</span
-              ><select id="usage">
-                <option value="all">Tous les usages</option>
-                <option value="polyvalent">Travail quotidien</option>
-                <option value="mobile">Mobilité</option>
-                <option value="touch">Tactile / convertible</option>
-                <option value="power">Plus de puissance</option>
-              </select></label
-            ><label
-              ><span>Trier</span
-              ><select id="sort">
-                <option value="featured">Notre sélection</option>
-                <option value="price-asc">Prix croissant</option>
-                <option value="price-desc">Prix décroissant</option>
-                <option value="ram-desc">Mémoire décroissante</option>
-              </select></label
+          <div>
+            <span data-icon="refresh"></span><span>Une seconde vie utile</span>
+          </div>
+          <div>
+            <span data-icon="shield"></span
+            ><span>Garantie ordinateur · 24 mois</span>
+          </div>
+          <div>
+            <span data-icon="battery"></span
+            ><span>Garantie batterie · 6 mois</span>
+          </div>
+        </section>
+        <section id="catalogue" class="catalogue section">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">01 / LA COLLECTION</span>
+              <h2>Votre prochain PC.<br /><em>Déjà une belle histoire.</em></h2>
+            </div>
+            <p>
+              Des références professionnelles,<br />un choix clair, le juste
+              nécessaire.<br /><span class="demo-note"
+                >Vos références professionnelles · Prix TTC en CHF.</span
+              >
+            </p>
+          </div>
+          <div class="filter-top">
+            <div
+              id="brand-filters"
+              class="brand-filters"
+              role="group"
+              aria-label="Filtrer par marque"
+            ></div>
+            <label class="search-box"
+              ><span data-icon="search"></span
+              ><input
+                type="search"
+                id="search"
+                placeholder="Un modèle, une marque…"
+                aria-label="Rechercher un ordinateur"
+              /><kbd>/</kbd></label
             >
           </div>
-        </div>
-        <div id="products" class="product-grid"></div>
-        <div id="empty-results" class="empty-results" hidden>
-          <span data-icon="search"></span>
-          <h3>Aucun ordinateur trouvé.</h3>
-          <p>Essayez une autre marque ou un autre modèle.</p>
-          <button class="button dark" data-action="reset-filters">
-            Effacer les filtres
-          </button>
-        </div>
-      </section>
-      <section id="approche" class="approach section">
-        <div class="approach-art">
-          <div class="circular-label">UNE SECONDE VIE. UNE VRAIE RAISON.</div>
-          <div class="renew-symbol"><span>↗</span><span>↙</span></div>
-          <div class="art-stamp">PRO<br /><span>THEN. NOW. NEXT.</span></div>
-          <span class="art-coordinate"
-            >LE MATÉRIEL RESTE. L’HISTOIRE CONTINUE.</span
-          >
-        </div>
-        <div class="approach-copy">
-          <span class="eyebrow">02 / L’ESPRIT INFORMAQUIK</span>
-          <h2>Conçus pour travailler.<br /><em>Choisis pour durer.</em></h2>
-          <p>
-            Ces ordinateurs ont d’abord servi dans des environnements
-            professionnels. Selon les lots, ils proviennent de parcs
-            d’entreprises, d’administrations, de services publics ou de services
-            militaires.
-          </p>
-          <p>
-            Nous privilégions les gammes professionnelles et le réemploi :
-            prolonger la vie du matériel, plutôt qu’encourager son remplacement.
-          </p>
-          <div class="approach-steps">
-            <div>
-              <span>01</span>
-              <p>
-                <strong>Une origine professionnelle</strong
-                ><small>Des machines choisies pour la vie en entreprise.</small>
-              </p>
-            </div>
-            <div>
-              <span>02</span>
-              <p>
-                <strong>Une nouvelle mise en service</strong
-                ><small
-                  >Le reconditionnement, pour repartir sur de bonnes
-                  bases.</small
-                >
-              </p>
-            </div>
-            <div>
-              <span>03</span>
-              <p>
-                <strong>Une seconde histoire avec vous</strong
-                ><small>Du matériel utile, avec une garantie claire.</small>
-              </p>
+          <div class="filter-bottom">
+            <span id="result-count" aria-live="polite"></span>
+            <div class="filter-selects">
+              <label
+                ><span>Votre usage</span
+                ><select id="usage">
+                  <option value="all">Tous les usages</option>
+                  <option value="polyvalent">Travail quotidien</option>
+                  <option value="mobile">Mobilité</option>
+                  <option value="touch">Tactile / convertible</option>
+                  <option value="power">Plus de puissance</option>
+                </select></label
+              ><label
+                ><span>Trier</span
+                ><select id="sort">
+                  <option value="featured">Notre sélection</option>
+                  <option value="price-asc">Prix croissant</option>
+                  <option value="price-desc">Prix décroissant</option>
+                  <option value="ram-desc">Mémoire décroissante</option>
+                </select></label
+              >
             </div>
           </div>
-        </div>
-      </section>
-      <section id="garanties" class="warranty section">
-        <div class="warranty-copy">
-          <span class="eyebrow light">03 / LA TRANQUILLITÉ, INCLUSE</span>
-          <h2>Reconditionné.<br /><em>Pas laissé au hasard.</em></h2>
-          <p>
-            Une seconde vie doit aussi inspirer confiance.<br />Voici les durées
-            de garantie de votre ordinateur.
-          </p>
-          <a class="text-link light" href="#questions"
-            >Une question ? On vous explique<span data-icon="arrow"></span
+          <div id="products" class="product-grid"></div>
+          <div id="empty-results" class="empty-results" hidden>
+            <span data-icon="search"></span>
+            <h3>Aucun ordinateur trouvé.</h3>
+            <p>Essayez une autre marque ou un autre modèle.</p>
+            <button class="button dark" data-action="reset-filters">
+              Effacer les filtres
+            </button>
+          </div>
+        </section>
+        <section id="approche" class="approach section">
+          <div class="approach-art">
+            <div class="circular-label">UNE SECONDE VIE. UNE VRAIE RAISON.</div>
+            <div class="renew-symbol"><span>↗</span><span>↙</span></div>
+            <div class="art-stamp">PRO<br /><span>THEN. NOW. NEXT.</span></div>
+            <span class="art-coordinate"
+              >LE MATÉRIEL RESTE. L’HISTOIRE CONTINUE.</span
+            >
+          </div>
+          <div class="approach-copy">
+            <span class="eyebrow">02 / L’ESPRIT INFORMAQUIK</span>
+            <h2>Conçus pour travailler.<br /><em>Choisis pour durer.</em></h2>
+            <p>
+              Ces ordinateurs ont d’abord servi dans des environnements
+              professionnels. Selon les lots, ils proviennent de parcs
+              d’entreprises, d’administrations, de services publics ou de
+              services militaires.
+            </p>
+            <p>
+              Nous privilégions les gammes professionnelles et le réemploi :
+              prolonger la vie du matériel, plutôt qu’encourager son
+              remplacement.
+            </p>
+            <div class="approach-steps">
+              <div>
+                <span>01</span>
+                <p>
+                  <strong>Une origine professionnelle</strong
+                  ><small
+                    >Des machines choisies pour la vie en entreprise.</small
+                  >
+                </p>
+              </div>
+              <div>
+                <span>02</span>
+                <p>
+                  <strong>Une nouvelle mise en service</strong
+                  ><small
+                    >Le reconditionnement, pour repartir sur de bonnes
+                    bases.</small
+                  >
+                </p>
+              </div>
+              <div>
+                <span>03</span>
+                <p>
+                  <strong>Une seconde histoire avec vous</strong
+                  ><small>Du matériel utile, avec une garantie claire.</small>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="garanties" class="warranty section">
+          <div class="warranty-copy">
+            <span class="eyebrow light">03 / LA TRANQUILLITÉ, INCLUSE</span>
+            <h2>Reconditionné.<br /><em>Pas laissé au hasard.</em></h2>
+            <p>
+              Une seconde vie doit aussi inspirer confiance.<br />Voici les
+              durées de garantie de votre ordinateur.
+            </p>
+            <a class="text-link light" href="#questions"
+              >Une question ? On vous explique<span data-icon="arrow"></span
+            ></a>
+          </div>
+          <div class="warranty-numbers">
+            <article>
+              <span data-icon="shield"></span>
+              <div><strong>24</strong><span>mois</span></div>
+              <h3>Votre ordinateur</h3>
+              <p>Garantie sur l’ordinateur reconditionné.</p>
+            </article>
+            <article>
+              <span data-icon="battery"></span>
+              <div><strong>6</strong><span>mois</span></div>
+              <h3>Votre batterie</h3>
+              <p>Garantie spécifique à la batterie.</p>
+            </article>
+          </div>
+        </section>
+        <section id="questions" class="faq section">
+          <div>
+            <span class="eyebrow">04 / EN TOUTE CLARTÉ</span>
+            <h2>Bonnes questions.<br /><em>Réponses simples.</em></h2>
+          </div>
+          <div class="faq-list">
+            <details>
+              <summary>
+                Reconditionné, ça veut dire quoi ?<span>+</span>
+              </summary>
+              <p>
+                Un ordinateur qui a déjà eu une première vie et qui est préparé
+                pour une nouvelle utilisation. Son modèle, sa configuration et
+                son état sont précisés sur sa fiche.
+              </p>
+            </details>
+            <details>
+              <summary>
+                Pourquoi une gamme professionnelle ?<span>+</span>
+              </summary>
+              <p>
+                Les ThinkPad, EliteBook, ProBook et ZBook présentés ici
+                appartiennent à des gammes destinées aux usages professionnels.
+                Nous sélectionnons les références et configurations selon leur
+                utilité pour votre prochain usage.
+              </p>
+            </details>
+            <details>
+              <summary>D’où viennent les ordinateurs ?<span>+</span></summary>
+              <p>
+                Selon les lots : parcs d’entreprises, administrations, services
+                publics et services militaires. L’origine d’un ordinateur est
+                indiquée lorsqu’elle est connue ; chaque fiche peut présenter sa
+                provenance propre.
+              </p>
+            </details>
+            <details>
+              <summary>La batterie est-elle neuve ?<span>+</span></summary>
+              <p>
+                Reconditionné ne signifie pas automatiquement batterie neuve.
+                Son état est communiqué dans la fiche de l’ordinateur. La
+                batterie bénéficie d’une garantie de 6 mois.
+              </p>
+            </details>
+            <details>
+              <summary>Quelles sont les garanties ?<span>+</span></summary>
+              <p>
+                L’ordinateur est garanti 24 mois et la batterie 6 mois. Les
+                modalités de prise en charge sont précisées dans les conditions
+                de vente de votre offre.
+              </p>
+            </details>
+          </div>
+        </section>
+        <section class="closing">
+          <span class="eyebrow">LE PROCHAIN CHAPITRE VOUS APPARTIENT.</span>
+          <h2>Encore beaucoup<br /><em>à donner.</em></h2>
+          <a href="#catalogue" class="button lime"
+            >Choisir mon ordinateur<span data-icon="arrow"></span
           ></a>
-        </div>
-        <div class="warranty-numbers">
-          <article>
-            <span data-icon="shield"></span>
-            <div><strong>24</strong><span>mois</span></div>
-            <h3>Votre ordinateur</h3>
-            <p>Garantie sur l’ordinateur reconditionné.</p>
-          </article>
-          <article>
-            <span data-icon="battery"></span>
-            <div><strong>6</strong><span>mois</span></div>
-            <h3>Votre batterie</h3>
-            <p>Garantie spécifique à la batterie.</p>
-          </article>
-        </div>
-      </section>
-      <section id="questions" class="faq section">
-        <div>
-          <span class="eyebrow">04 / EN TOUTE CLARTÉ</span>
-          <h2>Bonnes questions.<br /><em>Réponses simples.</em></h2>
-        </div>
-        <div class="faq-list">
-          <details>
-            <summary>Reconditionné, ça veut dire quoi ?<span>+</span></summary>
-            <p>
-              Un ordinateur qui a déjà eu une première vie et qui est préparé
-              pour une nouvelle utilisation. Son modèle, sa configuration et son
-              état sont précisés sur sa fiche.
-            </p>
-          </details>
-          <details>
-            <summary>
-              Pourquoi une gamme professionnelle ?<span>+</span>
-            </summary>
-            <p>
-              Les ThinkPad, EliteBook, ProBook et ZBook présentés ici
-              appartiennent à des gammes destinées aux usages professionnels.
-              Nous sélectionnons les références et configurations selon leur
-              utilité pour votre prochain usage.
-            </p>
-          </details>
-          <details>
-            <summary>D’où viennent les ordinateurs ?<span>+</span></summary>
-            <p>
-              Selon les lots : parcs d’entreprises, administrations, services
-              publics et services militaires. L’origine d’un ordinateur est
-              indiquée lorsqu’elle est connue ; chaque fiche peut présenter sa
-              provenance propre.
-            </p>
-          </details>
-          <details>
-            <summary>La batterie est-elle neuve ?<span>+</span></summary>
-            <p>
-              Reconditionné ne signifie pas automatiquement batterie neuve. Son
-              état est communiqué dans la fiche de l’ordinateur. La batterie
-              bénéficie d’une garantie de 6 mois.
-            </p>
-          </details>
-          <details>
-            <summary>Quelles sont les garanties ?<span>+</span></summary>
-            <p>
-              L’ordinateur est garanti 24 mois et la batterie 6 mois. Les
-              modalités de prise en charge sont précisées dans les conditions de
-              vente de votre offre.
-            </p>
-          </details>
-        </div>
-      </section>
-      <section class="closing">
-        <span class="eyebrow">LE PROCHAIN CHAPITRE VOUS APPARTIENT.</span>
-        <h2>Encore beaucoup<br /><em>à donner.</em></h2>
-        <a href="#catalogue" class="button lime"
-          >Choisir mon ordinateur<span data-icon="arrow"></span
-        ></a>
-      </section>
+        </section>
+      </div>
+      <div id="editorial-root" hidden></div>
     </main>
     <footer class="footer">
-      <a class="wordmark" href="#"
-        >Informaquik<span class="shop-word">SHOP ↗</span></a
+      <a class="wordmark" href="#/boutique"
+        ><img
+          class="brand-logo"
+          src="assets/informaquik-logo.png"
+          alt="InformaQuik"
+        /><span class="shop-word">SHOP</span></a
       >
       <p>La performance a une seconde vie.</p>
       <div>
         <span>Ordinateurs professionnels reconditionnés</span
         ><span>Catalogue en préparation · disponibilité à confirmer</span>
       </div>
-      <a href="#">Retour en haut ↑</a>
+      <div class="footer-links">
+        <a href="#/reconditionnement">Notre approche</a
+        ><a href="#/guide">Guide d’achat</a
+        ><a href="#/entreprises">Entreprises</a
+        ><a href="#/garanties">Garanties & SAV</a><a href="#/contact">Contact</a
+        ><a href="https://i-q.ch/" target="_blank" rel="noopener noreferrer"
+          >i-q.ch ↗</a
+        >
+      </div>
     </footer>
     <dialog
       id="product-dialog"

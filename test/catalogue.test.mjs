@@ -7,6 +7,10 @@ vm.runInNewContext(
   readFileSync(new URL("../catalogue.js", import.meta.url), "utf8"),
   context,
 );
+vm.runInNewContext(
+  readFileSync(new URL("../photos.js", import.meta.url), "utf8"),
+  context,
+);
 const { SHOP_PRODUCTS: products, SHOP_CONFIG: config } = context.window;
 test("Les dix configurations fournies sont distinctes et conservent leurs prix de vente", () => {
   assert.equal(products.length, 10);
@@ -63,13 +67,68 @@ test("Le nom, les garanties confirmées et la TVA suisse sont appliqués", () =>
   assert.equal(config.taxRate, 0.081);
   assert.equal(config.currency, "CHF");
 });
-test('La distribution autonome contient les ressources nécessaires et ses sommes de contrôle correspondent',async()=>{
- const {createHash}=await import('node:crypto');
- const base=new URL('../downloads/',import.meta.url),html=readFileSync(new URL('Informaquik-Shop.html',base),'utf8'),sums=readFileSync(new URL('SHA256SUMS.txt',base),'utf8');
- assert.doesNotMatch(html,/<script[^>]+src=/i);assert.doesNotMatch(html,/<link[^>]+href="style\.css"/i);
- assert.match(html,/<style>/);assert.match(html,/window.SHOP_PRODUCTS/);assert.match(html,/Vue illustrée/);
- for(const filename of ['Informaquik-Shop.html','Informaquik-Shop.zip']){
-  const expected=sums.split('\n').find(line=>line.endsWith('  '+filename)).split(' ')[0];
-  assert.equal(createHash('sha256').update(readFileSync(new URL(filename,base))).digest('hex'),expected);
- }
+test("La distribution autonome contient les ressources nécessaires et ses sommes de contrôle correspondent", async () => {
+  const { createHash } = await import("node:crypto");
+  const base = new URL("../downloads/", import.meta.url),
+    html = readFileSync(new URL("Informaquik-Shop.html", base), "utf8"),
+    sums = readFileSync(new URL("SHA256SUMS.txt", base), "utf8");
+  assert.doesNotMatch(html, /<script[^>]+src=/i);
+  assert.doesNotMatch(html, /<link[^>]+href="style\.css"/i);
+  assert.match(html, /<style>/);
+  assert.match(html, /window.SHOP_PRODUCTS/);
+  assert.match(html, /composants illustrés/);
+  for (const filename of ["Informaquik-Shop.html", "Informaquik-Shop.zip"]) {
+    const expected = sums
+      .split("\n")
+      .find((line) => line.endsWith("  " + filename))
+      .split(" ")[0];
+    assert.equal(
+      createHash("sha256")
+        .update(readFileSync(new URL(filename, base)))
+        .digest("hex"),
+      expected,
+    );
+  }
+});
+
+test("Chaque référence possède des photos locales du modèle, sourcées et valides", () => {
+  const unique = new Set();
+  for (const product of products) {
+    assert.ok(product.photos.length >= 1, product.id);
+    for (const photo of product.photos) {
+      assert.match(photo.src, /^assets\/products\/[a-z0-9-]+\.(jpg|png)$/);
+      assert.match(photo.source, /^https:\/\//);
+      assert.match(photo.sourcePage, /^https:\/\//);
+      assert.ok(photo.credit && photo.alt);
+      const bytes = readFileSync(new URL("../" + photo.src, import.meta.url));
+      assert.ok(bytes.length > 10000);
+      if (photo.src.endsWith(".png"))
+        assert.equal(bytes.subarray(1, 4).toString(), "PNG");
+      else assert.equal(bytes.readUInt16BE(0), 0xffd8);
+      unique.add(photo.src);
+    }
+  }
+  assert.equal(unique.size, 15);
+  const i5 = products.find((p) => p.id === "hp-850-g7-i5");
+  const i7 = products.find((p) => p.id === "hp-850-g7-i7");
+  assert.equal(i5.photos, i7.photos);
+});
+test("La distribution incorpore toutes les photos pour un fonctionnement hors ligne", () => {
+  const html = readFileSync(
+    new URL("../downloads/Informaquik-Shop.html", import.meta.url),
+    "utf8",
+  );
+  const unique = new Set(
+    products.flatMap((p) => p.photos.map((photo) => photo.src)),
+  );
+  for (const src of unique) {
+    const base64 = readFileSync(new URL("../" + src, import.meta.url)).toString(
+      "base64",
+    );
+    assert.ok(html.includes(base64), src);
+    assert.equal(html.includes(src), false);
+  }
+  assert.match(html, /id="editorial-root"/);
+  assert.match(html, /id="guide-form"/);
+  assert.match(html, /id="contact-form"/);
 });

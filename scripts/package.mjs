@@ -1,26 +1,49 @@
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { readFile, writeFile, mkdir, readdir } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const read = (name) => readFile(path.join(root, name), "utf8");
-const [html, css, catalogue, app, favicon] = await Promise.all(
+const [html, css, catalogue, photos, app, pages, favicon] = await Promise.all(
   [
     "index.html",
     "style.css",
     "catalogue.js",
+    "photos.js",
     "app.js",
+    "pages.js",
     "assets/favicon.svg",
   ].map(read),
 );
+const imageTypes = {
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".svg": "image/svg+xml",
+  ".webp": "image/webp",
+};
+const embeddedAssets = [];
+for (const name of await readdir(path.join(root, "assets"), {
+  recursive: true,
+})) {
+  const mime = imageTypes[path.extname(name)];
+  if (!mime) continue;
+  const data = await readFile(path.join(root, "assets", name));
+  embeddedAssets.push([
+    "assets/" + name.replaceAll("\\", "/"),
+    "data:" + mime + ";base64," + data.toString("base64"),
+  ]);
+}
+const embedAssets = (text) =>
+  embeddedAssets.reduce((s, [src, data]) => s.replaceAll(src, data), text);
 const safeScript = (text) => text.replace(/<\/script/gi, "<\\/script");
-const standalone = html
+const standalone = embedAssets(html)
   .replace(
     /<link\b[^>]*href=["']style\.css["'][^>]*>/i,
     () => `<style>${css}</style>`,
   )
   .replace(
-    /<script\b[^>]*src=["'](?:catalogue|app)\.js["'][^>]*>\s*<\/script>/gi,
+    /^[ \t]*<script\b[^>]*src=["'](?:catalogue|photos|app|pages)\.js["'][^>]*>\s*<\/script>[ \t]*\r?\n?/gim,
     "",
   )
   .replace(
@@ -31,9 +54,9 @@ const standalone = html
   .replace(
     "</body>",
     () =>
-      `<script>${safeScript(catalogue)}</script><script>${safeScript(app)}</script></body>`,
+      `<script>${safeScript(catalogue)}</script><script>${safeScript(embedAssets(photos))}</script><script>${safeScript(app)}</script><script>${safeScript(pages)}</script></body>`,
   );
-const instructions = `INFORMAQUIK SHOP — BOUTIQUE VISUELLE\r\n\r\n1. Extraire le ZIP avec « Extraire tout ».\r\n2. Double-cliquer sur Informaquik-Shop.html : la boutique s’ouvre dans votre navigateur.\r\n3. Survoler le portable ou utiliser « Explorer l’intérieur ». Cliquer sur les composants pour lire les détails.\r\n4. Filtrer les marques, rechercher un modèle, consulter sa fiche et préparer une sélection.\r\n5. Le panier reste dans ce navigateur. L’export et l’impression permettent de conserver la sélection.\r\n\r\nAucune application, aucun serveur ni connexion Internet ne sont nécessaires.\r\nDix configurations issues des fiches fournies ; garantie ordinateur 24 mois, batterie 6 mois.\r\nPrix TTC en CHF. Disponibilité, état de batterie et provenance des lots à compléter.\r\nCette version ne reçoit ni commande ni paiement.\r\n`;
+const instructions = `INFORMAQUIK SHOP — BOUTIQUE VISUELLE\r\n\r\n1. Extraire le ZIP avec « Extraire tout ».\r\n2. Double-cliquer sur Informaquik-Shop.html : la boutique s’ouvre dans votre navigateur.\r\n3. Les photos présentent chaque modèle. Survoler le portable ou utiliser « Explorer les composants » pour le schéma pédagogique.\r\n4. Filtrer les marques, rechercher un modèle, consulter sa fiche et préparer une sélection.\r\n5. Le menu propose aussi Le reconditionné, Entreprises, Bien choisir, Garanties et Contact.\r\n6. Le panier reste dans ce navigateur. L’export et l’impression permettent de conserver la sélection.\r\n\r\nAucune application, aucun serveur ni connexion Internet ne sont nécessaires.\r\nDix configurations issues des fiches fournies ; garantie ordinateur 24 mois, batterie 6 mois.\r\nPrix TTC en CHF. Disponibilité, état de batterie et provenance des lots à compléter.\r\nCette version ne reçoit ni commande ni paiement.\r\n`;
 const digest = createHash("sha256").update(standalone).digest("hex");
 const sums = `${digest}  Informaquik-Shop.html\n`;
 // Archive ZIP standard sans dépendance : stockage direct, CRC-32, en-têtes et index central.

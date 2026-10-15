@@ -1,5 +1,6 @@
 import http from "node:http";
 import { readFile } from "node:fs/promises";
+import { readdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 const root = path.dirname(fileURLToPath(import.meta.url));
@@ -9,13 +10,26 @@ const allowed = new Map([
   ["/style.css", "style.css"],
   ["/app.js", "app.js"],
   ["/catalogue.js", "catalogue.js"],
+  ["/photos.js", "photos.js"],
+  ["/pages.js", "pages.js"],
   ["/assets/favicon.svg", "assets/favicon.svg"],
 ]);
+for (const file of readdirSync(path.join(root, "assets"), {
+  recursive: true,
+})) {
+  if (/\.(?:png|jpg|jpeg|webp|svg|avif)$/.test(file))
+    allowed.set("/assets/" + file.replaceAll("\\", "/"), "assets/" + file);
+}
 const mime = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
   ".js": "text/javascript; charset=utf-8",
   ".svg": "image/svg+xml",
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".webp": "image/webp",
+  ".avif": "image/avif",
 };
 const server = http.createServer(async (req, res) => {
   try {
