@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#19181f" />
+    <meta name="theme-color" content="#181818" />
     <meta
       name="description"
       content="Des ordinateurs portables professionnels reconditionnés. Découvrez leurs composants, comparez les modèles et préparez votre sélection."
@@ -19,11 +19,13 @@
   <body>
     <a class="skip-link" href="#catalogue">Aller au catalogue</a>
     <div class="announcement">
-      <div>
-        <span class="status-dot"></span>Du matériel pro. Une nouvelle histoire.
-      </div>
-      <span class="demo-label">Catalogue en préparation</span
-      ><span class="market">Suisse · CHF</span>
+      <div><span class="status-dot"></span>Informaquik · Martigny</div>
+      <div
+        class="quick-support"
+        data-support-quick-links
+        aria-label="Téléchargements de dépannage pour Windows"
+      ></div>
+      <span class="market">Suisse · CHF</span>
     </div>
     <header class="header">
       <a
@@ -39,7 +41,7 @@
       <nav id="main-nav" aria-label="Navigation principale">
         <a href="#/boutique">Shop</a
         ><a href="#/reconditionnement">Le reconditionné</a
-        ><a href="#/entreprises">Entreprises</a
+        ><a href="#/entreprises">PME</a><a href="#/depannage">Dépannage</a
         ><a href="#/guide">Bien choisir</a><a href="#/garanties">Garanties</a
         ><a href="#/contact">Contact</a>
       </nav>
@@ -84,7 +86,7 @@
               histoire à écrire.<br />Et cette fois, c’est la vôtre.
             </p>
             <div class="hero-actions">
-              <a class="button lime" href="#catalogue"
+              <a class="button primary" href="#catalogue"
                 >Trouver mon ordinateur<span data-icon="arrow"></span></a
               ><a class="text-link light" href="#/reconditionnement"
                 >Notre approche<span data-icon="arrow"></span
@@ -206,6 +208,49 @@
             <button class="button dark" data-action="reset-filters">
               Effacer les filtres
             </button>
+          </div>
+        </section>
+        <section class="section home-services" aria-labelledby="services-title">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">INFORMAQUIK / BIEN PLUS QU’UN SHOP</span>
+              <h2 id="services-title">
+                Vos ordinateurs.<br /><em>Et tout ce qui va avec.</em>
+              </h2>
+            </div>
+            <p>
+              Un partenaire informatique à Martigny,<br />pour les particuliers
+              et les PME.
+            </p>
+          </div>
+          <div class="home-services-grid">
+            <a class="home-service-card" href="#/entreprises"
+              ><span class="small-caps">01 / SOLUTIONS PME</span>
+              <h3>Votre infrastructure,<br />notre accompagnement.</h3>
+              <p>
+                Serveurs hébergés, sauvegardes, réseaux et maintenance de votre
+                parc informatique.
+              </p>
+              <span class="text-link"
+                >Découvrir les services PME
+                <span data-icon="arrow"></span></span></a
+            ><a class="home-service-card" href="#/depannage"
+              ><span class="small-caps">02 / DÉPANNAGE & ATELIER</span>
+              <h3>À distance.<br />Et à deux pas de vous.</h3>
+              <p>
+                Dépannage à distance avec AnyDesk ou TeamViewer, réparations et
+                conseils dans notre atelier de Martigny.
+              </p>
+              <span class="text-link"
+                >Trouver de l’aide <span data-icon="arrow"></span></span
+            ></a>
+          </div>
+          <div class="home-support-bar">
+            <div>
+              <strong>Déjà en contact avec un technicien ?</strong
+              ><span>Accès rapide aux outils de dépannage pour Windows.</span>
+            </div>
+            <div class="home-support-tools" data-support-tools></div>
           </div>
         </section>
         <section id="approche" class="approach section">
@@ -345,7 +390,7 @@
         <section class="closing">
           <span class="eyebrow">LE PROCHAIN CHAPITRE VOUS APPARTIENT.</span>
           <h2>Encore beaucoup<br /><em>à donner.</em></h2>
-          <a href="#catalogue" class="button lime"
+          <a href="#catalogue" class="button primary"
             >Choisir mon ordinateur<span data-icon="arrow"></span
           ></a>
         </section>
@@ -367,9 +412,10 @@
       </div>
       <div class="footer-links">
         <a href="#/reconditionnement">Notre approche</a
-        ><a href="#/guide">Guide d’achat</a
-        ><a href="#/entreprises">Entreprises</a
-        ><a href="#/garanties">Garanties & SAV</a><a href="#/contact">Contact</a
+        ><a href="#/guide">Guide d’achat</a><a href="#/entreprises">PME</a
+        ><a href="#/depannage">Dépannage &amp; atelier</a
+        ><a href="#/garanties">Garanties &amp; SAV</a
+        ><a href="#/contact">Contact</a
         ><a href="https://i-q.ch/" target="_blank" rel="noopener noreferrer"
           >i-q.ch ↗</a
         >

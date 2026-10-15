@@ -8,6 +8,11 @@ window.SHOP_CONFIG = {
   website: "https://i-q.ch/",
   phone: "+41275653232",
   address: "Rue du Simplon 27A, 1920 Martigny",
+  support: {
+    anydesk:
+      "https://my.anydesk.com/v2/api/v2/custom-clients/downloads/public/JAOGEWEE9WZJ/AnyDeskClient_IQ.exe",
+    teamviewer: "https://download.teamviewer.com/download/TeamViewerQS.exe",
+  },
   featuredProductId: "hp-1030-g7",
   computerWarrantyMonths: 24,
   batteryWarrantyMonths: 6,

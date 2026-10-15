@@ -6,7 +6,7 @@ Consultation et téléchargement : 15 octobre 2026. Les fichiers sont conservés
 
 - Site de référence : https://i-q.ch/
 - Logo du site : https://i-q.ch/www/2018/wp-content/uploads/2018/02/Banner-IQ-2018.png
-- Palette relevée dans les styles : blanc `#ffffff`, gris clair `#f6f6f6`, noir `#222222`, accent rose `#e95095`.
+- Palette actuelle : noir, blanc et gris, à la demande de l’utilisateur. Le logo officiel est conservé.
 - Coordonnées publiques : Rue du Simplon 27A, CP 626, 1920 Martigny 1 ; 027 565 32 32 ; info@i-q.ch.
 
 ## Photos par famille de modèle
@@ -76,3 +76,18 @@ Source du modèle : https://psref.lenovo.com/Product/ThinkPad/ThinkPad_T14s_Gen_
 ## Exploration des composants
 
 Le schéma interactif est une création du projet, générique et explicitement pédagogique. Il ne remplace pas une photo de démontage ni un guide de réparation du châssis. Les marques et les photographies restent attribuées à leurs sources ; aucune licence libre n’est revendiquée.
+
+## Services et dépannage
+
+Sources publiques relues le 15 octobre 2026 :
+
+- https://i-q.ch/informatique-pme/ : serveurs hébergés, sauvegardes/restaurations à distance, Wi-Fi et antivirus professionnels, interventions sur site et à distance, récupération de données, réseaux, entretien de parc et banque d’heures.
+- https://i-q.ch/informatique-pour-prives/ : atelier ouvert, réparations et entretien, diagnostic, nettoyage/désinfection, données, installations et dépannage à distance.
+- https://i-q.ch/ : coordonnées, horaires et liens Windows de dépannage ci-dessous. Les exécutables ne sont pas inclus dans le dépôt ; seuls leurs liens publics existants sont présentés.
+
+### Outils Windows repris du site Informaquik
+
+- AnyDesk Informaquik : https://my.anydesk.com/v2/api/v2/custom-clients/downloads/public/JAOGEWEE9WZJ/AnyDeskClient_IQ.exe
+- TeamViewer QuickSupport : https://download.teamviewer.com/download/TeamViewerQS.exe
+
+L’affichage des liens ne lance ni téléchargement ni connexion à distance. L’utilisateur clique sur l’outil, puis l’ouvre lui-même à la demande du technicien. Aucun délai de réponse, tarif, taux de disponibilité ou niveau de service d’hébergement n’a été inventé.

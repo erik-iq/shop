@@ -4,18 +4,23 @@ Boutique visuelle d’ordinateurs professionnels reconditionnés, en français, 
 
 ![Accueil Informaquik Shop](docs/accueil.png)
 
+[Aperçu des solutions PME](docs/pme.png) · [Dépannage à distance et atelier](docs/depannage.png)
+
 ## Tester sans installation
 
-Ouvrez **`downloads/Informaquik-Shop.html`** dans Edge, Chrome ou Firefox. Ce fichier contient toute la boutique et fonctionne sans serveur ni connexion Internet. L’archive **`downloads/Informaquik-Shop.zip`** contient la même version et ses instructions.
+Ouvrez **`downloads/Informaquik-Shop.html`** dans Edge, Chrome ou Firefox. Ce fichier contient toute la boutique et fonctionne sans serveur ni connexion Internet. L’archive **`downloads/Informaquik-Shop.zip`** contient la même version et ses instructions. Les téléchargements des outils de dépannage nécessitent une connexion Internet.
 
 Depuis les sources, ouvrir `index.html` fonctionne également. Conservez `app.js`, `pages.js`, `photos.js`, `style.css`, `catalogue.js` et `assets/` à côté du fichier.
 
 ## Fonctions
 
-- Identité inspirée de [i-q.ch](https://i-q.ch/) : logo officiel, blanc, gris, noir et rose ; composition éditoriale propre à la boutique.
+- Identité inspirée de [i-q.ch](https://i-q.ch/) : logo officiel conservé, palette noire, blanche et grise ; composition éditoriale propre à la boutique.
 - Photos de chaque famille de modèles, conservées localement ; galerie de deux vues pour les HP.
 - Exploration pédagogique des composants au survol ou au bouton, utilisable au clavier et sur mobile.
-- Cinq pages complémentaires : **Le reconditionné**, **Entreprises**, **Bien choisir**, **Garanties & SAV**, **Contact**.
+- Six pages complémentaires : **Le reconditionné**, **Solutions PME**, **Dépannage & atelier**, **Bien choisir**, **Garanties & SAV**, **Contact**.
+- Solutions PME : serveurs hébergés, sauvegardes et restauration, réseaux et Wi-Fi professionnels, maintenance, antivirus, assistance et équipement. Banque d’heures présentée sans tarif inventé.
+- Atelier de Martigny, réparations en magasin et dépannage à distance ou sur site pour les PME.
+- Accès AnyDesk Informaquik et TeamViewer QuickSupport pour Windows dans le bandeau supérieur, sur l’accueil et dans la page Dépannage. Les liens reprennent ceux d’i-q.ch ; aucun outil n’est téléchargé ni exécuté automatiquement.
 - Guide interactif : recommandations selon l’usage, le budget et le besoin d’un écran tactile.
 - Contact : coordonnées publiques vérifiées, formulaire qui prépare un e-mail dans la messagerie du visiteur, motif SAV ou entreprise prérempli depuis les pages correspondantes.
 - Catalogue organisé par marque et modèle, recherche, filtres d’usage et tactile, tri par prix ou mémoire.
@@ -55,7 +60,7 @@ Modifier **`catalogue.js`** : identité, devise, garanties et coordonnées dans 
 
 `contactEmail` contient l’adresse publique `info@i-q.ch`, relevée sur le site de référence. Le panier et le formulaire ouvrent un message à vérifier et à envoyer depuis la messagerie du visiteur. Aucun e-mail n’est envoyé automatiquement. Effacer cette valeur désactive le bouton e-mail du panier et propose le téléchargement du message de contact en texte. La version actuelle ne collecte pas de paiement, ne transmet pas de commandes et ne propose pas de gestion de stock partagée. Publier le dépôt ne met pas automatiquement la boutique en ligne.
 
-Les photographies et leurs crédits sont configurés dans **`photos.js`**. Les deux configurations du 850 G7 partagent les visuels du même châssis. Le contenu des pages et leur navigation se trouvent dans **`pages.js`**.
+Les photographies et leurs crédits sont configurés dans **`photos.js`**. Les deux configurations du 850 G7 partagent les visuels du même châssis. Le contenu des pages et leur navigation se trouvent dans **`pages.js`**. Les liens Windows d’assistance se configurent dans `SHOP_CONFIG.support` (`anydesk` et `teamviewer`).
 
 ## Développement et vérification
 
@@ -69,7 +74,7 @@ npm run package
 
 Le serveur de développement utilise le port 4173 (`PORT` et `HOST` configurables). Il sert uniquement les ressources de la boutique. `npm run package` fabrique le fichier HTML autonome et le ZIP dans `downloads/` avec les sommes SHA-256.
 
-La version autonome est vérifiée dans un navigateur, notamment l’ouverture sans serveur, le chargement des photos, les galeries, les cinq nouvelles pages, le guide, le formulaire, l’exploration des composants, les filtres, les fiches, le panier persistant, l’export et la mise en page mobile. Les tests Node vérifient la fidélité des données et l’exclusion des coûts internes.
+La version autonome est vérifiée dans un navigateur, notamment l’ouverture sans serveur, le chargement des photos, les galeries, les six pages complémentaires, le guide, le formulaire, l’exploration des composants, les filtres, les fiches, le panier persistant, l’export et la mise en page mobile. Les tests Node vérifient la fidélité des données et l’exclusion des coûts internes.
 
 ## Configuration cloud
 
