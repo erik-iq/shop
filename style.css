@@ -5395,3 +5395,211 @@ dialog::backdrop {
     font-size: 13px;
   }
 }
+
+/* Options facultatives proposées après l’ajout d’un ordinateur. */
+.options-dialog {
+  width: 900px;
+  overflow: auto;
+  background: #fff;
+}
+.options-header {
+  position: relative;
+  padding: 32px 38px 28px;
+  background: #1c1c1c;
+  color: #fff;
+}
+.options-header .eyebrow {
+  color: #bdbdbd;
+  font-size: 9px;
+  padding-right: 30px;
+  display: block;
+}
+.options-header h2 {
+  margin: 18px 0;
+  font-size: 38px;
+  font-weight: 500;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+}
+.options-header h2 em {
+  font-style: normal;
+  color: #bdbdbd;
+}
+.options-header > p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #d2d2d2;
+}
+.options-body {
+  padding: 26px 38px;
+}
+.options-intro {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 26px;
+}
+.options-group {
+  border: 0;
+  padding: 0;
+  margin: 0 0 26px;
+  min-width: 0;
+}
+.options-group:last-child {
+  margin-bottom: 0;
+}
+.options-group legend {
+  font-size: 19px;
+  font-weight: 500;
+  padding: 0 0 16px;
+  letter-spacing: -0.4px;
+}
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.option-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid #dedede;
+  border-radius: 9px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+.option-card:hover {
+  border-color: #888;
+}
+.option-card:has(input:checked) {
+  border-color: #222;
+  background: #f1f1f1;
+}
+.option-card:has(input:disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.option-card input {
+  accent-color: #222;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+}
+.option-icon svg {
+  width: 19px;
+  height: 19px;
+}
+.option-copy {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+.option-copy strong {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.option-copy small {
+  font-size: 11px;
+  line-height: 1.75;
+  color: #666;
+}
+.option-price {
+  font-size: 11px;
+  font-weight: 600;
+}
+.options-footer {
+  position: sticky;
+  bottom: 0;
+  padding: 20px 38px;
+  border-top: 1px solid #ddd;
+  background: #fff;
+  box-shadow: 0 -8px 20px #00000006;
+}
+.options-selection {
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 14px;
+}
+.options-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.options-actions .button {
+  font-size: 11px;
+  padding: 15px 20px;
+  justify-content: center;
+}
+.price-preview {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  color: #444;
+  padding: 9px 12px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.price-preview[aria-pressed="true"] {
+  background: #222;
+  color: #fff;
+  border-color: #222;
+}
+.price-preview-floating {
+  position: fixed;
+  z-index: 45;
+  bottom: 14px;
+  left: 14px;
+  box-shadow: 0 3px 16px #00000016;
+}
+.price-preview[hidden] {
+  display: none;
+}
+.cart-header .price-preview,
+.options-footer .price-preview {
+  margin-top: 14px;
+}
+@media (max-width: 600px) {
+  .options-dialog {
+    max-width: calc(100vw - 20px);
+    max-height: calc(100dvh - 20px);
+  }
+  .options-header,
+  .options-body,
+  .options-footer {
+    padding: 22px 18px;
+  }
+  .options-header h2 {
+    font-size: 31px;
+    letter-spacing: -1px;
+  }
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+  .option-card {
+    padding: 14px;
+  }
+  .options-actions {
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+  .options-actions .button {
+    min-height: 42px;
+    padding: 11px 14px;
+  }
+  .options-footer {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  .options-footer .price-preview {
+    margin-top: 10px;
+  }
+}

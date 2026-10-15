@@ -5,6 +5,11 @@
   let mode = web ? "loading" : "local",
     visible = web ? false : localValue,
     error = "";
+  const previewKey = "informaquik.prices-preview.v1";
+  let previewHidden = false;
+  try {
+    previewHidden = sessionStorage.getItem(previewKey) === "hidden";
+  } catch {}
   function notify() {
     window.dispatchEvent(new CustomEvent("shop:pricingchange"));
   }
@@ -42,7 +47,23 @@
   const ready = web ? refresh() : Promise.resolve();
   window.SHOP_PRICING = {
     get visible() {
+      return visible && !previewHidden;
+    },
+    get siteVisible() {
       return visible;
+    },
+    get previewHidden() {
+      return previewHidden;
+    },
+    togglePreview() {
+      previewHidden = !previewHidden;
+      try {
+        sessionStorage.setItem(
+          previewKey,
+          previewHidden ? "hidden" : "visible",
+        );
+      } catch {}
+      notify();
     },
     get mode() {
       return mode;

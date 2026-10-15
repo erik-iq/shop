@@ -31,3 +31,9 @@ Le réglage concerne l’affichage et les nouveaux exports. Il ne retire pas les
 Le serveur vérifie le mot de passe et les droits de modification ; cacher un bouton dans le navigateur ne suffit pas à modifier les réglages. Les sessions expirent après huit heures et sont invalidées au redémarrage. Cinq échecs de connexion depuis la même adresse entraînent une attente de quinze minutes. La déconnexion ferme la session courante.
 
 Pour changer le mot de passe, remplacer `ADMIN_PASSWORD` sur l’hébergement et redémarrer le serveur. Sans cette variable, la boutique reste utilisable mais la connexion administrateur est désactivée.
+
+## Tester sans connexion administrateur
+
+Le petit bouton **Masquer les prix · test** (en bas à gauche du site et dans le panier) permet de prévisualiser les fiches, le panier et les offres sans montants. Il fonctionne aussi dans le fichier HTML autonome. Le choix est conservé dans l’onglet lors de l’actualisation, et peut être annulé avec **Réafficher les prix · test**. Il ne modifie pas le réglage du serveur et ne concerne pas les autres visiteurs.
+
+Si l’administration masque déjà les prix, le bouton ne peut pas les réafficher. Le formulaire administrateur montre toujours le réglage partagé, indépendamment de l’aperçu local.

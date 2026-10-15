@@ -78,7 +78,8 @@
     sort = "featured",
     toastTimer;
   const productDialog = $("#product-dialog"),
-    cartDialog = $("#cart-dialog");
+    cartDialog = $("#cart-dialog"),
+    optionsDialog = $("#options-dialog");
   const storageKey = "informaquik.selection.v1";
   const quantityLimit = (p) =>
     Number.isInteger(p.stock) ? Math.max(0, p.stock) : 99;
@@ -246,18 +247,85 @@
   }
   function addToCart(id) {
     const p = byId.get(id);
-    if (!p) return;
+    if (!p) return false;
     const row = cart.find((r) => r.id === id);
     if ((row?.quantity || 0) >= quantityLimit(p)) {
       toast("La quantité disponible est déjà dans votre sélection.");
-      return;
+      return false;
     }
     if (row) row.quantity++;
     else cart.push({ id, quantity: 1 });
     persist();
     if (cartDialog.open) renderCart();
     toast(name(p) + " ajouté à votre sélection.");
+    return true;
   }
+  const previewButton = () =>
+    `<button type="button" class="price-preview" data-action="price-preview" title="Aperçu dans cet onglet uniquement, sans modifier le réglage des autres visiteurs."></button>`;
+  function syncPreviewButtons() {
+    document
+      .querySelectorAll('[data-action="price-preview"]')
+      .forEach((button) => {
+        button.hidden = false;
+        button.disabled = !prices.siteVisible;
+        button.setAttribute("aria-pressed", String(prices.previewHidden));
+        button.textContent = prices.siteVisible
+          ? prices.previewHidden
+            ? "Réafficher les prix · test"
+            : "Masquer les prix · test"
+          : prices.mode === "loading"
+            ? "Chargement des prix…"
+            : "Prix masqués · site";
+      });
+  }
+  function renderOptions(id) {
+    const p = byId.get(id);
+    optionsDialog.innerHTML = `<form id="options-form"><header class="options-header"><span class="eyebrow">VOTRE ORDINATEUR EST DANS LE PANIER</span><h2 id="options-title">Un ordinateur.<br>Prêt pour <em>vous.</em></h2><p>${esc(name(p))}</p><button type="button" class="dialog-close" data-action="options-close" aria-label="Fermer les options, garder uniquement l’ordinateur">${icon("close")}</button></header><div class="options-body"><p class="options-intro" id="options-help">Complétez votre ordinateur avec nos services et logiciels. Tout est facultatif, rien n’est ajouté sans votre choix. Les tarifs sur devis sont confirmés dans votre offre.</p>${[
+      ["software", "Logiciels & licences"],
+      ["service", "Préparation & entretien"],
+    ]
+      .map(
+        ([category, title]) =>
+          `<fieldset class="options-group" aria-describedby="options-help"><legend>${title}</legend><div class="options-grid">${window.SHOP_SERVICES.filter(
+            (service) => (service.category || "service") === category,
+          )
+            .map(
+              (service) =>
+                `<label class="option-card"><input type="checkbox" name="option" value="${esc(service.id)}" ${quantityLimit(service) <= (cart.find((row) => row.id === service.id)?.quantity || 0) ? "disabled" : ""}><span class="option-icon">${icon(service.icon)}</span><span class="option-copy"><strong>${esc(service.model)}</strong><small>${esc(service.description)}</small><span class="option-price" data-option-price="${esc(service.id)}">${hasPrice(service) ? money(service.price) : "Sur devis"}</span></span></label>`,
+            )
+            .join("")}</div></fieldset>`,
+      )
+      .join(
+        "",
+      )}</div><footer class="options-footer"><div class="options-selection" role="status" aria-live="polite">Aucune option sélectionnée</div><div class="options-actions"><button type="button" class="button secondary" data-action="options-skip">Continuer sans option</button><button type="submit" class="button dark" disabled>Ajouter les options ${icon("arrow")}</button></div>${previewButton()}</footer></form>`;
+    syncPreviewButtons();
+  }
+  function openOptions(id) {
+    if (productDialog.open) productDialog.close();
+    renderOptions(id);
+    optionsDialog.showModal();
+    $(".dialog-close", optionsDialog).focus();
+  }
+  $("#options-dialog").addEventListener("change", () => {
+    const count = optionsDialog.querySelectorAll(
+      'input[name="option"]:checked',
+    ).length;
+    $(".options-selection", optionsDialog).textContent = count
+      ? `${count} option${count > 1 ? "s" : ""} sélectionnée${count > 1 ? "s" : ""}`
+      : "Aucune option sélectionnée";
+    $('button[type="submit"]', optionsDialog).disabled = count === 0;
+  });
+  document.addEventListener("submit", (event) => {
+    if (event.target.id !== "options-form") return;
+    event.preventDefault();
+    const selected = [
+      ...optionsDialog.querySelectorAll('input[name="option"]:checked'),
+    ];
+    if (!selected.length) return;
+    for (const input of selected) addToCart(input.value);
+    optionsDialog.close();
+    openCart();
+  });
   function renderServices() {
     document.getElementById("service-products").innerHTML =
       window.SHOP_SERVICES.map(
@@ -296,7 +364,7 @@
   }
   function renderCart() {
     const summary = summarize(cart, prices.visible);
-    cartDialog.innerHTML = `<div class="cart-shell"><div class="cart-header"><span class="eyebrow">ORDINATEURS & SERVICES</span><h2 id="cart-title">Votre sélection<span>.</span></h2><button class="dialog-close" data-action="cart-close" aria-label="Fermer le panier">${icon("close")}</button></div><div class="cart-items">${
+    cartDialog.innerHTML = `<div class="cart-shell"><div class="cart-header"><span class="eyebrow">ORDINATEURS & SERVICES</span><h2 id="cart-title">Votre sélection<span>.</span></h2>${previewButton()}<button class="dialog-close" data-action="cart-close" aria-label="Fermer le panier">${icon("close")}</button></div><div class="cart-items">${
       cart.length
         ? cart
             .map((row) => {
@@ -307,8 +375,10 @@
             .join("")
         : `<div class="cart-empty">${icon("bag")}Préparez votre sélection.<br>Ajoutez un ordinateur ou un service.<br><button class="button dark" style="margin-top:20px" data-action="cart-close">Continuer ma visite</button></div>`
     }</div>${cart.length ? `<div class="cart-total"><div><span>${summaryLabel(summary)} · ${summary.count} article${summary.count > 1 ? "s" : ""}</span><strong>${summary.knownTotal === null ? "Sur devis" : money(summary.knownTotal)}</strong></div>${summary.hasQuote ? "<p>Les articles et services sur devis sont chiffrés dans votre offre. Aucun total complet n’est annoncé avant confirmation.</p>" : ""}${summary.computers ? `<p>Ordinateurs : garantie ${config.computerWarrantyMonths} mois.<br>Batterie : garantie ${config.batteryWarrantyMonths} mois.</p>` : ""}<button class="button dark" data-action="export">${icon("download")}Exporter ma sélection</button><button class="button secondary" data-action="print">${icon("print")}Imprimer / enregistrer en PDF</button>${config.contactEmail ? `<a class="button primary" href="${esc(quoteMailto())}">Demander une offre</a>` : ""}<small class="cart-demo">Votre sélection prépare une offre. Aucun paiement ni rendez-vous n’est confirmé automatiquement.</small></div>` : ""}</div>`;
+    syncPreviewButtons();
   }
   function openCart() {
+    if (optionsDialog.open) optionsDialog.close();
     renderCart();
     cartDialog.showModal();
     $(".dialog-close", cartDialog).focus();
@@ -375,7 +445,25 @@
     if (action === "product-close") productDialog.close();
     if (action === "cart-open") openCart();
     if (action === "cart-close") cartDialog.close();
-    if (action === "add") addToCart(id);
+    if (action === "add" && addToCart(id) && !isService(byId.get(id)))
+      openOptions(id);
+    if (action === "options-close") optionsDialog.close();
+    if (action === "options-skip") {
+      optionsDialog.close();
+      openCart();
+    }
+    if (action === "price-preview") {
+      const parent = button.closest("dialog");
+      prices.togglePreview();
+      (parent || document)
+        .querySelector('[data-action="price-preview"]')
+        ?.focus();
+      toast(
+        prices.visible
+          ? "Les prix sont réaffichés dans cet onglet."
+          : "Aperçu sans prix dans cet onglet, panier et offre inclus.",
+      );
+    }
     if (action === "remove") {
       cart = cart.filter((r) => r.id !== id);
       persist();
@@ -457,13 +545,20 @@
       ) &&
       !productDialog.open &&
       !cartDialog.open &&
+      !optionsDialog.open &&
       !document.getElementById("shop-root").hidden
     ) {
       event.preventDefault();
       $("#search").focus();
     }
   });
-  for (const dialog of [productDialog, cartDialog]) {
+  const dialogs = [productDialog, cartDialog, optionsDialog];
+  const syncDialogScroll = () => {
+    document.body.style.overflow = dialogs.some((dialog) => dialog.open)
+      ? "hidden"
+      : "";
+  };
+  for (const dialog of dialogs) {
     dialog.addEventListener("click", (event) => {
       if (event.target === dialog) {
         const r = dialog.getBoundingClientRect();
@@ -476,13 +571,11 @@
           dialog.close();
       }
     });
-    dialog.addEventListener("close", () => {
-      document.body.style.overflow = "";
+    dialog.addEventListener("close", syncDialogScroll);
+    new MutationObserver(syncDialogScroll).observe(dialog, {
+      attributes: true,
+      attributeFilter: ["open"],
     });
-    new MutationObserver(() => {
-      document.body.style.overflow =
-        productDialog.open || cartDialog.open ? "hidden" : "";
-    }).observe(dialog, { attributes: true, attributeFilter: ["open"] });
   }
   window.addEventListener("storage", (event) => {
     if (event.key === storageKey) {
@@ -524,6 +617,11 @@
     }
     if (cartDialog.open) renderCart();
     if (productDialog.open && detailId) productDetails(detailId);
+    optionsDialog.querySelectorAll("[data-option-price]").forEach((el) => {
+      const p = byId.get(el.dataset.optionPrice);
+      el.textContent = hasPrice(p) ? money(p.price) : "Sur devis";
+    });
+    syncPreviewButtons();
   }
   window.addEventListener("shop:pricingchange", syncPricing);
   window.SHOP_UI = { ensureCatalogue };

@@ -398,4 +398,37 @@ window.SHOP_SERVICES = [
     price: null,
     stock: null,
   },
+  {
+    id: "service-antivirus-professionnel",
+    kind: "service",
+    model: "Antivirus professionnel",
+    description:
+      "Protection professionnelle pour votre ordinateur. Solution, durée de licence et nombre de postes à définir avec vous.",
+    icon: "shield",
+    category: "software",
+    price: null,
+    stock: null,
+  },
+  {
+    id: "service-licence-office",
+    kind: "service",
+    model: "Licence Microsoft Office",
+    description:
+      "Une licence Office adaptée à vos besoins. Édition, compatibilité et conditions de licence confirmées dans l’offre.",
+    icon: "briefcase",
+    category: "software",
+    price: null,
+    stock: null,
+  },
+  {
+    id: "service-microsoft-365",
+    kind: "service",
+    model: "Microsoft 365",
+    description:
+      "Un abonnement Microsoft 365 adapté à votre usage. Formule, nombre d’utilisateurs, durée et tarif à confirmer dans l’offre.",
+    icon: "layers",
+    category: "software",
+    price: null,
+    stock: null,
+  },
 ];

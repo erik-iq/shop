@@ -9,9 +9,9 @@ for (const file of ["catalogue.js", "commerce.js"])
     context,
   );
 const { SHOP_SERVICES: services, SHOP_COMMERCE: c } = context.window;
-test("Les cinq prestations sont disponibles sans tarif inventé", () => {
-  assert.equal(services.length, 5);
-  assert.equal(new Set(c.items.map((p) => p.id)).size, 15);
+test("Les huit prestations sont disponibles sans tarif inventé", () => {
+  assert.equal(services.length, 8);
+  assert.equal(new Set(c.items.map((p) => p.id)).size, 18);
   for (const p of services) {
     assert.equal(p.price, null);
     assert.equal(c.isService(p), true);

@@ -4,7 +4,7 @@ Site Informaquik en français : accueil, dépannage et atelier à Martigny, solu
 
 ![Accueil Informaquik](docs/accueil.png)
 
-[Aperçu du shop](docs/shop.png) · [Services](docs/services.png) · [Administration](docs/administration.png) · [Aperçu des solutions PME](docs/pme.png) · [Dépannage à distance et atelier](docs/depannage.png)
+[Aperçu du shop](docs/shop.png) · [Services](docs/services.png) · [Options après ajout au panier](docs/options.png) · [Options sur mobile](docs/options-mobile.png) · [Administration](docs/administration.png) · [Aperçu des solutions PME](docs/pme.png) · [Dépannage à distance et atelier](docs/depannage.png)
 
 ## Tester sans installation
 
@@ -26,7 +26,9 @@ Depuis les sources, ouvrir `index.html` fonctionne également. Conservez `app.js
 - Guide interactif : recommandations selon l’usage, le budget et le besoin d’un écran tactile.
 - Contact : coordonnées publiques vérifiées, formulaire qui prépare un e-mail dans la messagerie du visiteur, motif SAV ou entreprise prérempli depuis les pages correspondantes.
 - Catalogue organisé par marque et modèle, recherche, filtres d’usage et tactile, tri par prix ou mémoire.
-- Cinq prestations à ajouter au panier : transfert de données, installation Windows, nettoyage physique, nettoyage logiciel et détection de malwares. Tarifs sur devis tant qu’ils ne sont pas renseignés.
+- Huit prestations à ajouter au panier : transfert de données, installation Windows, nettoyage physique, nettoyage logiciel, détection de malwares, antivirus professionnel, licence Microsoft Office et abonnement Microsoft 365. Tarifs sur devis tant qu’ils ne sont pas renseignés.
+- Après chaque ajout d’un ordinateur, une fenêtre propose les services et licences en option, sans présélection. On peut passer cette étape, ou sélectionner les options et les retrouver dans le panier et l’offre.
+- Petit bouton **Masquer les prix · test**, également dans le panier : aperçu sans montants pour cet onglet, conservé à l’actualisation. Il agit sur les fiches, le guide, les options, le panier, les exports HTML/PDF et l’e-mail préparé. **Réafficher les prix · test** rétablit les montants si le site les autorise. Ce bouton ne modifie aucun réglage partagé.
 - Panier mixte ou composé uniquement de services : quantités, persistance, export, impression/PDF et demande d’offre. Les devis distinguent le sous-total connu des prestations à chiffrer.
 - Déplacements chez les particuliers et dans les entreprises, en plus de l’atelier et de l’assistance à distance. Les modalités et frais de déplacement sont confirmés avec l’offre.
 - Administration protégée pour masquer les prix à tous les visiteurs de la version serveur. [Activation et utilisation](docs/ADMINISTRATION.md).
@@ -38,6 +40,13 @@ Depuis les sources, ouvrir `index.html` fonctionne également. Conservez `app.js
 - Mise en page adaptée aux ordinateurs et mobiles ; animations désactivables selon la préférence de mouvement réduit.
 
 Les photos présentent les modèles, pas l’état d’un exemplaire précis. Le schéma des composants est générique et explicitement pédagogique. Les sources et crédits figurent dans [docs/SOURCES-VISUELS.md](docs/SOURCES-VISUELS.md). Les coûts d’achat et marges des captures ne sont pas inclus dans le catalogue ni la distribution.
+
+## Tester les options et les prix
+
+1. Ouvrir le fichier autonome, aller dans **Shop**, puis ajouter un ordinateur. La fenêtre d’options s’ouvre sans aucune case cochée.
+2. Sélectionner par exemple **Antivirus professionnel** et **Microsoft 365**, puis **Ajouter les options**. Le panier contient le PC et ces deux options. **Continuer sans option** ajoute uniquement le PC.
+3. Dans le panier, cliquer sur **Masquer les prix · test**. Les montants deviennent « Sur devis », y compris dans **Exporter ma sélection**, **Imprimer / enregistrer en PDF** et **Demander une offre**.
+4. Cliquer sur **Réafficher les prix · test** pour retrouver les prix connus. Les licences restent sur devis tant que leurs tarifs ne sont pas renseignés. Cet aperçu ne concerne que l’onglet ; le réglage partagé se fait dans l’administration.
 
 ## Performance et simplicité
 
@@ -93,7 +102,7 @@ npm run package
 
 Le serveur de développement utilise le port 4173 (`PORT` et `HOST` configurables). Il sert uniquement les ressources de la boutique. `npm run package` fabrique le fichier HTML autonome et le ZIP dans `downloads/` avec les sommes SHA-256.
 
-La version autonome est vérifiée dans un navigateur, notamment l’ouverture sans serveur, le chargement des photos, les galeries, les pages de services et les accès secondaires, le guide, le formulaire, l’exploration des composants, les filtres, les fiches, le panier persistant, l’export et la mise en page mobile. Les tests Node vérifient les données, les sous-totaux mixtes et les services sur devis, les ressources embarquées, la compression/cache et l’administration (authentification, CSRF, origine, persistance, déconnexion, limitation des tentatives). Les essais navigateur couvrent aussi deux sessions indépendantes et les exports sans montants.
+La version autonome est vérifiée dans un navigateur, notamment l’ouverture sans serveur, le chargement des photos, les galeries, les pages de services et les accès secondaires, le guide, le formulaire, l’exploration des composants, les filtres, les fiches, le panier persistant, l’export et la mise en page mobile. Les tests Node vérifient les données, les sous-totaux mixtes et les services sur devis, les ressources embarquées, la compression/cache et l’administration (authentification, CSRF, origine, persistance, déconnexion, limitation des tentatives). Les essais navigateur couvrent aussi deux sessions indépendantes, l’aperçu isolé par onglet, les exports et la vue d’impression sans montants, les options sans présélection, l’abandon sans ajout de service, l’accès au clavier, les limites de quantité et les nouveaux écrans sur cinq largeurs (320 à 1 440 px).
 
 ## Configuration cloud
 

@@ -5409,6 +5409,214 @@ dialog::backdrop {
     font-size: 13px;
   }
 }
+
+/* Options facultatives proposées après l’ajout d’un ordinateur. */
+.options-dialog {
+  width: 900px;
+  overflow: auto;
+  background: #fff;
+}
+.options-header {
+  position: relative;
+  padding: 32px 38px 28px;
+  background: #1c1c1c;
+  color: #fff;
+}
+.options-header .eyebrow {
+  color: #bdbdbd;
+  font-size: 9px;
+  padding-right: 30px;
+  display: block;
+}
+.options-header h2 {
+  margin: 18px 0;
+  font-size: 38px;
+  font-weight: 500;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+}
+.options-header h2 em {
+  font-style: normal;
+  color: #bdbdbd;
+}
+.options-header > p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #d2d2d2;
+}
+.options-body {
+  padding: 26px 38px;
+}
+.options-intro {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 26px;
+}
+.options-group {
+  border: 0;
+  padding: 0;
+  margin: 0 0 26px;
+  min-width: 0;
+}
+.options-group:last-child {
+  margin-bottom: 0;
+}
+.options-group legend {
+  font-size: 19px;
+  font-weight: 500;
+  padding: 0 0 16px;
+  letter-spacing: -0.4px;
+}
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.option-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid #dedede;
+  border-radius: 9px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+.option-card:hover {
+  border-color: #888;
+}
+.option-card:has(input:checked) {
+  border-color: #222;
+  background: #f1f1f1;
+}
+.option-card:has(input:disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.option-card input {
+  accent-color: #222;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+}
+.option-icon svg {
+  width: 19px;
+  height: 19px;
+}
+.option-copy {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+.option-copy strong {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.option-copy small {
+  font-size: 11px;
+  line-height: 1.75;
+  color: #666;
+}
+.option-price {
+  font-size: 11px;
+  font-weight: 600;
+}
+.options-footer {
+  position: sticky;
+  bottom: 0;
+  padding: 20px 38px;
+  border-top: 1px solid #ddd;
+  background: #fff;
+  box-shadow: 0 -8px 20px #00000006;
+}
+.options-selection {
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 14px;
+}
+.options-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.options-actions .button {
+  font-size: 11px;
+  padding: 15px 20px;
+  justify-content: center;
+}
+.price-preview {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  color: #444;
+  padding: 9px 12px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.price-preview[aria-pressed="true"] {
+  background: #222;
+  color: #fff;
+  border-color: #222;
+}
+.price-preview-floating {
+  position: fixed;
+  z-index: 45;
+  bottom: 14px;
+  left: 14px;
+  box-shadow: 0 3px 16px #00000016;
+}
+.price-preview[hidden] {
+  display: none;
+}
+.cart-header .price-preview,
+.options-footer .price-preview {
+  margin-top: 14px;
+}
+@media (max-width: 600px) {
+  .options-dialog {
+    max-width: calc(100vw - 20px);
+    max-height: calc(100dvh - 20px);
+  }
+  .options-header,
+  .options-body,
+  .options-footer {
+    padding: 22px 18px;
+  }
+  .options-header h2 {
+    font-size: 31px;
+    letter-spacing: -1px;
+  }
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+  .option-card {
+    padding: 14px;
+  }
+  .options-actions {
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+  .options-actions .button {
+    min-height: 42px;
+    padding: 11px 14px;
+  }
+  .options-footer {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  .options-footer .price-preview {
+    margin-top: 10px;
+  }
+}
 </style>
   </head>
   <body>
@@ -5950,6 +6158,20 @@ dialog::backdrop {
       class="cart-dialog"
       aria-labelledby="cart-title"
     ></dialog>
+    <dialog
+      id="options-dialog"
+      class="options-dialog"
+      aria-labelledby="options-title"
+    ></dialog>
+    <button
+      class="price-preview price-preview-floating"
+      data-action="price-preview"
+      aria-pressed="false"
+      title="Aperçu dans cet onglet uniquement, sans modifier le réglage des autres visiteurs."
+      hidden
+    >
+      Masquer les prix · test
+    </button>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script>/* Catalogue transcrit des fiches fournies. Aucun coût d’achat ni marge n’est stocké ici. */
 window.SHOP_CONFIG = {
@@ -6351,6 +6573,39 @@ window.SHOP_SERVICES = [
     price: null,
     stock: null,
   },
+  {
+    id: "service-antivirus-professionnel",
+    kind: "service",
+    model: "Antivirus professionnel",
+    description:
+      "Protection professionnelle pour votre ordinateur. Solution, durée de licence et nombre de postes à définir avec vous.",
+    icon: "shield",
+    category: "software",
+    price: null,
+    stock: null,
+  },
+  {
+    id: "service-licence-office",
+    kind: "service",
+    model: "Licence Microsoft Office",
+    description:
+      "Une licence Office adaptée à vos besoins. Édition, compatibilité et conditions de licence confirmées dans l’offre.",
+    icon: "briefcase",
+    category: "software",
+    price: null,
+    stock: null,
+  },
+  {
+    id: "service-microsoft-365",
+    kind: "service",
+    model: "Microsoft 365",
+    description:
+      "Un abonnement Microsoft 365 adapté à votre usage. Formule, nombre d’utilisateurs, durée et tarif à confirmer dans l’offre.",
+    icon: "layers",
+    category: "software",
+    price: null,
+    stock: null,
+  },
 ];
 </script><script>/* Photographies de présentation, référencées par famille de modèle. */
 window.SHOP_PHOTOS = {
@@ -6553,6 +6808,11 @@ for (const product of window.SHOP_PRODUCTS) {
   let mode = web ? "loading" : "local",
     visible = web ? false : localValue,
     error = "";
+  const previewKey = "informaquik.prices-preview.v1";
+  let previewHidden = false;
+  try {
+    previewHidden = sessionStorage.getItem(previewKey) === "hidden";
+  } catch {}
   function notify() {
     window.dispatchEvent(new CustomEvent("shop:pricingchange"));
   }
@@ -6590,7 +6850,23 @@ for (const product of window.SHOP_PRODUCTS) {
   const ready = web ? refresh() : Promise.resolve();
   window.SHOP_PRICING = {
     get visible() {
+      return visible && !previewHidden;
+    },
+    get siteVisible() {
       return visible;
+    },
+    get previewHidden() {
+      return previewHidden;
+    },
+    togglePreview() {
+      previewHidden = !previewHidden;
+      try {
+        sessionStorage.setItem(
+          previewKey,
+          previewHidden ? "hidden" : "visible",
+        );
+      } catch {}
+      notify();
     },
     get mode() {
       return mode;
@@ -6690,7 +6966,8 @@ for (const product of window.SHOP_PRODUCTS) {
     sort = "featured",
     toastTimer;
   const productDialog = $("#product-dialog"),
-    cartDialog = $("#cart-dialog");
+    cartDialog = $("#cart-dialog"),
+    optionsDialog = $("#options-dialog");
   const storageKey = "informaquik.selection.v1";
   const quantityLimit = (p) =>
     Number.isInteger(p.stock) ? Math.max(0, p.stock) : 99;
@@ -6858,18 +7135,85 @@ for (const product of window.SHOP_PRODUCTS) {
   }
   function addToCart(id) {
     const p = byId.get(id);
-    if (!p) return;
+    if (!p) return false;
     const row = cart.find((r) => r.id === id);
     if ((row?.quantity || 0) >= quantityLimit(p)) {
       toast("La quantité disponible est déjà dans votre sélection.");
-      return;
+      return false;
     }
     if (row) row.quantity++;
     else cart.push({ id, quantity: 1 });
     persist();
     if (cartDialog.open) renderCart();
     toast(name(p) + " ajouté à votre sélection.");
+    return true;
   }
+  const previewButton = () =>
+    `<button type="button" class="price-preview" data-action="price-preview" title="Aperçu dans cet onglet uniquement, sans modifier le réglage des autres visiteurs."></button>`;
+  function syncPreviewButtons() {
+    document
+      .querySelectorAll('[data-action="price-preview"]')
+      .forEach((button) => {
+        button.hidden = false;
+        button.disabled = !prices.siteVisible;
+        button.setAttribute("aria-pressed", String(prices.previewHidden));
+        button.textContent = prices.siteVisible
+          ? prices.previewHidden
+            ? "Réafficher les prix · test"
+            : "Masquer les prix · test"
+          : prices.mode === "loading"
+            ? "Chargement des prix…"
+            : "Prix masqués · site";
+      });
+  }
+  function renderOptions(id) {
+    const p = byId.get(id);
+    optionsDialog.innerHTML = `<form id="options-form"><header class="options-header"><span class="eyebrow">VOTRE ORDINATEUR EST DANS LE PANIER</span><h2 id="options-title">Un ordinateur.<br>Prêt pour <em>vous.</em></h2><p>${esc(name(p))}</p><button type="button" class="dialog-close" data-action="options-close" aria-label="Fermer les options, garder uniquement l’ordinateur">${icon("close")}</button></header><div class="options-body"><p class="options-intro" id="options-help">Complétez votre ordinateur avec nos services et logiciels. Tout est facultatif, rien n’est ajouté sans votre choix. Les tarifs sur devis sont confirmés dans votre offre.</p>${[
+      ["software", "Logiciels & licences"],
+      ["service", "Préparation & entretien"],
+    ]
+      .map(
+        ([category, title]) =>
+          `<fieldset class="options-group" aria-describedby="options-help"><legend>${title}</legend><div class="options-grid">${window.SHOP_SERVICES.filter(
+            (service) => (service.category || "service") === category,
+          )
+            .map(
+              (service) =>
+                `<label class="option-card"><input type="checkbox" name="option" value="${esc(service.id)}" ${quantityLimit(service) <= (cart.find((row) => row.id === service.id)?.quantity || 0) ? "disabled" : ""}><span class="option-icon">${icon(service.icon)}</span><span class="option-copy"><strong>${esc(service.model)}</strong><small>${esc(service.description)}</small><span class="option-price" data-option-price="${esc(service.id)}">${hasPrice(service) ? money(service.price) : "Sur devis"}</span></span></label>`,
+            )
+            .join("")}</div></fieldset>`,
+      )
+      .join(
+        "",
+      )}</div><footer class="options-footer"><div class="options-selection" role="status" aria-live="polite">Aucune option sélectionnée</div><div class="options-actions"><button type="button" class="button secondary" data-action="options-skip">Continuer sans option</button><button type="submit" class="button dark" disabled>Ajouter les options ${icon("arrow")}</button></div>${previewButton()}</footer></form>`;
+    syncPreviewButtons();
+  }
+  function openOptions(id) {
+    if (productDialog.open) productDialog.close();
+    renderOptions(id);
+    optionsDialog.showModal();
+    $(".dialog-close", optionsDialog).focus();
+  }
+  $("#options-dialog").addEventListener("change", () => {
+    const count = optionsDialog.querySelectorAll(
+      'input[name="option"]:checked',
+    ).length;
+    $(".options-selection", optionsDialog).textContent = count
+      ? `${count} option${count > 1 ? "s" : ""} sélectionnée${count > 1 ? "s" : ""}`
+      : "Aucune option sélectionnée";
+    $('button[type="submit"]', optionsDialog).disabled = count === 0;
+  });
+  document.addEventListener("submit", (event) => {
+    if (event.target.id !== "options-form") return;
+    event.preventDefault();
+    const selected = [
+      ...optionsDialog.querySelectorAll('input[name="option"]:checked'),
+    ];
+    if (!selected.length) return;
+    for (const input of selected) addToCart(input.value);
+    optionsDialog.close();
+    openCart();
+  });
   function renderServices() {
     document.getElementById("service-products").innerHTML =
       window.SHOP_SERVICES.map(
@@ -6908,7 +7252,7 @@ for (const product of window.SHOP_PRODUCTS) {
   }
   function renderCart() {
     const summary = summarize(cart, prices.visible);
-    cartDialog.innerHTML = `<div class="cart-shell"><div class="cart-header"><span class="eyebrow">ORDINATEURS & SERVICES</span><h2 id="cart-title">Votre sélection<span>.</span></h2><button class="dialog-close" data-action="cart-close" aria-label="Fermer le panier">${icon("close")}</button></div><div class="cart-items">${
+    cartDialog.innerHTML = `<div class="cart-shell"><div class="cart-header"><span class="eyebrow">ORDINATEURS & SERVICES</span><h2 id="cart-title">Votre sélection<span>.</span></h2>${previewButton()}<button class="dialog-close" data-action="cart-close" aria-label="Fermer le panier">${icon("close")}</button></div><div class="cart-items">${
       cart.length
         ? cart
             .map((row) => {
@@ -6919,8 +7263,10 @@ for (const product of window.SHOP_PRODUCTS) {
             .join("")
         : `<div class="cart-empty">${icon("bag")}Préparez votre sélection.<br>Ajoutez un ordinateur ou un service.<br><button class="button dark" style="margin-top:20px" data-action="cart-close">Continuer ma visite</button></div>`
     }</div>${cart.length ? `<div class="cart-total"><div><span>${summaryLabel(summary)} · ${summary.count} article${summary.count > 1 ? "s" : ""}</span><strong>${summary.knownTotal === null ? "Sur devis" : money(summary.knownTotal)}</strong></div>${summary.hasQuote ? "<p>Les articles et services sur devis sont chiffrés dans votre offre. Aucun total complet n’est annoncé avant confirmation.</p>" : ""}${summary.computers ? `<p>Ordinateurs : garantie ${config.computerWarrantyMonths} mois.<br>Batterie : garantie ${config.batteryWarrantyMonths} mois.</p>` : ""}<button class="button dark" data-action="export">${icon("download")}Exporter ma sélection</button><button class="button secondary" data-action="print">${icon("print")}Imprimer / enregistrer en PDF</button>${config.contactEmail ? `<a class="button primary" href="${esc(quoteMailto())}">Demander une offre</a>` : ""}<small class="cart-demo">Votre sélection prépare une offre. Aucun paiement ni rendez-vous n’est confirmé automatiquement.</small></div>` : ""}</div>`;
+    syncPreviewButtons();
   }
   function openCart() {
+    if (optionsDialog.open) optionsDialog.close();
     renderCart();
     cartDialog.showModal();
     $(".dialog-close", cartDialog).focus();
@@ -6987,7 +7333,25 @@ for (const product of window.SHOP_PRODUCTS) {
     if (action === "product-close") productDialog.close();
     if (action === "cart-open") openCart();
     if (action === "cart-close") cartDialog.close();
-    if (action === "add") addToCart(id);
+    if (action === "add" && addToCart(id) && !isService(byId.get(id)))
+      openOptions(id);
+    if (action === "options-close") optionsDialog.close();
+    if (action === "options-skip") {
+      optionsDialog.close();
+      openCart();
+    }
+    if (action === "price-preview") {
+      const parent = button.closest("dialog");
+      prices.togglePreview();
+      (parent || document)
+        .querySelector('[data-action="price-preview"]')
+        ?.focus();
+      toast(
+        prices.visible
+          ? "Les prix sont réaffichés dans cet onglet."
+          : "Aperçu sans prix dans cet onglet, panier et offre inclus.",
+      );
+    }
     if (action === "remove") {
       cart = cart.filter((r) => r.id !== id);
       persist();
@@ -7069,13 +7433,20 @@ for (const product of window.SHOP_PRODUCTS) {
       ) &&
       !productDialog.open &&
       !cartDialog.open &&
+      !optionsDialog.open &&
       !document.getElementById("shop-root").hidden
     ) {
       event.preventDefault();
       $("#search").focus();
     }
   });
-  for (const dialog of [productDialog, cartDialog]) {
+  const dialogs = [productDialog, cartDialog, optionsDialog];
+  const syncDialogScroll = () => {
+    document.body.style.overflow = dialogs.some((dialog) => dialog.open)
+      ? "hidden"
+      : "";
+  };
+  for (const dialog of dialogs) {
     dialog.addEventListener("click", (event) => {
       if (event.target === dialog) {
         const r = dialog.getBoundingClientRect();
@@ -7088,13 +7459,11 @@ for (const product of window.SHOP_PRODUCTS) {
           dialog.close();
       }
     });
-    dialog.addEventListener("close", () => {
-      document.body.style.overflow = "";
+    dialog.addEventListener("close", syncDialogScroll);
+    new MutationObserver(syncDialogScroll).observe(dialog, {
+      attributes: true,
+      attributeFilter: ["open"],
     });
-    new MutationObserver(() => {
-      document.body.style.overflow =
-        productDialog.open || cartDialog.open ? "hidden" : "";
-    }).observe(dialog, { attributes: true, attributeFilter: ["open"] });
   }
   window.addEventListener("storage", (event) => {
     if (event.key === storageKey) {
@@ -7136,6 +7505,11 @@ for (const product of window.SHOP_PRODUCTS) {
     }
     if (cartDialog.open) renderCart();
     if (productDialog.open && detailId) productDetails(detailId);
+    optionsDialog.querySelectorAll("[data-option-price]").forEach((el) => {
+      const p = byId.get(el.dataset.optionPrice);
+      el.textContent = hasPrice(p) ? money(p.price) : "Sur devis";
+    });
+    syncPreviewButtons();
   }
   window.addEventListener("shop:pricingchange", syncPricing);
   window.SHOP_UI = { ensureCatalogue };
@@ -7200,7 +7574,7 @@ for (const product of window.SHOP_PRODUCTS) {
           '<form id="admin-login" class="admin-card"><span class="eyebrow">ACCÈS PROTÉGÉ</span><h2>Connexion administrateur</h2><label>Mot de passe<input type="password" name="password" autocomplete="current-password" required minlength="12" maxlength="256"></label><button type="submit" class="button dark">Se connecter</button><p id="admin-status" role="status"></p></form>';
         return;
       }
-      panel.innerHTML = `<form id="admin-settings" class="admin-card"><span class="eyebrow">RÉGLAGES POUR TOUS LES VISITEURS</span><h2>Affichage des prix</h2><label class="admin-switch"><input type="checkbox" name="hidePrices" ${pricing.visible ? "" : "checked"}><span><strong>Masquer les prix</strong><small>Afficher « Sur devis » dans le shop, les fiches et le panier. Retirer les montants des exports et demandes d’offre.</small></span></label><p>Le réglage est enregistré sur le serveur. Les autres visiteurs le voient à l’actualisation ou lors de la prochaine synchronisation automatique.</p><div class="admin-actions"><button type="submit" class="button dark">Enregistrer pour tous les visiteurs</button><button type="button" class="button secondary" data-admin-action="logout">Se déconnecter</button></div><p id="admin-status" role="status"></p></form>`;
+      panel.innerHTML = `<form id="admin-settings" class="admin-card"><span class="eyebrow">RÉGLAGES POUR TOUS LES VISITEURS</span><h2>Affichage des prix</h2><label class="admin-switch"><input type="checkbox" name="hidePrices" ${pricing.siteVisible ? "" : "checked"}><span><strong>Masquer les prix</strong><small>Afficher « Sur devis » dans le shop, les fiches et le panier. Retirer les montants des exports et demandes d’offre.</small></span></label><p>Le réglage est enregistré sur le serveur. Les autres visiteurs le voient à l’actualisation ou lors de la prochaine synchronisation automatique.</p><div class="admin-actions"><button type="submit" class="button dark">Enregistrer pour tous les visiteurs</button><button type="button" class="button secondary" data-admin-action="logout">Se déconnecter</button></div><p id="admin-status" role="status"></p></form>`;
     } catch (error) {
       if (panel.isConnected)
         panel.innerHTML = `<article class="admin-card"><h2>Connexion indisponible</h2><p>${esc(error.message)}</p><button class="button secondary" data-admin-action="retry">Réessayer</button></article>`;
